@@ -1,31 +1,42 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MeleeSystem : MonoBehaviour {
+/*
+This is a "hitter", and should be placed on objects which can do melee damage. 
+The game object which handles melee should have this as a component.
+That same (empty object) should also be placed slightly in front of the monster, otherwise it will hit itself.
 
-	public int damage;
-	public float range;
-	private float nextFire = 0.0F;
-	private float fireRate = 1.0F;
+damage - the damage of a hit.
+range - the range of the attack
 
-	// Use this for initialization
-	void Start () {
+the fireRate should be static through all monsters, so that it is consistent.
+If we add animation, so one can predict the hit from that, it could change. 
+
+*/
+public class MeleeSystem : MonoBehaviour
+{
+
+    public int damage;
+    public float range;
+    private float fireRate = 1.0F;
+    
+    //only used internally
+    float nextFire = 0.0F;
+    
+
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		RaycastHit hit;
-		Ray targetHitRay = new Ray (transform.position, transform.TransformDirection(Vector3.forward));
-		if (Physics.Raycast(targetHitRay, out hit, range))
-		{
-			//Debug.Log("SOMETHING hit");
-			if (hit.collider.tag == "Player" && Time.time > nextFire)
-			{
-				hit.transform.SendMessage("applyDamage",damage,SendMessageOptions.DontRequireReceiver);
-				Debug.Log("log HIT HIT HIT");
-				nextFire = Time.time + fireRate;
-			}
-		}
-	}
+    // Update is called once per frame
+    void Update ()
+    {
+        RaycastHit hit;
+        Ray targetHitRay = new Ray (transform.position, transform.TransformDirection (Vector3.forward));
+        if (Physics.Raycast (targetHitRay, out hit, range)) {
+            //Debug.Log("SOMETHING hit");
+            if (hit.collider.tag == "Player" && Time.time > nextFire) {
+                hit.transform.SendMessage ("applyDamage", damage, SendMessageOptions.DontRequireReceiver);
+                Debug.Log ("log HIT HIT HIT");
+                nextFire = Time.time + fireRate;
+            }
+        }
+    }
 }
