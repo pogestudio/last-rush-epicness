@@ -1,32 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerLogic : MonoBehaviour {
+/*
 
-	public int health = 3;
+This is player logic, and decides all player related behaviour.
+health - the health of the player
 
-	private void die()
-	{
-		Debug.Log ("Player should die");
-		gameObject.SetActive (false);
-	}
+*/
 
-	public void applyDamage(int damage)
-	{
-		health -= damage;
-		if (health <= 0)
-		{
-			die();
-		}
-	}
+public class PlayerLogic : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public int health = 3;
+
+    private void die ()
+    {
+        Debug.Log ("Player should die");
+        gameObject.SetActive (false);
+    }
+
+    public void applyDamage (int damage)
+    {
+        health -= damage;
+        if (health <= 0) {
+            die ();
+        }
+    }
+
 }
