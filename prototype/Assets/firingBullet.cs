@@ -28,13 +28,14 @@ public class firingBullet : MonoBehaviour
 
 	
     }
-	
+
     // Update is called once per frame
     void Update ()
     {
         if (Input.GetMouseButtonDown (0)) {
             Rigidbody newProjectile = Instantiate (projectile, transform.position, transform.rotation) as Rigidbody;
-            newProjectile.velocity = transform.TransformDirection (Vector3.forward * speed);
+			newProjectile.gameObject.SetActive(true);
+			newProjectile.velocity = transform.TransformDirection (Vector3.forward * speed);
             Debug.Log (Vector3.forward * speed);
             Destroy (newProjectile.gameObject, 10);
         }
