@@ -35,7 +35,7 @@ public class firingBullet : MonoBehaviour
         if (Input.GetMouseButtonDown (0)) {
             Rigidbody newProjectile = Instantiate (projectile, transform.position, transform.rotation) as Rigidbody;
             newProjectile.velocity = transform.TransformDirection (Vector3.forward * speed);
-            Debug.Log (Vector3.forward * speed);
+			//Debug.Log(Vector3.forward * speed);
             Destroy (newProjectile.gameObject, 10);
         }
     }
