@@ -18,27 +18,27 @@ glitches in collision detection.
 public class firingBullet : MonoBehaviour
 {
 
-    public Rigidbody projectile;
-    public int speed = 20;
+	public Rigidbody projectile;
+	public int speed = 20;
 
 
-    // Use this for initialization
-    void Start ()
-    {
+	// Use this for initialization
+	void Start ()
+	{
 
 	
-    }
+	}
 
-    // Update is called once per frame
-    void Update ()
-    {
-        if (Input.GetMouseButtonDown (0)) {
-            Rigidbody newProjectile = Instantiate (projectile, transform.position, transform.rotation) as Rigidbody;
-			newProjectile.gameObject.SetActive(true);
+	// Update is called once per frame
+	void Update ()
+	{
+		if (Input.GetMouseButtonDown (0)) {
+			Rigidbody newProjectile = Instantiate (projectile, transform.position, transform.rotation) as Rigidbody;
+			newProjectile.gameObject.SetActive (true);
 			newProjectile.velocity = transform.TransformDirection (Vector3.forward * speed);
-            Debug.Log (Vector3.forward * speed);
-            Destroy (newProjectile.gameObject, 10);
-        }
-    }
+			//Debug.Log (Vector3.forward * speed);
+			Destroy (newProjectile.gameObject, 10);
+		}
+	}
 
 }
