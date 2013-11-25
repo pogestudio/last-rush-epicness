@@ -1023,6 +1023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRate: 5
+  health: 3
 --- !u!1 &1838852878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,7 +1038,7 @@ GameObject:
   - 81: {fileID: 1838852879}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
