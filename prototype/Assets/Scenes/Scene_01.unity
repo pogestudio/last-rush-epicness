@@ -272,6 +272,7 @@ GameObject:
   - 136: {fileID: 475668435}
   - 23: {fileID: 475668434}
   - 114: {fileID: 475668437}
+  - 54: {fileID: 475668438}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Untagged
