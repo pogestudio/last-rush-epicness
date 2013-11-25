@@ -37,10 +37,6 @@ Material:
         first:
           name: _Occlusion
         second: 7.5
-      data:
-        first:
-          name: _SquashAmount
-        second: 1
     m_Colors:
       data:
         first:
