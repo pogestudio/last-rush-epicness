@@ -8,7 +8,7 @@ health - the health of the player
 
 */
 
-public class PlayerLogic : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
 	public int health = 3;
 
