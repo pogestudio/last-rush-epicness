@@ -22,7 +22,7 @@ public class MonsterLogic : MonoBehaviour
 
 	private void die ()
 	{
-		Debug.Log ("Monster should die");
+		//Debug.Log ("Monster should die");
 		gameObject.SetActive (false);
 	}
 
