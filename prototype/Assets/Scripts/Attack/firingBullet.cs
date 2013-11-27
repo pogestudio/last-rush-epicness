@@ -17,15 +17,11 @@ glitches in collision detection.
 
 public class firingBullet : MonoBehaviour
 {
-
-	public Rigidbody projectile;
-	public int speed = 20;
-
-
+	private int speed;
 	// Use this for initialization
 	void Start ()
 	{
-
+		//player = GameObject.FindGameObjectWithTag ("Player");
 	
 	}
 
@@ -33,12 +29,7 @@ public class firingBullet : MonoBehaviour
 	void Update ()
 	{
 		if (Input.GetMouseButtonDown (0)) {
-			Rigidbody newProjectile = Instantiate (projectile, transform.position, transform.rotation) as Rigidbody;
-			newProjectile.gameObject.SetActive (true);
-			newProjectile.velocity = transform.TransformDirection (Vector3.forward * speed);
-			//Debug.Log (Vector3.forward * speed);
-			Destroy (newProjectile.gameObject, 10);
+			Rigidbody projectile = ProjectileFactory.sharedFactory ().deliverProjectile (transform);
 		}
 	}
-
 }

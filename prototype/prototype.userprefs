@@ -1,14 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerHealth.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Attack/firingBullet.cs">
     <Files>
-      <File FileName="Assets/Scripts/PlayerHealth.cs" Line="21" Column="2" />
-      <File FileName="Assets/Scripts/Monster/SpawnMonsterAroundMe.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/projectileCollision.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PlayerHealth.cs" Line="34" Column="1" />
-      <File FileName="Assets/Scripts/Monster/MonsterLogic.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/firingBullet.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Monster/MeleeSystem.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Player/ExperienceHandler.cs" Line="90" Column="4" />
+      <File FileName="Assets/Scripts/Attack/AttackHandler.cs" Line="6" Column="17" />
+      <File FileName="Assets/Scripts/Monster/MonsterFactory.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Attack/ProjectileCollision.cs" Line="27" Column="82" />
+      <File FileName="Assets/Scripts/Attack/firingBullet.cs" Line="29" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
