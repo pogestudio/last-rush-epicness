@@ -41,7 +41,8 @@ public class ProjectileFactory : MonoBehaviour
 	}
 	
 	/// <summary>
-	/// Responsible for creating the project with a special, or regular, attack.
+	/// Responsible for creating the adding the attack skill component to the projectile
+	/// as well as setting it up.
 	/// If no special attack, just return the projectile. 
 	/// </summary>
 	/// <returns>The projectile.</returns>
@@ -53,22 +54,26 @@ public class ProjectileFactory : MonoBehaviour
 		switch (skillToApply) {
 		case AttackSkills.CriticalHit:
 			{
-				projectileToFire.AddComponent<CriticalHitProjectile> ();
-				CriticalHitProjectile collisionLogic = projectileToFire.GetComponent<CriticalHitProjectile> () as CriticalHitProjectile;
+				projectileToFire.AddComponent<CriticalHit> ();
+				CriticalHit collisionLogic = projectileToFire.GetComponent<CriticalHit> () as CriticalHit;
 				
-				collisionLogic.damage = weaponDamage;
+				collisionLogic.baseShotDamage = weaponDamage;
+				collisionLogic.currentWeaponType = currentWeaponType;
+				break;
+			}
+		case AttackSkills.RegularShot:
+			{
+				projectileToFire.AddComponent<RegularShot> ();
+				RegularShot collisionLogic = projectileToFire.GetComponent<RegularShot> () as RegularShot;
+				collisionLogic.baseShotDamage = weaponDamage;
 				collisionLogic.currentWeaponType = currentWeaponType;
 				break;
 			}
 		default:
 			{
-				projectileToFire.AddComponent<ProjectileCollision> ();
-				ProjectileCollision collisionLogic = projectileToFire.GetComponent<ProjectileCollision> () as ProjectileCollision;
-				collisionLogic.damage = weaponDamage;
-				collisionLogic.currentWeaponType = currentWeaponType;
+				Debug.LogError ("We have more skills than we implemented in the factory!!");
 				break;
 			}
-			
 			
 		}
 		return projectileToFire;
@@ -80,11 +85,7 @@ public class ProjectileFactory : MonoBehaviour
 	/// <returns>The bullet.</returns>
 	private GameObject createProjectile (Transform gunOrigin)
 	{
-	
-		int weaponSpeed = 20;
-		GameObject newProjectile = Instantiate (bullet, gunOrigin.position, gunOrigin.rotation) as GameObject;
-		newProjectile.rigidbody.velocity = gunOrigin.TransformDirection (Vector3.forward * weaponSpeed);
-		
+		GameObject newProjectile = Instantiate (bullet, gunOrigin.position, gunOrigin.rotation) as GameObject;	
 		return newProjectile;
 	}
 }
