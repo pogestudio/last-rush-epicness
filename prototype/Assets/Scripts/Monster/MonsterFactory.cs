@@ -59,8 +59,10 @@ public class MonsterFactory : MonoBehaviour
 		float playerPosition = position.position.z;
 		float playerPositionFromEdge = centerOfMapAtWhatDistance + playerPosition;
 		float playerProgressInMap = playerPositionFromEdge / mapHeight;
+		Debug.Log ("player progress : " + playerProgressInMap);
 		
-		float monsterHealth = (maxHealth - minHealth) + (maxHealth - minHealth) * playerProgressInMap;
+		float monsterHealth = 300 * Mathf.Pow (40, playerProgressInMap) - 300;
+		monsterHealth = Mathf.Max (4, monsterHealth);
 		Debug.Log ("SPAWNING MOnster with health " + monsterHealth);
 		return (int)monsterHealth;
 	}
