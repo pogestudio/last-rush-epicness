@@ -12,6 +12,7 @@ public class PlayerGuns : MonoBehaviour
     {
         ragdollWeapons = GameObject.FindGameObjectWithTag("RagdollWeaponsContainer");
         currentGun = transform.FindChild("Gun").gameObject;
+        currentGun.GetComponent<AbstractWeapon>().Mode = WeaponMode.HAND;
     }
 
     // Update is called once per frame

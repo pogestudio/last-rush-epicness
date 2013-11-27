@@ -22,9 +22,7 @@ public enum WeaponMode
 public abstract class AbstractWeapon : MonoBehaviour
 {
 
-	public GameObject gunMuzzle;
-
-	public bool initAsRagdoll;
+	public Transform gunMuzzle;
 
 	private WeaponMode mode;
 	public WeaponMode Mode
@@ -57,12 +55,9 @@ public abstract class AbstractWeapon : MonoBehaviour
 		}
 	}
 
-	void Start()
+	void Awake()
 	{
-		if (initAsRagdoll)
-			Mode = WeaponMode.RAGDOLL;
-		else
-			Mode = WeaponMode.HAND;     //default is weapon Handed (may be changed later)
+		Mode = WeaponMode.RAGDOLL;
 
 		if (gunMuzzle == null)
 		{
@@ -101,7 +96,7 @@ public abstract class AbstractWeapon : MonoBehaviour
 	protected void fire()
 	{
 		//TODO : handle different projectile types?
-		//Rigidbody projectile = ProjectileFactory.sharedFactory().deliverProjectile(gunMuzzle);
+        ProjectileFactory.sharedFactory().deliverProjectile(gunMuzzle);
 	}
 
 	public abstract void triggerDown();
