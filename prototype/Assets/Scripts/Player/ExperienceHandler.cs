@@ -6,7 +6,7 @@ using System.Collections;
 /// </summary>
 public enum WeaponTypes
 {
-	WeaponTypeINVALID = 0,
+	HandGun = 0,
 	MachineGun = 1,
 	//Revolver,
 	WeaponTypesMAX,
@@ -38,6 +38,7 @@ public class ExperienceHandler : MonoBehaviour
 	private int attackSkillsMax;
 	private SkillTypePair[] skillTypePairs;
 	private float[] weaponTypesXP;
+	
 	/// <summary>
 	/// Use this to retrieve the singleton
 	/// </summary>
@@ -52,6 +53,7 @@ public class ExperienceHandler : MonoBehaviour
 		instance = this;
 		weaponTypesXP = new float[(int)WeaponTypes.WeaponTypesMAX];
 		skillTypePairs = new SkillTypePair[(int)WeaponTypes.WeaponTypesMAX];
+		
 		matchWeaponTypeToSkills ();
 	}
 	
@@ -63,7 +65,7 @@ public class ExperienceHandler : MonoBehaviour
 		//in test mode, machine gun = critical hit. 
 		SkillTypePair first = new SkillTypePair ();
 		first.skill = (int)AttackSkills.RegularShot;
-		first.weaponType = WeaponTypes.WeaponTypeINVALID;
+		first.weaponType = WeaponTypes.HandGun;
 		
 		SkillTypePair second = new SkillTypePair ();
 		second.skill = (int)AttackSkills.CriticalHit;

@@ -15,6 +15,9 @@ public class ProjectileFactory : MonoBehaviour
 	
 	//THE AMMO
 	public GameObject bullet;
+	
+	//private 
+	private GameObject player; //using this to access the current gun. Maybe the weapon type should be pass on when requesting the projectile instead?
 
 	public static ProjectileFactory sharedFactory ()
 	{
@@ -24,17 +27,19 @@ public class ProjectileFactory : MonoBehaviour
 	void Start ()
 	{
 		instance = this;
+		player = GameObject.FindGameObjectWithTag ("Player");
+		
 	}
 	
 	/// <summary>
 	/// Call from any object belonging to player, for example an equipped gun.
 	/// </summary>
-	/// <returns>The projectile.</returns>
-	public GameObject deliverProjectile (Transform gunOrigin)
+	/// <returns>The projectile, in a stand still state at the transform point given</returns>
+	public GameObject deliverProjectile (Transform gunOrigin, WeaponTypes weaponType, int weaponDamage)
 	{
 		AttackSkills skillToApply = AttackHandler.sharedHandler ().typeOfShotToFire ();
 		GameObject projectileToFire = createProjectile (gunOrigin);
-		addAttackSkills (projectileToFire, skillToApply);
+		addAttackSkills (projectileToFire, skillToApply, weaponDamage, weaponType);
 		
 		
 		return projectileToFire;
@@ -47,26 +52,25 @@ public class ProjectileFactory : MonoBehaviour
 	/// </summary>
 	/// <returns>The projectile.</returns>
 	/// <param name="skillToApply">Skill to apply.</param>
-	private GameObject addAttackSkills (GameObject projectileToFire, AttackSkills skillToApply)
+	private GameObject addAttackSkills (GameObject projectileToFire, AttackSkills skillToApply, int damage, WeaponTypes weaponType)
 	{
-		int weaponDamage = 1;
-		WeaponTypes currentWeaponType = WeaponTypes.MachineGun;
+		
 		switch (skillToApply) {
 		case AttackSkills.CriticalHit:
 			{
 				projectileToFire.AddComponent<CriticalHit> ();
 				CriticalHit collisionLogic = projectileToFire.GetComponent<CriticalHit> () as CriticalHit;
 				
-				collisionLogic.baseShotDamage = weaponDamage;
-				collisionLogic.currentWeaponType = currentWeaponType;
+				collisionLogic.baseShotDamage = damage;
+				collisionLogic.currentWeaponType = weaponType;
 				break;
 			}
 		case AttackSkills.RegularShot:
 			{
 				projectileToFire.AddComponent<RegularShot> ();
 				RegularShot collisionLogic = projectileToFire.GetComponent<RegularShot> () as RegularShot;
-				collisionLogic.baseShotDamage = weaponDamage;
-				collisionLogic.currentWeaponType = currentWeaponType;
+				collisionLogic.baseShotDamage = damage;
+				collisionLogic.currentWeaponType = weaponType;
 				break;
 			}
 		default:

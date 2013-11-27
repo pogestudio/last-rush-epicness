@@ -20,47 +20,41 @@ public enum WeaponMode
 }
 
 public abstract class AbstractWeapon : MonoBehaviour
-{
-
+{	
 	public Transform gunMuzzle;
-    public int bulletSpeed = 20;
 
 	private WeaponMode mode = WeaponMode.RAGDOLL;
-	public WeaponMode Mode
-	{
+	public WeaponMode Mode {
 		get { return mode; }
-		set
-		{
+		set {
 			this.mode = value;
-			switch (mode)
-			{
-				case WeaponMode.RAGDOLL:
-					{
-						rigidbody.isKinematic = false;
-						collider.enabled = true;
-						break;
-					}
-				case WeaponMode.HOLSTER:
-					{
-						rigidbody.isKinematic = true;
-						collider.enabled = false;
-						break;
-					}
-				case WeaponMode.HAND:
-					{
-						rigidbody.isKinematic = true;
-						collider.enabled = false;
-						break;
-					}
+			switch (mode) {
+			case WeaponMode.RAGDOLL:
+				{
+					rigidbody.isKinematic = false;
+					collider.enabled = true;
+					break;
+				}
+			case WeaponMode.HOLSTER:
+				{
+					rigidbody.isKinematic = true;
+					collider.enabled = false;
+					break;
+				}
+			case WeaponMode.HAND:
+				{
+					rigidbody.isKinematic = true;
+					collider.enabled = false;
+					break;
+				}
 			}
 		}
 	}
 
-	protected void Awake()
+	protected void Awake ()
 	{
-		if (gunMuzzle == null)
-		{
-			Debug.Log("Weapon muzzle is not set");
+		if (gunMuzzle == null) {
+			Debug.Log ("Weapon muzzle is not set");
 		}
 	}
 
@@ -73,18 +67,17 @@ public abstract class AbstractWeapon : MonoBehaviour
 	//	}
 	//}
 
-    protected void Update()
+	protected void Update ()
 	{
-		if (mode == WeaponMode.HAND)
-		{
+		if (mode == WeaponMode.HAND) {
 			//changing this bloc allow to change the way to fire all weapons
-			if (Input.GetButtonDown("Fire1"))
-				triggerDown();
-			else if (Input.GetButtonUp("Fire1"))
-				triggerUp();
+			if (Input.GetButtonDown ("Fire1"))
+				triggerDown ();
+			else if (Input.GetButtonUp ("Fire1"))
+				triggerUp ();
 
-			if (Input.GetButton("Fire1"))
-				triggerHold();
+			if (Input.GetButton ("Fire1"))
+				triggerHold ();
 		}
 	}
 
@@ -92,15 +85,10 @@ public abstract class AbstractWeapon : MonoBehaviour
 	/// <summary>
 	/// Should be called by the sub-class (specific weapon) whenever it wants to instantiate a projectile
 	/// </summary>
-	protected void fire()
-	{
-		//TODO : handle different projectile types?
-        GameObject projectile = ProjectileFactory.sharedFactory().deliverProjectile(gunMuzzle);
-        projectile.rigidbody.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-	}
+	public abstract void fire ();
 
-	public abstract void triggerDown();
-	public abstract void triggerHold();
-	public abstract void triggerUp();
+	public abstract void triggerDown ();
+	public abstract void triggerHold ();
+	public abstract void triggerUp ();
 
 }
