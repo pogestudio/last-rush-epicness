@@ -29,7 +29,9 @@ public class firingBullet : MonoBehaviour
 	void Update ()
 	{
 		if (Input.GetMouseButtonDown (0)) {
-			Rigidbody projectile = ProjectileFactory.sharedFactory ().deliverProjectile (transform);
+			int weaponSpeed = 20; //get from weapon
+			GameObject projectile = ProjectileFactory.sharedFactory ().deliverProjectile (transform);
+			projectile.rigidbody.velocity = transform.TransformDirection (Vector3.forward * weaponSpeed);
 		}
 	}
 }

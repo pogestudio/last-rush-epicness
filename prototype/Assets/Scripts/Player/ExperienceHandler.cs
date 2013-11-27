@@ -84,7 +84,7 @@ public class ExperienceHandler : MonoBehaviour
 		int length = skillTypePairs.Length;
 		for (int i = 0; i < length; i++) {
 			if (skillTypePairs [i].weaponType == weaponType) {
-				Debug.Log ("WeaponType : " + weaponType + " is connected to attackskill: " + (AttackSkills)skillTypePairs [i].skill);
+				//Debug.Log ("WeaponType : " + weaponType + " is connected to attackskill: " + (AttackSkills)skillTypePairs [i].skill);
 				return (AttackSkills)skillTypePairs [i].skill;
 			}
 		}
@@ -103,7 +103,7 @@ public class ExperienceHandler : MonoBehaviour
 		float newExp = currentXp + (float)damage;
 		weaponTypesXP [(int)byWeapon] = newExp;
 		if (didWeaponLevelUp (currentXp, newExp)) {
-            //skillLeveledUp ();
+			skillLeveledUp (byWeapon);
 		}
 	}
 	

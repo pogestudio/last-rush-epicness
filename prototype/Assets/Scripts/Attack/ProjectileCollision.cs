@@ -12,21 +12,12 @@ public class ProjectileCollision : MonoBehaviour
 {
 	public int damage = 0;
 	public WeaponTypes currentWeaponType;
+	public int standardDestroyTime = 10;
 
 	// Use this for initialization
-	void Start ()
-	{
-		if (damage == 0)
-			Debug.Log ("Damage is 0 on a projectile, fix!");
-	}
-	
-	void OnCollisionEnter (Collision collision)
-	{
-		GameObject target = collision.gameObject;
-		target.transform.SendMessage ("applyDamage", damage, SendMessageOptions.DontRequireReceiver);
-		ExperienceHandler.sharedHandler ().damagesWasDealt (damage, currentWeaponType);
-			
 
-		Destroy (gameObject);
-	}
+	
+	
+	
+	
 }

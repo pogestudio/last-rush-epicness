@@ -22,7 +22,7 @@ public enum WeaponMode
 public abstract class AbstractWeapon : MonoBehaviour
 {
 
-	public Transform gunMuzzle;
+	public GameObject gunMuzzle;
 
 	public bool initAsRagdoll;
 
@@ -101,7 +101,7 @@ public abstract class AbstractWeapon : MonoBehaviour
 	protected void fire()
 	{
 		//TODO : handle different projectile types?
-		Rigidbody projectile = ProjectileFactory.sharedFactory().deliverProjectile(gunMuzzle);
+		//Rigidbody projectile = ProjectileFactory.sharedFactory().deliverProjectile(gunMuzzle);
 	}
 
 	public abstract void triggerDown();
