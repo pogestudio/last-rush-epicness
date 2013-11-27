@@ -101,7 +101,10 @@ public abstract class AbstractWeapon : MonoBehaviour
 	protected void fire()
 	{
 		//TODO : handle different projectile types?
-		//Rigidbody projectile = ProjectileFactory.sharedFactory().deliverProjectile(gunMuzzle);
+		int weaponSpeed = 20;
+		GameObject projectile = ProjectileFactory.sharedFactory().deliverProjectile(gunMuzzle.transform);
+		projectile.rigidbody.velocity = transform.TransformDirection (Vector3.forward * weaponSpeed);
+
 	}
 
 	public abstract void triggerDown();

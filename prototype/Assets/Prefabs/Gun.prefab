@@ -53,7 +53,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 2.68220901e-07, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: .946837068}
+  m_LocalPosition: {x: -1.14599609, y: .0848472118, z: -965.000427}
   m_LocalScale: {x: .160698235, y: .0848469362, z: 1.24642944}
   m_Children:
   - {fileID: 400000}
@@ -125,8 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e068f2b8f13627c4296f90eff046e0f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunMuzzle: {fileID: 400000}
-  initAsRagdoll: 0
+  gunMuzzle: {fileID: 100000}
+  initAsRagdoll: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
