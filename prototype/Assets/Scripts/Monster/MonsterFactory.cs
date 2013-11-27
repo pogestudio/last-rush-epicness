@@ -13,6 +13,8 @@ public class MonsterFactory : MonoBehaviour
 	/*private GameObject miniBoss;
 	private GameObject majorBoss;*/
 	
+	private float mapHeight;
+	
 	void Start ()
 	{
 		instance = this;
@@ -21,6 +23,10 @@ public class MonsterFactory : MonoBehaviour
 		 we can see if something breaks */
 		if (!regularMonster)
 			Debug.LogError ("don't have a regular monster. Fail Fail Fail");
+			
+		GameObject terrainObject = GameObject.Find ("Terrain");
+		Terrain terrain = terrainObject.GetComponent<Terrain> ();
+		mapHeight = terrain.terrainData.size.z;
 	}
 	
 	//////////////////////////// BEGIN REGULAR MONSTER
@@ -47,7 +53,16 @@ public class MonsterFactory : MonoBehaviour
 	
 	private int monsterStartingHealth (Transform position)
 	{
-		return 50;
+		float maxHealth = 10000F;
+		float minHealth = 1F;
+		float centerOfMapAtWhatDistance = 1000F;
+		float playerPosition = position.position.z;
+		float playerPositionFromEdge = centerOfMapAtWhatDistance + playerPosition;
+		float playerProgressInMap = playerPositionFromEdge / mapHeight;
+		
+		float monsterHealth = (maxHealth - minHealth) + (maxHealth - minHealth) * playerProgressInMap;
+		Debug.Log ("SPAWNING MOnster with health " + monsterHealth);
+		return (int)monsterHealth;
 	}
 	
 	public Vector3 monsterStartingPosition (Transform playerTransform)

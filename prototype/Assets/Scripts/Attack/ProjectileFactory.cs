@@ -49,7 +49,7 @@ public class ProjectileFactory : MonoBehaviour
 	/// <param name="skillToApply">Skill to apply.</param>
 	private GameObject addAttackSkills (GameObject projectileToFire, AttackSkills skillToApply)
 	{
-		int weaponDamage = 50;
+		int weaponDamage = 1;
 		WeaponTypes currentWeaponType = WeaponTypes.MachineGun;
 		switch (skillToApply) {
 		case AttackSkills.CriticalHit:

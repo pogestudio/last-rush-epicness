@@ -2,12 +2,13 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Attack/ProjectileFactory.cs">
     <Files>
-      <File FileName="Assets/Scripts/Attack/AttackSkills/CriticalHit.cs" Line="5" Column="2" />
-      <File FileName="Assets/Scripts/Attack/ProjectileFactory.cs" Line="66" Column="94" />
-      <File FileName="Assets/Scripts/Attack/AttackSkills/Projectile.cs" Line="14" Column="45" />
+      <File FileName="Assets/Scripts/Attack/AttackSkills/CriticalHit.cs" Line="11" Column="81" />
+      <File FileName="Assets/Scripts/Attack/ProjectileFactory.cs" Line="88" Column="105" />
+      <File FileName="Assets/Scripts/Attack/AttackSkills/Projectile.cs" Line="22" Column="51" />
       <File FileName="Assets/Scripts/Attack/AttackHandler.cs" Line="58" Column="16" />
-      <File FileName="Assets/Scripts/Attack/firingBullet.cs" Line="32" Column="4" />
-      <File FileName="Assets/Scripts/Attack/AttackSkills/RegularShot.cs" Line="13" Column="3" />
+      <File FileName="Assets/Scripts/Attack/firingBullet.cs" Line="32" Column="43" />
+      <File FileName="Assets/Scripts/Attack/AttackSkills/RegularShot.cs" Line="10" Column="1" />
+      <File FileName="Assets/Scripts/Attack/ProjectileCollision.cs" Line="18" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
