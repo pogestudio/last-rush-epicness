@@ -24,7 +24,7 @@ public abstract class AbstractWeapon : MonoBehaviour
 
 	public Transform gunMuzzle;
 
-	private WeaponMode mode;
+	private WeaponMode mode = WeaponMode.RAGDOLL;
 	public WeaponMode Mode
 	{
 		get { return mode; }
@@ -55,10 +55,8 @@ public abstract class AbstractWeapon : MonoBehaviour
 		}
 	}
 
-	void Awake()
+	protected void Awake()
 	{
-		Mode = WeaponMode.RAGDOLL;
-
 		if (gunMuzzle == null)
 		{
 			Debug.Log("Weapon muzzle is not set");
@@ -74,7 +72,7 @@ public abstract class AbstractWeapon : MonoBehaviour
 	//	}
 	//}
 
-	void Update()
+    protected void Update()
 	{
 		if (mode == WeaponMode.HAND)
 		{

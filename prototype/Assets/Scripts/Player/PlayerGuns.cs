@@ -5,13 +5,15 @@ public class PlayerGuns : MonoBehaviour
 {
 	public float MaximumPickupRange = 3;
 
-    private static GameObject ragdollWeapons;
-    private static GameObject currentGun;
+    private GameObject ragdollWeapons;
+    public GameObject currentGun;
 
     void Awake()
     {
+        if (currentGun == null)
+            Debug.Log("PlayerGuns.currentGun should be set if the player is carrying a gun!");
+
         ragdollWeapons = GameObject.FindGameObjectWithTag("RagdollWeaponsContainer");
-        currentGun = transform.FindChild("Gun").gameObject;
         currentGun.GetComponent<AbstractWeapon>().Mode = WeaponMode.HAND;
     }
 
