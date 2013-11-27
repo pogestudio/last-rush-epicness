@@ -149,7 +149,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 2079185328}
-  initAsRagdoll: 0
 --- !u!23 &23729510
 Renderer:
   m_ObjectHideFlags: 0
@@ -468,7 +467,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 2087203942}
-  initAsRagdoll: 1
 --- !u!23 &504131176
 Renderer:
   m_ObjectHideFlags: 0
@@ -1197,7 +1195,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 350187027}
-  initAsRagdoll: 1
 --- !u!23 &1941098124
 Renderer:
   m_ObjectHideFlags: 0
