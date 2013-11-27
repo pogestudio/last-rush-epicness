@@ -22,9 +22,7 @@ public enum WeaponMode
 public abstract class AbstractWeapon : MonoBehaviour
 {
 
-	public GameObject gunMuzzle;
-
-	public bool initAsRagdoll;
+	public Transform gunMuzzle;
 
 	private WeaponMode mode;
 	public WeaponMode Mode
@@ -57,12 +55,9 @@ public abstract class AbstractWeapon : MonoBehaviour
 		}
 	}
 
-	void Start()
+	void Awake()
 	{
-		if (initAsRagdoll)
-			Mode = WeaponMode.RAGDOLL;
-		else
-			Mode = WeaponMode.HAND;     //default is weapon Handed (may be changed later)
+		Mode = WeaponMode.RAGDOLL;
 
 		if (gunMuzzle == null)
 		{
@@ -104,7 +99,6 @@ public abstract class AbstractWeapon : MonoBehaviour
 		int weaponSpeed = 20;
 		GameObject projectile = ProjectileFactory.sharedFactory().deliverProjectile(gunMuzzle.transform);
 		projectile.rigidbody.velocity = transform.TransformDirection (Vector3.forward * weaponSpeed);
-
 	}
 
 	public abstract void triggerDown();
