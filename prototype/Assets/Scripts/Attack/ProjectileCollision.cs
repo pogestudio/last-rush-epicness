@@ -45,4 +45,9 @@ public class ProjectileCollision : MonoBehaviour
 		}	
 		Destroy (gameObject);
 	}
+	
+	public virtual int destroyTime ()
+	{
+		return standardDestroyTime;
+	}
 }

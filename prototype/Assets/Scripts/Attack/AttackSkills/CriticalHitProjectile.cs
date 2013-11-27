@@ -4,10 +4,14 @@ using System.Collections;
 public class CriticalHitProjectile : ProjectileCollision
 {
 
+	public new int damage = 0;
+	public new WeaponTypes currentWeaponType;
+	
+	
 	// Use this for initialization
 	void Start ()
 	{
-		Destroy (gameObject, standardDestroyTime);
+		Destroy (gameObject, destroyTime ());
 	}
 	
 	
@@ -19,7 +23,5 @@ public class CriticalHitProjectile : ProjectileCollision
 		}	
 		Destroy (gameObject);
 	}
-	
-	
 }
 

@@ -55,6 +55,7 @@ public class ProjectileFactory : MonoBehaviour
 			{
 				projectileToFire.AddComponent<CriticalHitProjectile> ();
 				CriticalHitProjectile collisionLogic = projectileToFire.GetComponent<CriticalHitProjectile> () as CriticalHitProjectile;
+				
 				collisionLogic.damage = weaponDamage;
 				collisionLogic.currentWeaponType = currentWeaponType;
 				break;
