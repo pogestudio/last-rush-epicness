@@ -14,7 +14,7 @@ public class ProjectileFactory : MonoBehaviour
 	protected static ProjectileFactory instance;
 	
 	//THE AMMO
-	public Rigidbody bullet;
+	public GameObject bullet;
 
 	public static ProjectileFactory sharedFactory ()
 	{
@@ -30,10 +30,10 @@ public class ProjectileFactory : MonoBehaviour
 	/// Call from any object belonging to player, for example an equipped gun.
 	/// </summary>
 	/// <returns>The projectile.</returns>
-	public Rigidbody deliverProjectile (Transform gunOrigin)
+	public GameObject deliverProjectile (Transform gunOrigin)
 	{
 		AttackSkills skillToApply = AttackHandler.sharedHandler ().typeOfShotToFire ();
-		Rigidbody projectileToFire = createProjectile (gunOrigin);
+		GameObject projectileToFire = createProjectile (gunOrigin);
 		addAttackSkills (projectileToFire, skillToApply);
 		
 		
@@ -46,16 +46,29 @@ public class ProjectileFactory : MonoBehaviour
 	/// </summary>
 	/// <returns>The projectile.</returns>
 	/// <param name="skillToApply">Skill to apply.</param>
-	private Rigidbody addAttackSkills (Rigidbody projectileToFire, AttackSkills skillToApply)
+	private GameObject addAttackSkills (GameObject projectileToFire, AttackSkills skillToApply)
 	{
+		int weaponDamage = 50;
+		WeaponTypes currentWeaponType = WeaponTypes.MachineGun;
 		switch (skillToApply) {
 		case AttackSkills.CriticalHit:
 			{
-				//projectileToFire.AddComponent ("");
+				projectileToFire.AddComponent<CriticalHitProjectile> ();
+				CriticalHitProjectile collisionLogic = projectileToFire.GetComponent<CriticalHitProjectile> () as CriticalHitProjectile;
+				collisionLogic.damage = weaponDamage;
+				collisionLogic.currentWeaponType = currentWeaponType;
 				break;
 			}
 		default:
-			break;
+			{
+				projectileToFire.AddComponent<ProjectileCollision> ();
+				ProjectileCollision collisionLogic = projectileToFire.GetComponent<ProjectileCollision> () as ProjectileCollision;
+				collisionLogic.damage = weaponDamage;
+				collisionLogic.currentWeaponType = currentWeaponType;
+				break;
+			}
+			
+			
 		}
 		return projectileToFire;
 	}
@@ -64,17 +77,13 @@ public class ProjectileFactory : MonoBehaviour
 	/// Creates the bullet.
 	/// </summary>
 	/// <returns>The bullet.</returns>
-	private Rigidbody createProjectile (Transform gunOrigin)
+	private GameObject createProjectile (Transform gunOrigin)
 	{
-		int speed = 20;
+	
+		int weaponSpeed = 20;
+		GameObject newProjectile = Instantiate (bullet, gunOrigin.position, gunOrigin.rotation) as GameObject;
+		newProjectile.rigidbody.velocity = gunOrigin.TransformDirection (Vector3.forward * weaponSpeed);
 		
-		Rigidbody newProjectile = Instantiate (bullet, gunOrigin.position, gunOrigin.rotation) as Rigidbody;
-		newProjectile.gameObject.SetActive (true);
-		newProjectile.velocity = gunOrigin.TransformDirection (Vector3.forward * speed);
-		ProjectileCollision collisionLogic = newProjectile.GetComponent<ProjectileCollision> () as ProjectileCollision;
-		collisionLogic.currentWeaponType = WeaponTypes.MachineGun;
-		//Debug.Log (Vector3.forward * speed);
-		Destroy (newProjectile.gameObject, 10);
 		return newProjectile;
 	}
 }

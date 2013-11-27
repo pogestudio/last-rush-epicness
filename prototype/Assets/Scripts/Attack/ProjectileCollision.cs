@@ -12,6 +12,7 @@ public class ProjectileCollision : MonoBehaviour
 {
 	public int damage = 0;
 	public WeaponTypes currentWeaponType;
+	public int standardDestroyTime = 10;
 
 	// Use this for initialization
 	void Start ()
@@ -20,13 +21,28 @@ public class ProjectileCollision : MonoBehaviour
 			Debug.Log ("Damage is 0 on a projectile, fix!");
 	}
 	
-	void OnCollisionEnter (Collision collision)
+	
+	public void doDamageTo (GameObject target, int damage)
 	{
-		GameObject target = collision.gameObject;
 		target.transform.SendMessage ("applyDamage", damage, SendMessageOptions.DontRequireReceiver);
+		reportDamageToExpHandler (damage);
+	}
+	
+	private void reportDamageToExpHandler (int damage)
+	{
 		ExperienceHandler.sharedHandler ().damagesWasDealt (damage, currentWeaponType);
-			
-
+	}
+	
+	public bool targetIsEnemy (GameObject target)
+	{
+		return (target.tag == "RegularMonster");
+	}
+	
+	void OnCollisionEnter (Collision collisionObject)
+	{
+		if (targetIsEnemy (collisionObject.gameObject)) {
+			doDamageTo (collisionObject.gameObject, damage);			
+		}	
 		Destroy (gameObject);
 	}
 }

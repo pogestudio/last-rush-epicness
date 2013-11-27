@@ -29,7 +29,7 @@ public class firingBullet : MonoBehaviour
 	void Update ()
 	{
 		if (Input.GetMouseButtonDown (0)) {
-			Rigidbody projectile = ProjectileFactory.sharedFactory ().deliverProjectile (transform);
+			GameObject projectile = ProjectileFactory.sharedFactory ().deliverProjectile (transform);
 		}
 	}
 }
