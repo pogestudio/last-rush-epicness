@@ -59,11 +59,11 @@ public class MonsterFactory : MonoBehaviour
 		float playerPosition = position.position.z;
 		float playerPositionFromEdge = centerOfMapAtWhatDistance + playerPosition;
 		float playerProgressInMap = playerPositionFromEdge / mapHeight;
-        //Debug.Log ("player progress : " + playerProgressInMap);
+        Debug.Log("player progress : " + playerProgressInMap);
 		
 		float monsterHealth = 300 * Mathf.Pow (40, playerProgressInMap) - 300;
 		monsterHealth = Mathf.Max (4, monsterHealth);
-        //Debug.Log ("SPAWNING MOnster with health " + monsterHealth);
+        Debug.Log("SPAWNING MOnster with health " + monsterHealth);
 		return (int)monsterHealth;
 	}
 	
@@ -80,7 +80,7 @@ public class MonsterFactory : MonoBehaviour
 		float positiveOrNegative1 = Random.value > 0.5 ? -1 : 1;
 		float positiveOrNegative2 = Random.value > 0.5 ? -1 : 1;
 		Vector3 monsterPosition = new Vector3 (playerX + positiveOrNegative1 * randomX, 3, playerZ + positiveOrNegative2 * randomZ);
-		//Debug.Log ("Spawning monster at " + monsterPosition);
+        Debug.Log("Spawning monster at " + monsterPosition);
 		return monsterPosition;
 		
 	}

@@ -23,6 +23,7 @@ public abstract class AbstractWeapon : MonoBehaviour
 {
 
 	public Transform gunMuzzle;
+    public int bulletSpeed = 20;
 
 	private WeaponMode mode = WeaponMode.RAGDOLL;
 	public WeaponMode Mode
@@ -94,7 +95,8 @@ public abstract class AbstractWeapon : MonoBehaviour
 	protected void fire()
 	{
 		//TODO : handle different projectile types?
-        ProjectileFactory.sharedFactory().deliverProjectile(gunMuzzle);
+        GameObject projectile = ProjectileFactory.sharedFactory().deliverProjectile(gunMuzzle);
+        projectile.rigidbody.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
 	}
 
 	public abstract void triggerDown();

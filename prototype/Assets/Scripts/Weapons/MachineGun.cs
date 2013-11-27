@@ -21,7 +21,6 @@ public class MachineGun : AbstractWeapon
     {
         if (delay <= 0)
         {
-            Debug.Log("FIRE");
             delay = timeBetweenShots;
             fire();
         }
