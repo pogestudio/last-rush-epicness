@@ -103,7 +103,7 @@ public class ExperienceHandler : MonoBehaviour
 		float newExp = currentXp + (float)damage;
 		weaponTypesXP [(int)byWeapon] = newExp;
 		if (didWeaponLevelUp (currentXp, newExp)) {
-			skillLeveledUp ();
+            //skillLeveledUp ();
 		}
 	}
 	
