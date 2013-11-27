@@ -28,7 +28,6 @@ GameObject:
   - 135: {fileID: 13500000}
   - 23: {fileID: 2300000}
   - 54: {fileID: 5400000}
-  - 114: {fileID: 0}
   m_Layer: 0
   m_Name: SmallBullet
   m_TagString: Untagged
