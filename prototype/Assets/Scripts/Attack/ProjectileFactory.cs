@@ -16,8 +16,6 @@ public class ProjectileFactory : MonoBehaviour
 	//THE AMMO
 	public GameObject bullet;
 	
-	//private 
-	private GameObject player; //using this to access the current gun. Maybe the weapon type should be pass on when requesting the projectile instead?
 
 	public static ProjectileFactory sharedFactory ()
 	{
@@ -27,8 +25,6 @@ public class ProjectileFactory : MonoBehaviour
 	void Start ()
 	{
 		instance = this;
-		player = GameObject.FindGameObjectWithTag ("Player");
-		
 	}
 	
 	/// <summary>

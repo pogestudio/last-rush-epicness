@@ -19,6 +19,7 @@ public class MonsterLogic : MonoBehaviour
 	public int health = 50;
 	public float movingSpeed;
 	public GameObject player;
+	private float despawnDistance = 80;
 
 	private void die ()
 	{
@@ -52,11 +53,24 @@ public class MonsterLogic : MonoBehaviour
 	{
 		if (!player) 
 			return; 
+		despawnIfTooFar ();
+		walk ();
 
 
-		//WALKING FUNCTION
-		//float distance = Vector3.Distance( player.transform.position, transform.position);
+		
+	}
+	
+	void despawnIfTooFar ()
+	{
+		float distance = Vector3.Distance (player.transform.position, transform.position);
+		if (distance > despawnDistance) {
+			Destroy (gameObject);
+		}
+	}
+	void walk ()
+	{
 		Vector3 delta = player.transform.position - transform.position;
+		
 		delta.Normalize ();
 		float moveSpeed = movingSpeed * Time.deltaTime;
 		transform.position = transform.position + (delta * moveSpeed);
