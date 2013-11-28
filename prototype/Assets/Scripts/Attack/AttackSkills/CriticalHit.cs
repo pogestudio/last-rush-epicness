@@ -3,14 +3,12 @@ using System.Collections;
 
 public class CriticalHit : Projectile
 {	
-	
+	private int CritHitMultiplier = 2;
 	void OnCollisionEnter (Collision collisionObject)
 	{
 		Debug.Log ("Crit hit colliiiiiision with weaponType " + currentWeaponType);
-		if (targetIsEnemy (collisionObject.gameObject)) {
-			doDamageTo (collisionObject.gameObject, 2 * baseShotDamage, currentWeaponType);			
-		}	
-		Destroy (gameObject);
+		doDamageTo (collisionObject.gameObject, CritHitMultiplier * baseShotDamage, currentWeaponType);			
+		base.destroyProjectileWithDelay (gameObject);
 	}
 }
 

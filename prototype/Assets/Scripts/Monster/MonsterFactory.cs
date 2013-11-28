@@ -53,8 +53,6 @@ public class MonsterFactory : MonoBehaviour
 	
 	private int monsterStartingHealth (Transform position)
 	{
-		float maxHealth = 10000F;
-		float minHealth = 1F;
 		float centerOfMapAtWhatDistance = 1000F;
 		float playerPosition = position.position.z;
 		float playerPositionFromEdge = centerOfMapAtWhatDistance + playerPosition;
@@ -79,7 +77,7 @@ public class MonsterFactory : MonoBehaviour
 		float randomZ = spawnMinDistance + (spawnMaxDistance - spawnMinDistance) * Random.value;
 		float positiveOrNegative1 = Random.value > 0.5 ? -1 : 1;
 		float positiveOrNegative2 = Random.value > 0.5 ? -1 : 1;
-		Vector3 monsterPosition = new Vector3 (playerX + positiveOrNegative1 * randomX, 3, playerZ + positiveOrNegative2 * randomZ);
+		Vector3 monsterPosition = new Vector3 (playerX + positiveOrNegative1 * randomX, playerTransform.position.y, playerZ + positiveOrNegative2 * randomZ);
 		//Debug.Log("Spawning monster at " + monsterPosition);
 		return monsterPosition;
 		

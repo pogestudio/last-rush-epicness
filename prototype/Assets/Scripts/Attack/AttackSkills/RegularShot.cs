@@ -7,9 +7,9 @@ public class RegularShot : Projectile
 	void OnCollisionEnter (Collision collisionObject)
 	{
 		if (targetIsEnemy (collisionObject.gameObject)) {
-			doDamageTo (collisionObject.gameObject, baseShotDamage, currentWeaponType);			
-		}	
-		Destroy (gameObject);
+			doDamageTo (collisionObject.gameObject, baseShotDamage, currentWeaponType);				
+		}
+		base.destroyProjectileWithDelay (gameObject);
 	}
 }
 

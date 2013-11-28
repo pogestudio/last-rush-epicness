@@ -10,8 +10,9 @@ public enum AttackSkills
 {
 	RegularShot = 0,
 	CriticalHit,
+	BurningEffect,
+	
 	//ChillingEffect,
-	//BurningEffect,
 	//ExplosionEffect,
 	AttackSkillsMAX,
 }
@@ -59,7 +60,8 @@ public class AttackHandler : MonoBehaviour
 	/// <returns>The effect be added to shot.</returns>
 	public AttackSkills typeOfShotToFire ()
 	{
-		return AttackSkills.CriticalHit;
+	
+		return AttackSkills.BurningEffect;
 	}
 	
 }

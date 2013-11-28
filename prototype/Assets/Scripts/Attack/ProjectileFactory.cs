@@ -58,17 +58,22 @@ public class ProjectileFactory : MonoBehaviour
 		switch (skillToApply) {
 		case AttackSkills.CriticalHit:
 			{
-				projectileToFire.AddComponent<CriticalHit> ();
-				CriticalHit collisionLogic = projectileToFire.GetComponent<CriticalHit> () as CriticalHit;
 				
+				CriticalHit collisionLogic = projectileToFire.AddComponent<CriticalHit> ();
+				collisionLogic.baseShotDamage = damage;
+				collisionLogic.currentWeaponType = weaponType;
+				break;
+			}
+		case AttackSkills.BurningEffect:
+			{
+				BurningEffect collisionLogic = projectileToFire.AddComponent<BurningEffect> ();
 				collisionLogic.baseShotDamage = damage;
 				collisionLogic.currentWeaponType = weaponType;
 				break;
 			}
 		case AttackSkills.RegularShot:
 			{
-				projectileToFire.AddComponent<RegularShot> ();
-				RegularShot collisionLogic = projectileToFire.GetComponent<RegularShot> () as RegularShot;
+				RegularShot collisionLogic = projectileToFire.AddComponent<RegularShot> ();
 				collisionLogic.baseShotDamage = damage;
 				collisionLogic.currentWeaponType = weaponType;
 				break;

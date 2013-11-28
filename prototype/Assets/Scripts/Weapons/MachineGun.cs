@@ -17,7 +17,7 @@ public class MachineGun : AbstractWeapon
 		thisType = WeaponTypes.MachineGun;
 		weaponDamage = 5;
 	}
-	public void Update ()
+	void Update ()
 	{
 		base.Update ();
 		delay -= Time.deltaTime;
