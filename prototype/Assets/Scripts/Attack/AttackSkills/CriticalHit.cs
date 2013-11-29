@@ -1,17 +1,19 @@
 using UnityEngine;
 using System.Collections;
 
-public class CriticalHit : Skill
+public class CriticalHit : SkillEffect
 {	
 	private int CritHitMultiplier = 2;
 	
-	private override void doDamage (GameObject colliderObject)
+	public override void doDamage (GameObject colliderObject)
 	{
-		int critDamage = CritHitMultiplier * baseShotDamage;
-		doDamageToSingleTarget (colliderObject, critDamage, currentWeaponType);
+		
+		//int critDamage = CritHitMultiplier * baseShotDamage;
+		//we will only do single damage, since we are already doing regular shot damage. 
+		doDamageToSingleTarget (colliderObject, baseShotDamage, currentWeaponType);
 	}
 	
-	private override void createEffect (GameObject colliderObject)
+	public override void createEffect (GameObject colliderObject)
 	{
 		
 	}

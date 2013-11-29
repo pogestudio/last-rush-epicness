@@ -1,14 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
-public abstract class Skill : MonoBehaviour
+public abstract class SkillEffect : MonoBehaviour
 {
-	public static Skill instance;
-	public static float[] xpLevels;
-	private static int maxLevel = 99;
-	public static int currentSkillLevel = 1;
-	private float totalXP;
-	
+	public static SkillEffect instance;
 	
 	public WeaponTypes currentWeaponType;
 	
@@ -23,46 +18,13 @@ public abstract class Skill : MonoBehaviour
 		Destroy (gameObject, standardDestroyTime);
 	}
 	
-	/// <summary>
-	/// Add Xp to skill.
-	/// </summary>
-	/// <returns><c>true</c>, if skill leveled up</returns>
-	/// <param name="newXP">New X.</param>
-	public bool addXpToSkill (float newXP)
-	{
-		float XpNeededForNextLevel = ExpLevels () [currentSkillLevel - 1];
-		totalXP += newXP;
-		bool didLevelUp = false;
-		//if xp is more than needed for next level. 
-		if (totalXP >= XpNeededForNextLevel) {
-			currentSkillLevel++;
-			didLevelUp = true;
-		}
-		return didLevelUp;
-	}
-	
-	public float[] ExpLevels ()
-	{
-		if (xpLevels.Length = 0) {
-			
-			float multiplier = 1.5F;
-			xpLevels = new float[maxLevel];
-			
-			float firstLevelXp = 500;
-			xpLevels [0] = firstLevelXp;
-			for (int i = 1; i < maxLevel; i++) {
-				xpLevels [i] = xpLevels [i - 1] * multiplier;
-			}
-		}
-		return xpLevels;
-	}
-	
 	public void OnCollisionEnter (Collision colliderObject)
 	{
 		if (targetIsEnemy (colliderObject.gameObject)) {
 			doDamage (colliderObject.gameObject);
 		}
 		createEffect (colliderObject.gameObject);
+		
 		destroyProjectileWithDelay (gameObject);
 	}
 	
@@ -79,18 +41,7 @@ public abstract class Skill : MonoBehaviour
 	
 	public abstract void createEffect (GameObject toObject);
 	public abstract void doDamage (GameObject colliderObject);
-	
-	public bool shouldAddEffect ()
-	{
-		//at level 100, it should be 40% chance.
-		//at level 0, it should be 10% chance. 
-		//30% increase over all levels.
-		float baseChance = 0.1;
-		float maxChance = 0.4;
-		float chanceOfHappening = baseChance + (maxChance - baseChance) * maxLevel / currentSkillLevel;
-		bool JACKPOT = chanceOfHappening > Random.value;
-		
-	}
+
 	
 	public void doDamageToSingleTarget (GameObject target, int damage, WeaponTypes weaponOfChoice)
 	{
@@ -137,4 +88,3 @@ public abstract class Skill : MonoBehaviour
 	}
 
 }
-

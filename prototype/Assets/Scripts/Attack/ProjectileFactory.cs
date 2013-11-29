@@ -33,9 +33,8 @@ public class ProjectileFactory : MonoBehaviour
 	/// <returns>The projectile, in a stand still state at the transform point given</returns>
 	public GameObject deliverProjectile (Transform gunOrigin, WeaponTypes weaponType, int weaponDamage)
 	{
-		AttackSkills skillToApply = AttackHandler.sharedHandler ().typeOfShotToFire ();
 		GameObject projectileToFire = createProjectile (gunOrigin);
-		addAttackSkills (projectileToFire, skillToApply, weaponDamage, weaponType);
+		addAttackSkills (projectileToFire, weaponDamage, weaponType);
 		
 		
 		return projectileToFire;
@@ -48,46 +47,21 @@ public class ProjectileFactory : MonoBehaviour
 	/// </summary>
 	/// <returns>The projectile.</returns>
 	/// <param name="skillToApply">Skill to apply.</param>
-	private GameObject addAttackSkills (GameObject projectileToFire, AttackSkills skillToApply, int damage, WeaponTypes weaponType)
+	private GameObject addAttackSkills (GameObject projectileToFire, int damage, WeaponTypes weaponType)
 	{
+		//no matter what, add a regular shot
+		SkillEffect regularShot = projectileToFire.AddComponent ("RegularShot") as SkillEffect;
+		regularShot.setUpProjectile (damage, weaponType);
 		
-		switch (skillToApply) {
-		case AttackSkills.CriticalHit:
-			{
-				
-				CriticalHit collisionLogic = projectileToFire.AddComponent<CriticalHit> ();
-				collisionLogic.baseShotDamage = damage;
-				collisionLogic.currentWeaponType = weaponType;
-				break;
+		foreach (Skill attackSkill in Skill.allSkills) {
+			Debug.Log (attackSkill.componentName);
+			bool shouldAdd = attackSkill.shouldAddEffect ();
+			if (shouldAdd) {
+				SkillEffect skillComponent = projectileToFire.AddComponent (attackSkill.componentName) as SkillEffect;
+				skillComponent.setUpProjectile (damage, weaponType);
 			}
-		case AttackSkills.BurningEffect:
-			{
-				BurningEffect collisionLogic = projectileToFire.AddComponent<BurningEffect> ();
-				collisionLogic.baseShotDamage = damage;
-				collisionLogic.currentWeaponType = weaponType;
-				break;
-			}
-		case AttackSkills.ExplodingShot:
-			{
-				ExplodingShot collisionLogic = projectileToFire.AddComponent<ExplodingShot> ();
-				collisionLogic.baseShotDamage = damage;
-				collisionLogic.currentWeaponType = weaponType;
-				break;
-			}
-		case AttackSkills.RegularShot:
-			{
-				RegularShot collisionLogic = projectileToFire.AddComponent<RegularShot> ();
-				collisionLogic.baseShotDamage = damage;
-				collisionLogic.currentWeaponType = weaponType;
-				break;
-			}
-		default:
-			{
-				Debug.LogError ("We have more skills than we implemented in the factory!!");
-				break;
-			}
-			
 		}
+		
 		return projectileToFire;
 	}
 	

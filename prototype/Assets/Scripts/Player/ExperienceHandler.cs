@@ -8,20 +8,9 @@ public enum WeaponTypes
 {
 	HandGun = 0,
 	MachineGun = 1,
-	//Revolver,
 	WeaponTypesMAX,
 };
 
-/// <summary>
-/// The pairing of skills and weapon types. This can be randomised at game
-/// start for more diversity. This is how XPHandler knows what skill to level up
-/// when doing damage with a certain weapon. 
-/// </summary>
-struct SkillTypePair
-{
-	public int skill;
-	public WeaponTypes weaponType;
-}
 
 /// <summary>
 /// Experience handler.
@@ -35,9 +24,7 @@ public class ExperienceHandler : MonoBehaviour
 
 	protected static ExperienceHandler instance;
 
-	private int attackSkillsMax;
-	private SkillTypePair[] skillTypePairs;
-	private float[] weaponTypesXP;
+	private ArrayList allSkills;
 	
 	/// <summary>
 	/// Use this to retrieve the singleton
@@ -51,46 +38,18 @@ public class ExperienceHandler : MonoBehaviour
 	void Start ()
 	{
 		instance = this;
-		weaponTypesXP = new float[(int)WeaponTypes.WeaponTypesMAX];
-		skillTypePairs = new SkillTypePair[(int)WeaponTypes.WeaponTypesMAX];
-		
-		matchWeaponTypeToSkills ();
+		addAllSkills ();
 	}
 	
 	/// <summary>
-	/// Incorporate some nice logic that will match each wepaon type to a skill here.
+	/// Incorporate some nice logic that will match each weapon type to a skill here.
 	/// </summary>
-	private void matchWeaponTypeToSkills ()
+	private void addAllSkills ()
 	{
-		//in test mode, machine gun = critical hit. 
-		SkillTypePair first = new SkillTypePair ();
-		first.skill = (int)AttackSkills.RegularShot;
-		first.weaponType = WeaponTypes.HandGun;
+		allSkills = new ArrayList ();
+		allSkills.Add (new Skill ("CriticalHit", WeaponTypes.HandGun));
+		allSkills.Add (new Skill ("ExplodingShot", WeaponTypes.MachineGun));
 		
-		SkillTypePair second = new SkillTypePair ();
-		second.skill = (int)AttackSkills.CriticalHit;
-		second.weaponType = WeaponTypes.MachineGun;
-		
-		skillTypePairs [0] = first;
-		skillTypePairs [1] = second;
-	}
-	
-	/// <summary>
-	/// Will return the matched AttackSkill to the weapon type. At the moment we only have
-	/// attack skills, so it's simple.
-	/// </summary>
-	/// <returns>The for weapon type.</returns>
-	/// <param name="weaponType">Weapon type.</param>
-	private AttackSkills skillForWeaponType (WeaponTypes weaponType)
-	{
-		int length = skillTypePairs.Length;
-		for (int i = 0; i < length; i++) {
-			if (skillTypePairs [i].weaponType == weaponType) {
-				//Debug.Log ("WeaponType : " + weaponType + " is connected to attackskill: " + (AttackSkills)skillTypePairs [i].skill);
-				return (AttackSkills)skillTypePairs [i].skill;
-			}
-		}
-		throw new UnityException ("An attackskill is not connected to a weapontype");
 	}
 	
 	/// <summary>
@@ -100,29 +59,11 @@ public class ExperienceHandler : MonoBehaviour
 	/// <param name="byWeapon">By weapon.</param>
 	public void damagesWasDealt (int damage, WeaponTypes byWeapon)
 	{
-		Debug.Log ("damage was dealt byy WeaponType: " + byWeapon);
-		float currentXp = weaponTypesXP [(int)byWeapon];
-		float newExp = currentXp + (float)damage;
-		weaponTypesXP [(int)byWeapon] = newExp;
-		if (didWeaponLevelUp (currentXp, newExp)) {
+		Skill skillForWeaponDamage = Skill.skillForWeaponType (byWeapon);
+		bool didLevelUp = skillForWeaponDamage.addXpToSkill (damage);
+		if (didLevelUp) {
 			skillLeveledUp (byWeapon);
 		}
-	}
-	
-	/// <summary>
-	/// Check if the the XP passed a level threshold.
-	/// </summary>
-	/// <returns><c>true</c>, if weapon level up was dided, <c>false</c> otherwise.</returns>
-	/// <param name="oldXp">Old xp.</param>
-	/// <param name="newXp">New xp.</param>
-	private bool didWeaponLevelUp (float oldXp, float newXp)
-	{
-		Debug.Log ("Old EXP::" + oldXp + "     new:  " + newXp);
-		//extremely crude
-		bool didLevel = false;
-		if (oldXp < 99 && newXp > 98)
-			didLevel = true;
-		return didLevel;
 	}
 	
 	/// <summary>
@@ -131,7 +72,6 @@ public class ExperienceHandler : MonoBehaviour
 	/// <param name="weaponType">Weapon type.</param>
 	private void skillLeveledUp (WeaponTypes weaponType)
 	{
-		AttackSkills skillForWeapon = skillForWeaponType (weaponType);
-		AttackHandler.sharedHandler ().skillDidLevelUp (skillForWeapon);
+		Debug.Log ("Skill leveled up for weaponType :: " + weaponType);
 	}
 }
