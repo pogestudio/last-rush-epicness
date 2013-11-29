@@ -1,15 +1,16 @@
 using UnityEngine;
 using System.Collections;
 
-public class RegularShot : Projectile
+public class RegularShot : Skill
 {
 
-	void OnCollisionEnter (Collision collisionObject)
+	private override void doDamage (GameObject colliderObject)
 	{
-		if (targetIsEnemy (collisionObject.gameObject)) {
-			doDamageTo (collisionObject.gameObject, baseShotDamage, currentWeaponType);				
-		}
-		base.destroyProjectileWithDelay (gameObject);
+		doDamageToSingleTarget (colliderObject, baseShotDamage, currentWeaponType);
+	}
+	
+	private override void createEffect (GameObject colliderObject)
+	{
+	
 	}
 }
-

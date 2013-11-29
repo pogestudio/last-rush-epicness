@@ -40,7 +40,7 @@ public class BurnDPSEffect : MonoBehaviour
 		if (Time.time <= timeToStop && Time.time >= nextTick) {
 			//Debug.Log ("TICKING DAMAGE " + Time.time);
 			nextTick = Time.time + 1F;
-			Projectile.wantToDamage (gameObject, (int)Mathf.Ceil (burningDamagePerSecond), weaponToCauseIt);
+			Skill.wantToDamage (gameObject, (int)Mathf.Ceil (burningDamagePerSecond), weaponToCauseIt);
 		} 
 	}
 	

@@ -4,35 +4,23 @@ using System.Collections;
 /// <summary>
 /// A skill that ads a burning effect. Use as the other attack skills. 
 /// </summary>
-public class ExplodingShot : Projectile
+public class ExplodingShot : Skill
 {	
 	private float explodingDistance = 5F;
 	private float explodingMultiplier = 0.5F;
 	
-	void OnCollisionEnter (Collision collisionObject)
-	{
-		Debug.Log ("Exploding Shot weaponType " + currentWeaponType);
-		showExplosion ();
-		dealDamage (collisionObject.gameObject);
-		
-		base.destroyProjectileWithDelay (gameObject);
-	}
-	
-	void showExplosion ()
-	{
-		EffectFactory.sharedFactory ().deliverSmallExplosion (transform);
-	}
-	
-	void dealDamage (GameObject aroundThisObject)
+	private override void doDamage (GameObject colliderObject)
 	{
 		ArrayList monstersWithinExplodingArea = monstersWithinArea (transform.position, explodingDistance);
 		int explosionDamage = (int)(baseShotDamage * explodingMultiplier);
 		foreach (GameObject monster in monstersWithinExplodingArea) {
-			doDamageTo (monster, explosionDamage, currentWeaponType);			
+			doDamageToSingleTarget (monster, explosionDamage, currentWeaponType);
 		}
-		
 	}
 	
-	
+	private override void createEffect (GameObject colliderObject)
+	{
+		EffectFactory.sharedFactory ().deliverSmallExplosion (transform);
+	}
 }
 
