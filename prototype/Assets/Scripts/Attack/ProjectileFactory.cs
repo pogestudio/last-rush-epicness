@@ -67,6 +67,13 @@ public class ProjectileFactory : MonoBehaviour
 				collisionLogic.currentWeaponType = weaponType;
 				break;
 			}
+		case AttackSkills.ExplodingShot:
+			{
+				ExplodingShot collisionLogic = projectileToFire.AddComponent<ExplodingShot> ();
+				collisionLogic.baseShotDamage = damage;
+				collisionLogic.currentWeaponType = weaponType;
+				break;
+			}
 		case AttackSkills.RegularShot:
 			{
 				RegularShot collisionLogic = projectileToFire.AddComponent<RegularShot> ();

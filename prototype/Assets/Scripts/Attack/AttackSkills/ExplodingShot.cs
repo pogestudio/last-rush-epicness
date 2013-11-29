@@ -20,7 +20,7 @@ public class ExplodingShot : Projectile
 	
 	void showExplosion ()
 	{
-	
+		EffectFactory.sharedFactory ().deliverSmallExplosion (transform);
 	}
 	
 	void dealDamage (GameObject aroundThisObject)
@@ -28,7 +28,7 @@ public class ExplodingShot : Projectile
 		ArrayList monstersWithinExplodingArea = monstersWithinArea (transform.position, explodingDistance);
 		int explosionDamage = (int)(baseShotDamage * explodingMultiplier);
 		foreach (GameObject monster in monstersWithinExplodingArea) {
-			doDamageTo (aroundThisObject, explosionDamage, currentWeaponType);			
+			doDamageTo (monster, explosionDamage, currentWeaponType);			
 		}
 		
 	}

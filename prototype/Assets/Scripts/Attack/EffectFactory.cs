@@ -7,7 +7,7 @@ public class EffectFactory : MonoBehaviour
 	protected static EffectFactory instance;
 	
 	//THE AMMO
-	public GameObject bullet;
+	public GameObject smallExplosion;
 	
 	
 	public static EffectFactory sharedFactory ()
@@ -20,4 +20,9 @@ public class EffectFactory : MonoBehaviour
 		instance = this;
 	}
 	
+	public GameObject deliverSmallExplosion (Transform effectOrigin)
+	{
+		GameObject explosion = Instantiate (smallExplosion, effectOrigin.position, effectOrigin.rotation) as GameObject;
+		return explosion;
+	}
 }
