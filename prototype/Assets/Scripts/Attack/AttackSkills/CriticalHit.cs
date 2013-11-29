@@ -7,7 +7,9 @@ public class CriticalHit : Projectile
 	void OnCollisionEnter (Collision collisionObject)
 	{
 		Debug.Log ("Crit hit colliiiiiision with weaponType " + currentWeaponType);
-		doDamageTo (collisionObject.gameObject, CritHitMultiplier * baseShotDamage, currentWeaponType);			
+		if (targetIsEnemy (collisionObject.gameObject)) {
+			doDamageTo (collisionObject.gameObject, CritHitMultiplier * baseShotDamage, currentWeaponType);			
+		}
 		base.destroyProjectileWithDelay (gameObject);
 	}
 }
