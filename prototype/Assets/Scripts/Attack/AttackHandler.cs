@@ -60,8 +60,12 @@ public class AttackHandler : MonoBehaviour
 	/// <returns>The effect be added to shot.</returns>
 	public AttackSkills typeOfShotToFire ()
 	{
-	
-		return AttackSkills.BurningEffect;
+		bool random = Random.value > 0.5;
+		if (random) {
+			return AttackSkills.BurningEffect;
+		} else {
+			return AttackSkills.CriticalHit;
+		}
 	}
 	
 }

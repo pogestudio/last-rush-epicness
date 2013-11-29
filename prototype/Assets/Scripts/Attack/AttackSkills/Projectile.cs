@@ -45,6 +45,22 @@ public abstract class Projectile : MonoBehaviour
 	{
 		Destroy (projectile, 0.05F); // let other components do their stuff
 	}
+	
+	public ArrayList monstersWithinArea (Vector3 center, float radius)
+	{
+		Collider[] hitColliders = Physics.OverlapSphere (center, radius);
+		int i = 0;
+		ArrayList monsters = new ArrayList ();
+		
+		while (i < hitColliders.Length) {
+			if (targetIsEnemy (hitColliders [i].gameObject)) {
+				monsters.Add (hitColliders [i].gameObject);
+			}
+			i++;
+		}
+		
+		return monsters;
+	}
 
 }
 
