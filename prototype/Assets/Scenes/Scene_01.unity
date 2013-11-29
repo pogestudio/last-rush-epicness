@@ -772,6 +772,14 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: .707106829
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 418fc09df725e3140b5fcaaf70fb00ad, type: 2}
+      propertyPath: weaponDamage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 418fc09df725e3140b5fcaaf70fb00ad, type: 2}
+      propertyPath: bulletSpeed
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 418fc09df725e3140b5fcaaf70fb00ad, type: 2}
   m_RootGameObject: {fileID: 520833820}
@@ -925,8 +933,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 1353540398}
   thisType: 0
-  weaponDamage: 1
-  bulletSpeed: 20
+  weaponDamage: 20
+  bulletSpeed: 10
 --- !u!1 &544213100
 GameObject:
   m_ObjectHideFlags: 0
@@ -1933,8 +1941,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 1870221428}
   thisType: 0
-  weaponDamage: 1
-  bulletSpeed: 20
+  weaponDamage: 20
+  bulletSpeed: 10
 --- !u!1001 &1200515086
 Prefab:
   m_ObjectHideFlags: 0
@@ -2097,6 +2105,14 @@ Prefab:
     - target: {fileID: 400010, guid: 418fc09df725e3140b5fcaaf70fb00ad, type: 2}
       propertyPath: m_LocalRotation.w
       value: .707106829
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 418fc09df725e3140b5fcaaf70fb00ad, type: 2}
+      propertyPath: weaponDamage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 418fc09df725e3140b5fcaaf70fb00ad, type: 2}
+      propertyPath: bulletSpeed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 418fc09df725e3140b5fcaaf70fb00ad, type: 2}
