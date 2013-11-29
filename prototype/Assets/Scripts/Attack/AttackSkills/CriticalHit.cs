@@ -1,16 +1,21 @@
 using UnityEngine;
 using System.Collections;
 
-public class CriticalHit : Projectile
+public class CriticalHit : SkillEffect
 {	
 	private int CritHitMultiplier = 2;
-	void OnCollisionEnter (Collision collisionObject)
+	
+	public override void doDamage (GameObject colliderObject)
 	{
-		Debug.Log ("Crit hit colliiiiiision with weaponType " + currentWeaponType);
-		if (targetIsEnemy (collisionObject.gameObject)) {
-			doDamageTo (collisionObject.gameObject, CritHitMultiplier * baseShotDamage, currentWeaponType);			
-		}
-		base.destroyProjectileWithDelay (gameObject);
+		
+		//int critDamage = CritHitMultiplier * baseShotDamage;
+		//we will only do single damage, since we are already doing regular shot damage. 
+		doDamageToSingleTarget (colliderObject, baseShotDamage, currentWeaponType);
+	}
+	
+	public override void createEffect (GameObject colliderObject)
+	{
+		
 	}
 }
 

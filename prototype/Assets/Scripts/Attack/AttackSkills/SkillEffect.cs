@@ -1,11 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-public abstract class Projectile : MonoBehaviour
+public abstract class SkillEffect : MonoBehaviour
 {
-	public static Projectile instance;
+	public static SkillEffect instance;
 	
 	public WeaponTypes currentWeaponType;
+	
+	
 	public int baseShotDamage;
 	public int standardDestroyTime = 4;
 
@@ -14,11 +16,34 @@ public abstract class Projectile : MonoBehaviour
 	{
 		instance = this;
 		Destroy (gameObject, standardDestroyTime);
-		if (baseShotDamage == 0)
-			Debug.LogError ("Damage is 0 on a projectile, fix!");
 	}
 	
-	public void doDamageTo (GameObject target, int damage, WeaponTypes weaponOfChoice)
+	public void OnCollisionEnter (Collision colliderObject)
+	{
+		if (targetIsEnemy (colliderObject.gameObject)) {
+			doDamage (colliderObject.gameObject);
+		}
+		createEffect (colliderObject.gameObject);
+		
+		destroyProjectileWithDelay (gameObject);
+	}
+	
+	public void setUpProjectile (int baseWeaponDamage, WeaponTypes firingWeapon)
+	{
+		baseShotDamage = baseWeaponDamage;
+		currentWeaponType = firingWeapon;
+	}
+	
+	
+	/*
+	               INSIDE STUFF, THINGS THAT SHOULD BE INHERITED BY SUBCLASSES
+	*/
+	
+	public abstract void createEffect (GameObject toObject);
+	public abstract void doDamage (GameObject colliderObject);
+
+	
+	public void doDamageToSingleTarget (GameObject target, int damage, WeaponTypes weaponOfChoice)
 	{
 		if (targetIsEnemy (target)) {
 			target.transform.SendMessage ("applyDamage", damage, SendMessageOptions.DontRequireReceiver);
@@ -28,7 +53,7 @@ public abstract class Projectile : MonoBehaviour
 	
 	public static void wantToDamage (GameObject target, int damage, WeaponTypes weaponOfChoice)
 	{
-		instance.doDamageTo (target, damage, weaponOfChoice);
+		instance.doDamageToSingleTarget (target, damage, weaponOfChoice);
 	}
 	
 	private void reportDamageToExpHandler (int damage, WeaponTypes weaponOfChoice)
@@ -63,4 +88,3 @@ public abstract class Projectile : MonoBehaviour
 	}
 
 }
-

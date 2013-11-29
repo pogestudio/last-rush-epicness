@@ -4,7 +4,7 @@ using System.Collections;
 public class Gun : AbstractWeapon
 {
 	public WeaponTypes thisType = WeaponTypes.HandGun;
-	public int weaponDamage = 1;
+	public int weaponDamage = 20;
 	public int bulletSpeed = 10;
 	
 	void Start ()

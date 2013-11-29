@@ -4,24 +4,25 @@ using System.Collections;
 /// <summary>
 /// A skill that ads a burning effect. Use as the other attack skills. 
 /// </summary>
-public class BurningEffect : Projectile
+public class BurningEffect : SkillEffect
 {	
 	private float burningTime = 5F;
 	private float burningMultiplier = 0.5F;
 	
-	void OnCollisionEnter (Collision collisionObject)
+	public override void doDamage (GameObject colliderObject)
 	{
-		Debug.Log ("BURNING EFFECT weaponType " + currentWeaponType);
-		if (targetIsEnemy (collisionObject.gameObject)) {
-			doDamageTo (collisionObject.gameObject, baseShotDamage, currentWeaponType);	
-			BurnDPSEffect burningeffect = collisionObject.gameObject.AddComponent<BurnDPSEffect> ();
+		if (targetIsEnemy (colliderObject.gameObject)) {
+			BurnDPSEffect burningeffect = colliderObject.gameObject.AddComponent<BurnDPSEffect> ();
 			burningeffect.weaponToCauseIt = currentWeaponType;
 			burningeffect.burningDamage = burningMultiplier * baseShotDamage;
 			burningeffect.burningDuration = burningTime;
-			
 		}
-		
-		base.destroyProjectileWithDelay (gameObject);
 	}
+	
+	public override void createEffect (GameObject colliderObject)
+	{
+		
+	}
+	
 }
 
