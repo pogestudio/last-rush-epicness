@@ -13,6 +13,7 @@ public class MachineGun : AbstractWeapon
 
 	void Start ()
 	{
+        base.Start();
 		thisType = WeaponTypes.MachineGun;
 		weaponDamage = 5;
 	}

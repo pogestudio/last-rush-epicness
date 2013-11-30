@@ -24,7 +24,7 @@ public abstract class AbstractWeapon : MonoBehaviour
 	public Transform gunMuzzle;
     public WeaponTypes thisType;
 
-	private WeaponMode mode = WeaponMode.RAGDOLL;
+	private WeaponMode mode;
 	public WeaponMode Mode {
 		get { return mode; }
 		set {
@@ -57,18 +57,15 @@ public abstract class AbstractWeapon : MonoBehaviour
 		if (gunMuzzle == null) {
 			Debug.Log ("Weapon muzzle is not set");
 		}
+        WeaponManager.get().manage(this);
 	}
 
-	//void OnMouseDown()
-	//{
-	//	if (mode == WeaponMode.RAGDOLL)
-	//	{
-	//		PlayerGuns playerGunScript = FindObjectOfType<PlayerGuns>();
-	//		playerGunScript.pickWeapon(gameObject);
-	//	}
-	//}
 
-	protected void Update ()
+    public void Start()
+    {
+    }
+
+    public void Update()
 	{
 		if (mode == WeaponMode.HAND) {
 			//changing this bloc allow to change the way to fire all weapons

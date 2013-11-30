@@ -5,16 +5,17 @@ public class PlayerGuns : MonoBehaviour
 {
 	public float MaximumPickupRange = 3;
 
-    private GameObject ragdollWeapons;
     public GameObject currentGun;
 
     void Awake()
     {
         if (currentGun == null)
             Debug.Log("PlayerGuns.currentGun should be set if the player is carrying a gun!");
+    }
 
-        ragdollWeapons = GameObject.FindGameObjectWithTag("RagdollWeaponsContainer");
-        currentGun.GetComponent<AbstractWeapon>().Mode = WeaponMode.HAND;
+    void Start()
+    {
+        pickWeapon(currentGun);
     }
 
     // Update is called once per frame
@@ -25,7 +26,7 @@ public class PlayerGuns : MonoBehaviour
 			//looking for the closest weapon within range
 			Transform closestWeapon = null;
 			float bestDistance = MaximumPickupRange;
-			foreach (Transform otherWeapon in ragdollWeapons.transform)
+			foreach (Transform otherWeapon in WeaponManager.get().WeaponsContainer.transform)
 			{
 				float distance = Vector3.Distance(transform.position, otherWeapon.transform.position);
 				if (distance < bestDistance)
@@ -47,25 +48,20 @@ public class PlayerGuns : MonoBehaviour
 	private void pickWeapon(GameObject newWeapon)
 	{
 		AbstractWeapon newWeaponScript = newWeapon.GetComponent<AbstractWeapon>();
-		if (newWeaponScript.Mode == WeaponMode.RAGDOLL)
-		{
-			//set new weapon transform so that it's handled where the old one was
+		
+			//set new weapon transform so it's in player's hand
 			newWeapon.transform.parent = this.transform;
 			newWeapon.transform.localPosition = Vector3.zero;
 			newWeapon.transform.localRotation = Quaternion.identity;
 			newWeaponScript.Mode = WeaponMode.HAND;
 
 			//drop current weapon
-			currentGun.transform.parent = ragdollWeapons.transform;
-			currentGun.GetComponent<AbstractWeapon>().Mode = WeaponMode.RAGDOLL;
+            if (currentGun != null && newWeapon!= currentGun)
+            {
+                AbstractWeapon currentGunScript = currentGun.GetComponent<AbstractWeapon>();
+                WeaponManager.get().manage(currentGunScript);
+            }
 
 			currentGun = newWeapon;
-			
-		}
 	}
-
-    private void dropCurrentWeapon()
-    {
-		
-    }
 }

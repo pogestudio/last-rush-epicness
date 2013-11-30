@@ -350,7 +350,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 400012}
-  bulletSpeed: 20
+  thisType: 0
+  timeBetweenShots: .5
+  bulletSpeed: 35
+  weaponDamage: 20
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
