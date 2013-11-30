@@ -278,9 +278,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 1487289729}
+  thisType: 0
   timeBetweenShots: .200000003
   bulletSpeed: 20
-  thisType: 1
   weaponDamage: 5
 --- !u!1 &151778539
 GameObject:
@@ -645,9 +645,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 1063990984}
+  thisType: 0
   timeBetweenShots: .200000003
   bulletSpeed: 20
-  thisType: 1
   weaponDamage: 5
 --- !u!1 &418863758
 GameObject:
@@ -716,7 +716,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 424352667}
   m_Layer: 0
-  m_Name: WeaponRagdollsContainer
+  m_Name: StaticWeapons
   m_TagString: RagdollWeaponsContainer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -771,14 +771,6 @@ Prefab:
     - target: {fileID: 400010, guid: 418fc09df725e3140b5fcaaf70fb00ad, type: 2}
       propertyPath: m_LocalRotation.w
       value: .707106829
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: 418fc09df725e3140b5fcaaf70fb00ad, type: 2}
-      propertyPath: weaponDamage
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: 418fc09df725e3140b5fcaaf70fb00ad, type: 2}
-      propertyPath: bulletSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 418fc09df725e3140b5fcaaf70fb00ad, type: 2}
@@ -933,8 +925,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 1353540398}
   thisType: 0
+  timeBetweenShots: .5
+  bulletSpeed: 35
   weaponDamage: 20
-  bulletSpeed: 10
 --- !u!1 &544213100
 GameObject:
   m_ObjectHideFlags: 0
@@ -1240,9 +1233,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 1355519105}
+  thisType: 0
   timeBetweenShots: .200000003
   bulletSpeed: 20
-  thisType: 1
   weaponDamage: 5
 --- !u!1001 &620237384
 Prefab:
@@ -1941,8 +1934,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 1870221428}
   thisType: 0
+  timeBetweenShots: .5
+  bulletSpeed: 35
   weaponDamage: 20
-  bulletSpeed: 10
 --- !u!1001 &1200515086
 Prefab:
   m_ObjectHideFlags: 0
@@ -2105,14 +2099,6 @@ Prefab:
     - target: {fileID: 400010, guid: 418fc09df725e3140b5fcaaf70fb00ad, type: 2}
       propertyPath: m_LocalRotation.w
       value: .707106829
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: 418fc09df725e3140b5fcaaf70fb00ad, type: 2}
-      propertyPath: weaponDamage
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: 418fc09df725e3140b5fcaaf70fb00ad, type: 2}
-      propertyPath: bulletSpeed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 418fc09df725e3140b5fcaaf70fb00ad, type: 2}

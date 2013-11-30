@@ -4,13 +4,14 @@ using System.Collections;
 public class Gun : AbstractWeapon
 {
     public float timeBetweenShots = 0.5f;
+	public int bulletSpeed = 35;
 	public int weaponDamage = 20;
-	public int bulletSpeed = 10;
 
     private float delay = 0;
 	
 	void Start ()
 	{
+        base.Start();
          thisType = WeaponTypes.HandGun;
 	}
 
