@@ -45,7 +45,9 @@ public class SlowingEffect : MonoBehaviour
 	void removeSlowing ()
 	{
 		Debug.Log ("Removed slowing");
-		monsterLogic.movingSpeed = monsterLogic.movingSpeed / (1 - slowingPercentage);
+		if (gameObject.activeSelf) {
+			monsterLogic.movingSpeed = monsterLogic.movingSpeed / (1 - slowingPercentage);
+		}
 	}
 	
 	public void updateTimer ()

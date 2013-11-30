@@ -35,6 +35,7 @@ public class ProjectileFactory : MonoBehaviour
 	{
 		GameObject projectileToFire = createProjectile (gunOrigin);
 		addAttackSkills (projectileToFire, weaponDamage, weaponType);
+		projectileToFire.layer = LayerMask.NameToLayer ("Projectiles");
 		
 		
 		return projectileToFire;
@@ -54,7 +55,7 @@ public class ProjectileFactory : MonoBehaviour
 		regularShot.setUpProjectile (damage, weaponType);
 		
 		foreach (Skill attackSkill in Skill.allSkills) {
-			Debug.Log (attackSkill.componentName);
+			//Debug.Log (attackSkill.componentName);
 			bool shouldAdd = attackSkill.shouldAddEffect ();
 			if (shouldAdd) {
 				SkillEffect skillComponent = projectileToFire.AddComponent (attackSkill.componentName) as SkillEffect;
