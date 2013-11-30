@@ -78,8 +78,8 @@ public class Skill
 		float maxChance = 0.4F;
 		float chanceOfHappening = baseChance + (maxChance - baseChance) * (float)currentSkillLevel / (float)maxLevel;
 		Debug.Log ("Chance of " + componentName + " happening is " + chanceOfHappening);
-		bool JACKPOT = chanceOfHappening > Random.value;
-		return JACKPOT;
+		bool shouldAddEffect = chanceOfHappening > Random.value;
+		return shouldAddEffect;
 			
 	}
 	

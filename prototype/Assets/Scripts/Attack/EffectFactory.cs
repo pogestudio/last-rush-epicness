@@ -8,6 +8,7 @@ public class EffectFactory : MonoBehaviour
 	
 	//THE AMMO
 	public GameObject smallExplosion;
+	public GameObject sphericNova;
 	
 	
 	public static EffectFactory sharedFactory ()
@@ -22,7 +23,16 @@ public class EffectFactory : MonoBehaviour
 	
 	public GameObject deliverSmallExplosion (Transform effectOrigin)
 	{
-		GameObject explosion = Instantiate (smallExplosion, effectOrigin.position, effectOrigin.rotation) as GameObject;
-		return explosion;
+		return returnObject (smallExplosion, effectOrigin);
+	}
+	
+	public GameObject deliverSphericNova (Transform effectOrigin)
+	{
+		return returnObject (sphericNova, effectOrigin);
+	}
+	
+	private GameObject returnObject (GameObject effect, Transform effectOrigin)
+	{
+		return Instantiate (effect, effectOrigin.position, effectOrigin.rotation) as GameObject;
 	}
 }

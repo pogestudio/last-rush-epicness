@@ -47,8 +47,10 @@ public class ExperienceHandler : MonoBehaviour
 	private void addAllSkills ()
 	{
 		allSkills = new ArrayList ();
+		allSkills.Add (new Skill ("ExplodingShot", WeaponTypes.HandGun));
+		allSkills.Add (new Skill ("FrostNovaShot", WeaponTypes.MachineGun));
 		allSkills.Add (new Skill ("CriticalHit", WeaponTypes.HandGun));
-		allSkills.Add (new Skill ("ExplodingShot", WeaponTypes.MachineGun));
+		allSkills.Add (new Skill ("BurningShot", WeaponTypes.MachineGun));
 		
 	}
 	
