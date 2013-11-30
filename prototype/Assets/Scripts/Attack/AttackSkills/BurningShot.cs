@@ -4,7 +4,7 @@ using System.Collections;
 /// <summary>
 /// A skill that ads a burning effect. Use as the other attack skills. 
 /// </summary>
-public class BurningEffect : SkillEffect
+public class BurningShot : SkillEffect
 {	
 	private float burningTime = 5F;
 	private float burningMultiplier = 0.5F;
@@ -23,6 +23,5 @@ public class BurningEffect : SkillEffect
 	{
 		
 	}
-	
 }
 

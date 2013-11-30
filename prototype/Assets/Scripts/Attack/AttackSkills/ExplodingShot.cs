@@ -10,9 +10,7 @@ public class ExplodingShot : SkillEffect
 	private float explodingMultiplier = 0.3F;
 	
 	public override void doDamage (GameObject colliderObject)
-	{
-		Debug.Log ("Exploding damage!");
-		
+	{	
 		ArrayList monstersWithinExplodingArea = monstersWithinArea (transform.position, explodingDistance);
 		int explosionDamage = (int)(baseShotDamage * explodingMultiplier);
 		foreach (GameObject monster in monstersWithinExplodingArea) {
@@ -25,4 +23,3 @@ public class ExplodingShot : SkillEffect
 		EffectFactory.sharedFactory ().deliverSmallExplosion (transform);
 	}
 }
-

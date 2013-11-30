@@ -1552,6 +1552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smallExplosion: {fileID: 100000, guid: abc7fa0bb4155487c9ef6487b5bcf52c, type: 2}
+  sphericNova: {fileID: 100000, guid: 4ded9a4d58d0c498f8526107d63ba8ed, type: 2}
 --- !u!4 &982871704
 Transform:
   m_ObjectHideFlags: 0
@@ -2394,32 +2395,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 142656247}
---- !u!1 &1564130420
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1564130421}
-  m_Layer: 0
-  m_Name: ExplosionTests
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1564130421
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1564130420}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.63312435, y: 2, z: -974.203064}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
 --- !u!1 &1596769188
 GameObject:
   m_ObjectHideFlags: 0
@@ -2679,7 +2654,6 @@ GameObject:
   - 54: {fileID: 1652812960}
   - 114: {fileID: 1652812955}
   - 114: {fileID: 1652812961}
-  - 114: {fileID: 1652812964}
   - 114: {fileID: 1652812965}
   - 114: {fileID: 1652812966}
   m_Layer: 0
@@ -2805,17 +2779,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRate: 1
---- !u!114 &1652812964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1652812954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4a3f4ba72ff545c3a4961503c5243a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1652812965
 MonoBehaviour:
   m_ObjectHideFlags: 0
