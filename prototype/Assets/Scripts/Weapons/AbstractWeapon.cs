@@ -22,6 +22,7 @@ public enum WeaponMode
 public abstract class AbstractWeapon : MonoBehaviour
 {	
 	public Transform gunMuzzle;
+    public WeaponTypes thisType;
 
 	private WeaponMode mode = WeaponMode.RAGDOLL;
 	public WeaponMode Mode {

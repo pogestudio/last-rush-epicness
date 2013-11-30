@@ -5,11 +5,10 @@ public class MachineGun : AbstractWeapon
 {
 
 	public float timeBetweenShots = 0.2f;
-	private float delay = 0;
 	public int bulletSpeed = 20;
-	
-	public WeaponTypes thisType = WeaponTypes.MachineGun;
 	public int weaponDamage = 5;
+	
+	private float delay = 0;
 	
 
 	void Start ()
@@ -17,6 +16,7 @@ public class MachineGun : AbstractWeapon
 		thisType = WeaponTypes.MachineGun;
 		weaponDamage = 5;
 	}
+
 	void Update ()
 	{
 		base.Update ();
