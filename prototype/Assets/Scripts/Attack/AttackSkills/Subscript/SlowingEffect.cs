@@ -36,7 +36,7 @@ public class SlowingEffect : MonoBehaviour
 	
 	void startSlowing ()
 	{
-		Debug.Log ("Started slowing");
+		//Debug.Log ("Started slowing");
 		gameObject.transform.renderer.material.color = slowColor;
 		monsterLogic.movingSpeed = monsterLogic.movingSpeed * (1 - slowingPercentage);
 		
@@ -44,7 +44,7 @@ public class SlowingEffect : MonoBehaviour
 	
 	void removeSlowing ()
 	{
-		Debug.Log ("Removed slowing");
+		//Debug.Log ("Removed slowing");
 		if (gameObject.activeSelf) {
 			monsterLogic.movingSpeed = monsterLogic.movingSpeed / (1 - slowingPercentage);
 		}

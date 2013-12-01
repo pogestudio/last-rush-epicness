@@ -53,9 +53,7 @@ public class LightningStrike : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (amountOfJumps <= 0) {
-			//Debug.Log ("Destroying lightning");
-			lightningLineRenderer.SetVertexCount (0);
+		if (amountOfJumps <= 0 || !currentMonster.activeSelf) {
 			Destroy (this);
 			return;
 		}
@@ -68,12 +66,12 @@ public class LightningStrike : MonoBehaviour
 			nextJump += timeBetweenJumps;
 			amountOfJumps--;
 		} else {
-			showLightning ();
+			showOneLightningBolt ();
 		}
 		
 	}
 	
-	void showLightning ()
+	void showOneLightningBolt ()
 	{
 		Vector3 lastPoint = currentMonster.transform.position;
 		int i = 1;
@@ -114,7 +112,7 @@ public class LightningStrike : MonoBehaviour
 		setNewTarget ();
 	}
 	
-	void onDestroy ()
+	void OnDestroy ()
 	{
 		lightningLineRenderer.SetVertexCount (0);
 	}

@@ -510,11 +510,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2414b642276443449d86a64da22bc2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 52999267}
-  LR: {fileID: 325619969}
-  arcLength: 1
-  arcVariation: .5
-  inaccuracy: .5
 --- !u!4 &325619968
 Transform:
   m_ObjectHideFlags: 0
@@ -3678,8 +3673,8 @@ LineRenderer:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
   m_Parameters:
-    startWidth: 1
-    endWidth: 1
+    startWidth: .200000003
+    endWidth: .200000003
     m_StartColor:
       serializedVersion: 2
       rgba: 4294967295
