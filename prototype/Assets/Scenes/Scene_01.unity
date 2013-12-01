@@ -143,8 +143,6 @@ Transform:
   m_LocalScale: {x: .300000012, y: 3, z: 1994.62585}
   m_Children: []
   m_Father: {fileID: 0}
-<<<<<<< HEAD
-=======
 --- !u!1 &128051872
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +205,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1652812959}
->>>>>>> LootTable
 --- !u!1 &142656246
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,8 +282,6 @@ MonoBehaviour:
   timeBetweenShots: .200000003
   bulletSpeed: 20
   weaponDamage: 5
-<<<<<<< HEAD
-=======
 --- !u!1 &151778539
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +340,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 620237384}
   m_GameObject: {fileID: 151778539}
   m_Mesh: {fileID: 4300010, guid: e7da0a6b88725fd49be111412a5416be, type: 3}
->>>>>>> LootTable
 --- !u!1 &192197515
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,8 +1164,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1276960853}
   m_GameObject: {fileID: 565571088}
   m_Mesh: {fileID: 4300008, guid: e7da0a6b88725fd49be111412a5416be, type: 3}
-<<<<<<< HEAD
-=======
 --- !u!1 &603517399
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,7 +1329,6 @@ Prefab:
   m_RootGameObject: {fileID: 603517399}
   m_IsPrefabParent: 0
   m_IsExploded: 1
->>>>>>> LootTable
 --- !u!1 &799809121
 GameObject:
   m_ObjectHideFlags: 0
@@ -1866,8 +1857,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 417533842}
-<<<<<<< HEAD
-=======
 --- !u!1 &1139559827
 GameObject:
   m_ObjectHideFlags: 0
@@ -1926,7 +1915,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 620237384}
   m_GameObject: {fileID: 1139559827}
   m_Mesh: {fileID: 4300016, guid: e7da0a6b88725fd49be111412a5416be, type: 3}
->>>>>>> LootTable
 --- !u!1 &1157506168
 GameObject:
   m_ObjectHideFlags: 0
@@ -2048,8 +2036,6 @@ Prefab:
   m_RootGameObject: {fileID: 417533841}
   m_IsPrefabParent: 0
   m_IsExploded: 1
-<<<<<<< HEAD
-=======
 --- !u!1 &1232112252
 GameObject:
   m_ObjectHideFlags: 0
@@ -2108,7 +2094,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 620237384}
   m_GameObject: {fileID: 1232112252}
   m_Mesh: {fileID: 4300008, guid: e7da0a6b88725fd49be111412a5416be, type: 3}
->>>>>>> LootTable
 --- !u!1 &1266215979
 GameObject:
   m_ObjectHideFlags: 0
@@ -2186,8 +2171,6 @@ GameObject:
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-<<<<<<< HEAD
-=======
   - 4: {fileID: 1286032643}
   - 33: {fileID: 1286032645}
   - 23: {fileID: 1286032644}
@@ -2246,7 +2229,6 @@ GameObject:
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
->>>>>>> LootTable
   - 4: {fileID: 1321143097}
   - 20: {fileID: 1321143096}
   - 124: {fileID: 1321143095}
@@ -2419,8 +2401,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 472905536}
   m_GameObject: {fileID: 1354884750}
   m_Mesh: {fileID: 4300008, guid: e7da0a6b88725fd49be111412a5416be, type: 3}
-<<<<<<< HEAD
-=======
 --- !u!1 &1355519104
 GameObject:
   m_ObjectHideFlags: 0
@@ -2447,7 +2427,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 603517400}
->>>>>>> LootTable
 --- !u!1 &1487289728
 GameObject:
   m_ObjectHideFlags: 0
@@ -2717,8 +2696,6 @@ Transform:
   m_LocalScale: {x: .300000012, y: 3, z: 8.45415306}
   m_Children: []
   m_Father: {fileID: 0}
-<<<<<<< HEAD
-=======
 --- !u!1 &1652812954
 GameObject:
   m_ObjectHideFlags: 0
@@ -3041,7 +3018,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   machineGun: {fileID: 100018, guid: d1a00fe259791004c9faff2f6f73715d, type: 2}
   handGun: {fileID: 100010, guid: 418fc09df725e3140b5fcaaf70fb00ad, type: 2}
->>>>>>> LootTable
 --- !u!1 &1731626490
 GameObject:
   m_ObjectHideFlags: 0
@@ -3801,8 +3777,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 462424457}
   m_GameObject: {fileID: 2113475631}
   m_Mesh: {fileID: 4300006, guid: e7da0a6b88725fd49be111412a5416be, type: 3}
-<<<<<<< HEAD
-=======
 --- !u!1 &2119753540
 GameObject:
   m_ObjectHideFlags: 0
@@ -3837,7 +3811,6 @@ Transform:
   - {fileID: 1139559828}
   - {fileID: 1232112253}
   m_Father: {fileID: 603517400}
->>>>>>> LootTable
 --- !u!1 &2142402882
 GameObject:
   m_ObjectHideFlags: 0
