@@ -67,16 +67,6 @@ public abstract class AbstractWeapon : MonoBehaviour
 
     public void Update()
 	{
-		if (mode == WeaponMode.HAND) {
-			//changing this bloc allow to change the way to fire all weapons
-			if (Input.GetButtonDown ("Fire1"))
-				triggerDown ();
-			else if (Input.GetButtonUp ("Fire1"))
-				triggerUp ();
-
-			if (Input.GetButton ("Fire1"))
-				triggerHold ();
-		}
 	}
 
 
