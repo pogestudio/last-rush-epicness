@@ -11,7 +11,7 @@ public class ExplodingShot : SkillEffect
 	
 	public override void doDamage (GameObject colliderObject)
 	{	
-		ArrayList monstersWithinExplodingArea = monstersWithinArea (transform.position, explodingDistance);
+		ArrayList monstersWithinExplodingArea = MonsterFinder.sharedHelper ().monstersWithinArea (transform.position, explodingDistance);
 		int explosionDamage = (int)(baseShotDamage * explodingMultiplier);
 		foreach (GameObject monster in monstersWithinExplodingArea) {
 			doDamageToSingleTarget (monster, explosionDamage, currentWeaponType);
