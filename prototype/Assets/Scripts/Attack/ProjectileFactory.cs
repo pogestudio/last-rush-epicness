@@ -3,8 +3,8 @@ using System.Collections;
 
 /// <summary>
 /// Delivers a projectile to the "shooting script", or whoever calls it.
-/// Before delivering the projectile, it confers with AttackHandler
-/// if it should add any special AttackSkills to the projectile. 
+/// Before delivering the projectile, it loops through all skills and adds those
+/// who should be added. 
 /// </summary>
 
 
@@ -67,7 +67,7 @@ public class ProjectileFactory : MonoBehaviour
 	}
 	
 	/// <summary>
-	/// Creates the bullet.
+	/// Creates the projectile.
 	/// </summary>
 	/// <returns>The bullet.</returns>
 	private GameObject createProjectile (Transform gunOrigin)

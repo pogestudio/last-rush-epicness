@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// The attack skills that can be added to the projectile. 
+/// </summary>
 public abstract class SkillEffect : MonoBehaviour
 {
 	public static SkillEffect instance;

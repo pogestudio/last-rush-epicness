@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
-
+/// <summary>
+/// Sets up a lightning strike to a target, and jumps from target to target!
+/// TODO: still belongs to the original target, so it despawns if killed halfway through.
+/// </summary>
 public class LightningStrike : MonoBehaviour
 {
 
@@ -53,7 +56,7 @@ public class LightningStrike : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (amountOfJumps <= 0 || !currentMonster.activeSelf) {
+		if (amountOfJumps <= 0 || currentMonster == null) {
 			Destroy (this);
 			return;
 		}
@@ -114,7 +117,8 @@ public class LightningStrike : MonoBehaviour
 	
 	void OnDestroy ()
 	{
-		lightningLineRenderer.SetVertexCount (0);
+		if (lightningLineRenderer)
+			lightningLineRenderer.SetVertexCount (0);
 	}
 }
 
