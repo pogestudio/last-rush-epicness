@@ -49,7 +49,8 @@ public class Skill
 			currentSkillLevel++;
 			didLevelUp = true;
 		}
-		Debug.Log (currentWeaponType + " did level up:: " + didLevelUp);
+		if (didLevelUp)
+			Debug.Log (currentWeaponType + " did level up!");
 		return didLevelUp;
 	}
 		

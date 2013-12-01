@@ -35,24 +35,7 @@ public class HomingShot : SkillEffect
 	
 	void setNewTarget ()
 	{
-		ArrayList monstersAroundMe = monstersWithinArea (gameObject.transform.position, searchRadius);
-		/*foreach (GameObject monster in monstersAroundMe) {
-			Debug.Log ("Monster position: " + monster.transform.position);
-		}*/
-		CompareDistance comparer = new CompareDistance (gameObject);
-		monstersAroundMe.Sort (comparer);
-		
-		//Debug.Log ("Monster SORTED!");
-		
-		/*foreach (GameObject monster in monstersAroundMe) {
-			Debug.Log ("Monster position: " + monster.transform.position);
-		}*/
-		if (monstersAroundMe.Count > 0) {
-			monsterToAimAt = (GameObject)monstersAroundMe [0];
-		}
-		
-		
-		
+		monsterToAimAt = MonsterFinder.sharedHelper ().getClosestMonster (gameObject.transform.position, searchRadius);
 	}
 	
 	public override void createEffect (GameObject colliderObject)

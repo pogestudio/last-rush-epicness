@@ -17,7 +17,7 @@ var distance : float;
 var height : float;
 
 function Update(){
-	if(!target.gameObject.active)
+	if(!target.gameObject.activeSelf)
 		return;
     transform.position.z = target.position.z - distance;
     transform.position.y = target.position.y + height;
