@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// EffectFactory will deliver visual stuff to objects that want them.
+/// </summary>
 public class EffectFactory : MonoBehaviour
 {
 	

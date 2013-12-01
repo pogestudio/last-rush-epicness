@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Slowing effect. Add to objects that should be slowed. 
+/// SOMEWHAT COMPLICATED TO ADD, see frost nova example. 
+/// </summary>
+
 public class SlowingEffect : MonoBehaviour
 {
 	public float slowingDuration;

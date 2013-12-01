@@ -3,40 +3,41 @@ using System.Collections;
 
 public class Gun : AbstractWeapon
 {
-    public float timeBetweenShots = 0.5f;
-	public int bulletSpeed = 35;
-	public int weaponDamage = 20;
 
-    private float delay = 0;
+	private float delay = 0;
 	
 	void Start ()
 	{
-        base.Start();
-         thisType = WeaponTypes.HandGun;
+		base.Start ();
+		thisType = WeaponTypes.HandGun;
+         
+		timeBetweenShots = 0.5f;
+		bulletSpeed = 35;
+		weaponDamage = 20;
+		
 	}
 
-    void Update()
-    {
-        base.Update();
-        delay -= Time.deltaTime;
-    }
+	void Update ()
+	{
+		base.Update ();
+		delay -= Time.deltaTime;
+	}
 
-    public override void triggerDown()
-    {
-    }
+	public override void triggerDown ()
+	{
+	}
 
-    public override void triggerHold()
-    {
-        if (delay <= 0)
-        {
-            delay = timeBetweenShots;
-            fire();
-        }
-    }
+	public override void triggerHold ()
+	{
+		if (delay <= 0) {
+			delay = timeBetweenShots;
+			fire ();
+		}
+	}
 
-    public override void triggerUp()
-    {
-    }
+	public override void triggerUp ()
+	{
+	}
 	
 	public override void fire ()
 	{

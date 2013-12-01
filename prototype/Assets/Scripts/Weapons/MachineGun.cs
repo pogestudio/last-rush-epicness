@@ -4,18 +4,18 @@ using System.Collections;
 public class MachineGun : AbstractWeapon
 {
 
-	public float timeBetweenShots = 0.2f;
-	public int bulletSpeed = 20;
-	public int weaponDamage = 5;
+
 	
 	private float delay = 0;
 	
 
 	void Start ()
 	{
-        base.Start();
+		base.Start ();
 		thisType = WeaponTypes.MachineGun;
 		weaponDamage = 5;
+		timeBetweenShots = 0.2f;
+		bulletSpeed = 20;
 	}
 
 	void Update ()
@@ -46,5 +46,6 @@ public class MachineGun : AbstractWeapon
 		//TODO : handle different projectile types?
 		GameObject projectile = ProjectileFactory.sharedFactory ().deliverProjectile (gunMuzzle, thisType, weaponDamage);
 		projectile.rigidbody.velocity = transform.TransformDirection (Vector3.forward * bulletSpeed);
+		Debug.Log ("Weapon damage::" + weaponDamage);
 	}
 }

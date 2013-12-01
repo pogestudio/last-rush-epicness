@@ -24,7 +24,9 @@ public class MonsterLogic : MonoBehaviour
 	private void die ()
 	{
 		//Debug.Log ("Monster should die");
-		gameObject.SetActive (false);
+		DropsLoot lootComponent = gameObject.GetComponent<DropsLoot> ();
+		lootComponent.ShouldDropLoot ();
+		Destroy (gameObject);
 	}
 
 

@@ -22,7 +22,15 @@ public enum WeaponMode
 public abstract class AbstractWeapon : MonoBehaviour
 {	
 	public Transform gunMuzzle;
-    public WeaponTypes thisType;
+	public WeaponTypes thisType;
+	
+	private float despawnDelay = 20F; //if it hasnt been picked up in 20, despawn.
+	private float despawnSafety = (float)60 * 60 * 2; //incremetn despawn time with this if you pick it up. Should be a lot, like two hours
+	private float timeToDespawn;
+	
+	public float timeBetweenShots;
+	public int bulletSpeed;
+	public int weaponDamage;
 
 	private WeaponMode mode;
 	public WeaponMode Mode {
@@ -34,18 +42,21 @@ public abstract class AbstractWeapon : MonoBehaviour
 				{
 					rigidbody.isKinematic = false;
 					collider.enabled = true;
+					timeToDespawn = Time.time + despawnDelay;
 					break;
 				}
 			case WeaponMode.HOLSTER:
 				{
 					rigidbody.isKinematic = true;
 					collider.enabled = false;
+					timeToDespawn = Time.time + despawnSafety;
 					break;
 				}
 			case WeaponMode.HAND:
 				{
 					rigidbody.isKinematic = true;
 					collider.enabled = false;
+					timeToDespawn = Time.time + despawnSafety;
 					break;
 				}
 			}
@@ -57,16 +68,23 @@ public abstract class AbstractWeapon : MonoBehaviour
 		if (gunMuzzle == null) {
 			Debug.Log ("Weapon muzzle is not set");
 		}
-        WeaponManager.get().manage(this);
+		if (!gameObject.activeInHierarchy) {
+			Debug.Log ("The weapon is deactive in hierarchy...?");
+		}
+		WeaponManager.get ().manage (this);
 	}
 
 
-    public void Start()
-    {
-    }
-
-    public void Update()
+	public void Start ()
 	{
+	}
+
+	public void Update ()
+	{
+		if (mode == WeaponMode.RAGDOLL && Time.time > timeToDespawn) {
+			Destroy (gameObject);
+		}
+		
 		if (mode == WeaponMode.HAND) {
 			//changing this bloc allow to change the way to fire all weapons
 			if (Input.GetButtonDown ("Fire1"))
@@ -88,5 +106,7 @@ public abstract class AbstractWeapon : MonoBehaviour
 	public abstract void triggerDown ();
 	public abstract void triggerHold ();
 	public abstract void triggerUp ();
+	
+	
 
 }
