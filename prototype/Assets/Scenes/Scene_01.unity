@@ -183,7 +183,7 @@ BoxCollider:
   m_GameObject: {fileID: 142656246}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: .138315916, y: .580801487, z: 2.05344868}
   m_Center: {x: .519999981, y: -.0154215097, z: .460632324}
@@ -199,7 +199,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -492,7 +492,7 @@ BoxCollider:
   m_GameObject: {fileID: 417533841}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: .138315916, y: .580801487, z: 2.05344868}
   m_Center: {x: .519999981, y: -.0154215097, z: .460632324}
@@ -508,7 +508,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -612,8 +612,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 520833821}
   - {fileID: 1157506169}
+  - {fileID: 520833821}
   - {fileID: 142656247}
   - {fileID: 417533842}
   m_Father: {fileID: 0}
@@ -1235,8 +1235,8 @@ GameObject:
   - 33: {fileID: 926093040}
   - 65: {fileID: 926093039}
   - 23: {fileID: 926093038}
-  m_Layer: 0
-  m_Name: Wall3
+  m_Layer: 12
+  m_Name: 
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1554,6 +1554,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1063990984}
+  - 108: {fileID: 1063990985}
   m_Layer: 9
   m_Name: muzzle
   m_TagString: Untagged
@@ -1572,6 +1573,42 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 417533842}
+--- !u!108 &1063990985
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 10800000, guid: d1a00fe259791004c9faff2f6f73715d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1200515086}
+  m_GameObject: {fileID: 1063990983}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Type: 2
+  m_Color: {r: .580882311, g: .438430637, b: .183661327, a: 1}
+  m_Intensity: 8
+  m_Range: 4
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 3584
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
 --- !u!1 &1157506168
 GameObject:
   m_ObjectHideFlags: 0
@@ -1866,6 +1903,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1353540398}
+  - 108: {fileID: 1353540399}
   m_Layer: 9
   m_Name: muzzle
   m_TagString: Untagged
@@ -1884,6 +1922,42 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 520833821}
+--- !u!108 &1353540399
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 10800000, guid: 418fc09df725e3140b5fcaaf70fb00ad,
+    type: 2}
+  m_PrefabInternal: {fileID: 462424457}
+  m_GameObject: {fileID: 1353540397}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Type: 2
+  m_Color: {r: .580882311, g: .438430637, b: .183661327, a: 1}
+  m_Intensity: 8
+  m_Range: 4
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 3584
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
 --- !u!1 &1354884750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1950,6 +2024,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1487289729}
+  - 108: {fileID: 1487289730}
   m_Layer: 9
   m_Name: muzzle
   m_TagString: Untagged
@@ -1968,6 +2043,42 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 142656247}
+--- !u!108 &1487289730
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 10800000, guid: d1a00fe259791004c9faff2f6f73715d,
+    type: 2}
+  m_PrefabInternal: {fileID: 472905536}
+  m_GameObject: {fileID: 1487289728}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Type: 2
+  m_Color: {r: .580882311, g: .438430637, b: .183661327, a: 1}
+  m_Intensity: 8
+  m_Range: 4
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 3584
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
 --- !u!1 &1596769188
 GameObject:
   m_ObjectHideFlags: 0
@@ -2153,8 +2264,8 @@ GameObject:
   - 33: {fileID: 1638341124}
   - 65: {fileID: 1638341123}
   - 23: {fileID: 1638341122}
-  m_Layer: 0
-  m_Name: Wall2
+  m_Layer: 12
+  m_Name: 
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2516,7 +2627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed33683c1e1ebfe4983636dc9335ead1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 100012, guid: fd33983d978494e4da0de92e8fd0c0c5, type: 2}
+  playerPrefab: {fileID: 100026, guid: d7a41a6dc93780d4ebaf37ea1fdd9324, type: 2}
 --- !u!4 &1857448259
 Transform:
   m_ObjectHideFlags: 0
@@ -2536,6 +2647,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1870221428}
+  - 108: {fileID: 1870221429}
   m_Layer: 9
   m_Name: muzzle
   m_TagString: Untagged
@@ -2554,6 +2666,42 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1157506169}
+--- !u!108 &1870221429
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 10800000, guid: 418fc09df725e3140b5fcaaf70fb00ad,
+    type: 2}
+  m_PrefabInternal: {fileID: 1276960853}
+  m_GameObject: {fileID: 1870221427}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Type: 2
+  m_Color: {r: .580882311, g: .438430637, b: .183661327, a: 1}
+  m_Intensity: 8
+  m_Range: 4
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 3584
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
 --- !u!1 &1944971303
 GameObject:
   m_ObjectHideFlags: 0
@@ -2623,8 +2771,8 @@ GameObject:
   - 33: {fileID: 1975934182}
   - 65: {fileID: 1975934181}
   - 23: {fileID: 1975934180}
-  m_Layer: 0
-  m_Name: Wall1
+  m_Layer: 12
+  m_Name: 
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2721,7 +2869,7 @@ GameObject:
   - 4: {fileID: 2010410288}
   - 114: {fileID: 2010410287}
   - 154: {fileID: 2010410286}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
