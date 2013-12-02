@@ -46,6 +46,6 @@ public class MachineGun : AbstractWeapon
 		//TODO : handle different projectile types?
 		GameObject projectile = ProjectileFactory.sharedFactory ().deliverProjectile (gunMuzzle, thisType, weaponDamage);
 		projectile.rigidbody.velocity = transform.TransformDirection (Vector3.forward * bulletSpeed);
-		Debug.Log ("Weapon damage::" + weaponDamage);
+		//Debug.Log ("Weapon damage::" + weaponDamage);
 	}
 }
