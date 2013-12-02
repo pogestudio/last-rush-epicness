@@ -71,7 +71,7 @@ public abstract class AbstractWeapon : MonoBehaviour
 		if (!gameObject.activeInHierarchy) {
 			Debug.Log ("The weapon is deactive in hierarchy...?");
 		}
-		WeaponManager.get ().manage (this);
+		WeaponManager.get().manage(this);
 	}
 
 

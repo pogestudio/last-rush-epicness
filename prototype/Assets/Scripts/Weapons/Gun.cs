@@ -14,7 +14,8 @@ public class Gun : AbstractWeapon
 		timeBetweenShots = 0.5f;
 		bulletSpeed = 35;
 		weaponDamage = 20;
-		
+
+        gunMuzzle.light.enabled = false;
 	}
 
 	void Update ()
@@ -44,6 +45,15 @@ public class Gun : AbstractWeapon
 		//TODO : handle different projectile types?
 		GameObject projectile = ProjectileFactory.sharedFactory ().deliverProjectile (gunMuzzle, thisType, weaponDamage);
 		projectile.rigidbody.velocity = transform.TransformDirection (Vector3.forward * bulletSpeed);
-	}
+        StartCoroutine(flash());
+    }
+
+    //shoot flash coroutine
+    private IEnumerator flash()
+    {
+        gunMuzzle.light.enabled = true;
+        yield return 0;
+        gunMuzzle.light.enabled = false;
+    }
 		
 }
