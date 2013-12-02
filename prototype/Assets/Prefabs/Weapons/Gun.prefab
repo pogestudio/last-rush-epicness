@@ -43,7 +43,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400004}
   m_Layer: 9
-  m_Name: Pistol Low Free
+  m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -183,7 +183,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.11376953, y: .264394492, z: -972.307678}
+  m_LocalPosition: {x: -2.92388916, y: .264394492, z: -974.346191}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400012}

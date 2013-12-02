@@ -3,9 +3,6 @@ using System.Collections;
 
 public class MachineGun : AbstractWeapon
 {
-
-
-	
 	private float delay = 0;
 	
 
