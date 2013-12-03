@@ -132,6 +132,46 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1022001932}
   m_GameObject: {fileID: 32707436}
   m_Mesh: {fileID: 4300002, guid: e7da0a6b88725fd49be111412a5416be, type: 3}
+--- !u!1 &81571562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 81571563}
+  - 114: {fileID: 81571564}
+  m_Layer: 0
+  m_Name: MonsterAttackFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &81571563
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 81571562}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 40.7308617, y: 99.4072266, z: 111.301575}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 804277442}
+--- !u!114 &81571564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 81571562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 395c8b692ba0a437bba1889afb1ab13d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miniBossHomingProjectile: {fileID: 100004, guid: 82ca4d09da71d4d14be345e2db4da1f3,
+    type: 2}
 --- !u!1 &84603802
 GameObject:
   m_ObjectHideFlags: 0
@@ -1884,6 +1924,7 @@ Transform:
   - {fileID: 982871704}
   - {fileID: 2036451355}
   - {fileID: 1678425321}
+  - {fileID: 81571563}
   - {fileID: 991134678}
   m_Father: {fileID: 0}
 --- !u!1 &810292458
