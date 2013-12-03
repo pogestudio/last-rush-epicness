@@ -31,13 +31,13 @@ public class SpawnMiniBossWhenPlayerIsNear : MonoBehaviour
 	
 	void scanForPlayer ()
 	{
-		Debug.Log ("scanning for player, current pos is: " + transform.position);
+        //Debug.Log ("scanning for player, current pos is: " + transform.position);
 		playerTarget = PlayerFinder.sharedHelper ().getClosestPlayer (transform.position, spawnArea);
 	}
 	
 	void createMiniBoss ()
 	{
-		Debug.Log ("spawning boss");
+        Debug.Log("spawning boss");
 		if (!hasSpawned) {
 			GameObject newBoss = Instantiate (miniBoss, transform.position, transform.rotation) as GameObject;
 			hasSpawned = true;

@@ -22,7 +22,7 @@ public class GatlingGun : AbstractWeapon
     void Start()
     {
         base.Start();
-        thisType = WeaponTypes.MachineGun;
+        thisType = WeaponTypes.Gatling;
         weaponDamage = 3;
         timeBetweenShots = 0.05f;
         bulletSpeed = 20;

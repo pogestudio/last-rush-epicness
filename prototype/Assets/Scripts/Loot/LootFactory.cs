@@ -7,7 +7,8 @@ public class LootFactory : MonoBehaviour
 {
 
 	public GameObject machineGun;
-	public GameObject handGun;
+    public GameObject handGun;
+    public GameObject gatling;
 	
 
 	private static LootFactory sharedInstance;
@@ -39,9 +40,14 @@ public class LootFactory : MonoBehaviour
 			}
 		case WeaponTypes.HandGun:
 			{
-				instantiatedWeapon = Instantiate (handGun, monsterLocation.position, monsterLocation.rotation) as GameObject;
-				break;
+                instantiatedWeapon = Instantiate(handGun, monsterLocation.position, monsterLocation.rotation) as GameObject;
+                break;
 			}
+            case WeaponTypes.Gatling:
+            {
+                instantiatedWeapon = Instantiate(gatling, monsterLocation.position, monsterLocation.rotation) as GameObject;
+                break;
+            }
 		default:
 			{
 				Debug.Log ("We have more typesOfWeapons in game than in LootFactory!!");

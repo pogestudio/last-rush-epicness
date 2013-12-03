@@ -30,7 +30,8 @@ public class PlayerHealth : MonoBehaviour
 	private void die ()
 	{
 		Debug.Log ("Player should die");
-		gameObject.SetActive (false);
+        //gameObject.SetActive (false);
+        Destroy(gameObject);
 	}
 
 	public void applyDamage (int damage)

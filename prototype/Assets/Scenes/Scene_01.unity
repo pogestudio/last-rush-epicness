@@ -3549,6 +3549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   machineGun: {fileID: 100018, guid: d1a00fe259791004c9faff2f6f73715d, type: 2}
   handGun: {fileID: 100010, guid: 418fc09df725e3140b5fcaaf70fb00ad, type: 2}
+  gatling: {fileID: 100032, guid: 2f7fa97321826924dbf562039366d9a1, type: 2}
 --- !u!1 &1731626490
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public enum WeaponTypes
 {
 	HandGun = 0,
 	MachineGun = 1,
+    Gatling = 2,
 	WeaponTypesMAX,
 };
 
@@ -53,7 +54,7 @@ public class ExperienceHandler : MonoBehaviour
 		allSkills.Add (new Skill ("ShrapnelShot", WeaponTypes.MachineGun));
 		allSkills.Add (new Skill ("ExplodingShot", WeaponTypes.HandGun));
 		allSkills.Add (new Skill ("HomingShot", WeaponTypes.HandGun));
-		allSkills.Add (new Skill ("LightningShot", WeaponTypes.MachineGun));
+		allSkills.Add (new Skill ("LightningShot", WeaponTypes.Gatling));
 		
 	}
 	

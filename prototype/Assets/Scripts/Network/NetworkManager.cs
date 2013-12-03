@@ -5,7 +5,8 @@ enum NetworkState
 {
     NONE,
     HOST,
-    CONNECTED
+    CONNECTED,
+    PLAYING
 }
 
 public class NetworkManager : MonoBehaviour
@@ -15,6 +16,29 @@ public class NetworkManager : MonoBehaviour
 
     private NetworkState state = NetworkState.NONE;
     private string textAdress = "127.0.0.1";
+
+    private static NetworkManager instance;
+
+    public static bool offlineMode()
+    {
+        return (instance == null);
+    }
+    
+    public static NetworkManager get()
+    {
+        return instance;
+    }
+
+    void Awake()
+    {
+        if (instance != null)
+            throw new UnityException("NetworkManager should only be attached to one object! This object will be kept beetween scenes.");
+        else
+        {
+            instance = this;
+            Object.DontDestroyOnLoad(gameObject);
+        }
+    }
 
     // Use this for initialization
     void Start()
@@ -33,6 +57,7 @@ public class NetworkManager : MonoBehaviour
     {
         Debug.Log("Game Start!");
         Application.LoadLevel("Scene_01");
+        state = NetworkState.PLAYING;
     }
 
     void OnGUI()
