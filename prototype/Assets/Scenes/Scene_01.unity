@@ -218,6 +218,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &107158733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 107158735}
+  - 114: {fileID: 107158734}
+  m_Layer: 0
+  m_Name: MiniBossTrap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &94593449
 Transform:
   m_ObjectHideFlags: 0
@@ -259,6 +275,30 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1022001932}
   m_GameObject: {fileID: 94593448}
   m_Mesh: {fileID: 4300014, guid: e7da0a6b88725fd49be111412a5416be, type: 3}
+--- !u!114 &107158734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 107158733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d036d95fd6c8549d19c9095c88b39d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miniBoss: {fileID: 100002, guid: 7a41f036b13aa45c08791f2c01a31437, type: 2}
+  spawnArea: 50
+--- !u!4 &107158735
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 107158733}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -700, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 686151798}
 --- !u!1 &142656246
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,6 +805,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &406531551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 406531553}
+  - 108: {fileID: 406531552}
+  m_Layer: 0
+  m_Name: Directional light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &376430638
 Transform:
   m_ObjectHideFlags: 0
@@ -806,6 +862,52 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1022001932}
   m_GameObject: {fileID: 376430637}
   m_Mesh: {fileID: 4300000, guid: e7da0a6b88725fd49be111412a5416be, type: 3}
+--- !u!108 &406531552
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 406531551}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Type: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: .270000011
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
+--- !u!4 &406531553
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 406531551}
+  m_LocalRotation: {x: .408217937, y: -.234569728, z: .109381676, w: .875426054}
+  m_LocalPosition: {x: -6.51699543, y: 2, z: -989.615051}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &417533841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1420,6 +1522,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &686151797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 686151798}
+  m_Layer: 0
+  m_Name: MiniBossSpawnPoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &638396642
 Transform:
   m_ObjectHideFlags: 0
@@ -1539,6 +1656,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &686151798
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 686151797}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4.47919655, z: -877.206055}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 725986244}
+  - {fileID: 1845346598}
+  - {fileID: 107158735}
+  m_Father: {fileID: 0}
+--- !u!1 &725986242
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 725986244}
+  - 114: {fileID: 725986243}
+  m_Layer: 0
+  m_Name: MiniBossTrap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &652318252
 Transform:
   m_ObjectHideFlags: 0
@@ -1627,6 +1774,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf4fc9a59711ce14ab57eaf1337f5b15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &725986243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 725986242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d036d95fd6c8549d19c9095c88b39d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miniBoss: {fileID: 100002, guid: 7a41f036b13aa45c08791f2c01a31437, type: 2}
+  spawnArea: 50
+--- !u!4 &725986244
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 725986242}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 686151798}
 --- !u!1 &799809121
 GameObject:
   m_ObjectHideFlags: 0
@@ -1707,12 +1878,13 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 804277441}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -974.203064}
+  m_LocalPosition: {x: -6.51699495, y: 2, z: -989.615051}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 982871704}
-  - {fileID: 1678425321}
   - {fileID: 2036451355}
+  - {fileID: 1678425321}
+  - {fileID: 1565535862}
   - {fileID: 991134678}
   m_Father: {fileID: 0}
 --- !u!1 &810292458
@@ -2079,6 +2251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smallExplosion: {fileID: 100000, guid: abc7fa0bb4155487c9ef6487b5bcf52c, type: 2}
   sphericNova: {fileID: 100000, guid: 4ded9a4d58d0c498f8526107d63ba8ed, type: 2}
+  snowingFire: {fileID: 100000, guid: 983064fb80d314e1d91b2574a76af379, type: 2}
 --- !u!4 &982871704
 Transform:
   m_ObjectHideFlags: 0
@@ -2086,7 +2259,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 982871702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6.51699543, y: -250.302155, z: 14629.6992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 804277442}
@@ -3011,6 +3184,21 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+  m_IsActive: 1--- !u!1 &1565535861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1565535862}
+  - 114: {fileID: 1565535863}
+  m_Layer: 0
+  m_Name: MonsterAttackFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1500152258
 Transform:
@@ -3053,6 +3241,30 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1022001932}
   m_GameObject: {fileID: 1500152257}
   m_Mesh: {fileID: 4300012, guid: e7da0a6b88725fd49be111412a5416be, type: 3}
+--- !u!4 &1565535862
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1565535861}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.93341064, y: -2.54748535, z: 10.0685425}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 804277442}
+--- !u!114 &1565535863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1565535861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 395c8b692ba0a437bba1889afb1ab13d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miniBossHomingProjectile: {fileID: 100004, guid: 82ca4d09da71d4d14be345e2db4da1f3,
+    type: 2}
 --- !u!1 &1596769188
 GameObject:
   m_ObjectHideFlags: 0
@@ -3632,6 +3844,46 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!1 &1845346597
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1845346598}
+  - 114: {fileID: 1845346599}
+  m_Layer: 0
+  m_Name: MiniBossTrap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1845346598
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1845346597}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 600, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 686151798}
+--- !u!114 &1845346599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1845346597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d036d95fd6c8549d19c9095c88b39d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miniBoss: {fileID: 100002, guid: 7a41f036b13aa45c08791f2c01a31437, type: 2}
+  spawnArea: 50
 --- !u!1 &1857448257
 GameObject:
   m_ObjectHideFlags: 0

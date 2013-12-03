@@ -4,9 +4,9 @@ using System.Collections;
 public class HomingShot : SkillEffect
 {
 
-	private GameObject monsterToAimAt;
-	private float searchRadius = 20F;
-	private float projectileSpeed;
+	public GameObject monsterToAimAt;
+	public float searchRadius = 20F;
+	public float projectileSpeed;
 
 	// Use this for initialization
 	void Start ()
