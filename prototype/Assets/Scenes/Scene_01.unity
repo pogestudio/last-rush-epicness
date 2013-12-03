@@ -3855,6 +3855,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 100026, guid: d7a41a6dc93780d4ebaf37ea1fdd9324, type: 2}
+  startWeapon: 0
 --- !u!4 &1857448259
 Transform:
   m_ObjectHideFlags: 0

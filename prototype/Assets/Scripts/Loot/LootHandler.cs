@@ -29,11 +29,23 @@ public class LootHandler
 		if (!shouldWeDropLoot (lootRarity)) {
 			return;//bail out if we shouldn't drop any lllooooooooot.
 		}
-		WeaponTypes typeOfWeapon = randomiseWeaponType ();
-		GameObject createdWeapon = LootFactory.sharedFactory ().createLoot (typeOfWeapon, monsterLocation);
-		fixStatsOfWeapon (createdWeapon, monsterLocation);
-		
+        createLootNoMatterWhat(randomiseWeaponType(), monsterLocation);
 	}
+
+
+    /// <summary>
+    /// Used to instantiate a specific weapon at a specific position. The power of the weapon is relatted to its drop location.
+    /// Yes, awesome method name. :)
+    /// </summary>
+    /// <param name="type">type of the weapon to spawn</param>
+    /// <param name="location">defines the location where the weapon is spawned, and its stats</param>
+    /// <returns></returns>
+    public GameObject createLootNoMatterWhat(WeaponTypes type, Transform location)
+    {
+        GameObject createdWeapon = LootFactory.sharedFactory().createLoot(type, location);
+        fixStatsOfWeapon(createdWeapon, location);
+        return createdWeapon;
+    }
 	
 	bool shouldWeDropLoot (LootTable lootRarity)
 	{

@@ -1,22 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerGuns : MonoBehaviour
+public class PlayerWeapons : MonoBehaviour
 {
 	public float MaximumPickupRange = 3;
 
-    public GameObject currentGun;
+    private GameObject currentGun;
     private AbstractWeapon currentGunScript;
 
     void Awake()
     {
-        if (currentGun == null)
-            Debug.Log("PlayerGuns.currentGun should be set if the player is carrying a gun!");
     }
 
     void Start()
     {
-        pickWeapon(currentGun);
     }
 
     // Update is called once per frame
@@ -61,7 +58,7 @@ public class PlayerGuns : MonoBehaviour
         }
     }
 
-	private void pickWeapon(GameObject newWeapon)
+	public void pickWeapon(GameObject newWeapon)
 	{
 		    AbstractWeapon newWeaponScript = newWeapon.GetComponent<AbstractWeapon>();
 		
@@ -81,4 +78,5 @@ public class PlayerGuns : MonoBehaviour
 			currentGun = newWeapon;
             currentGunScript = newWeaponScript;
 	}
+
 }
