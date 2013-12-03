@@ -19,7 +19,7 @@ public class PlayerWeapons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (networkView.isMine)
+        if (networkView.isMine || NetworkManager.offlineMode())
         {
             //WEAPON FIRING
             if (currentGun)
@@ -77,6 +77,33 @@ public class PlayerWeapons : MonoBehaviour
 
 			currentGun = newWeapon;
             currentGunScript = newWeaponScript;
+
+        //replicate
+            networkView.RPC("replicateWeapon", RPCMode.Others, (int)newWeaponScript.thisType);
 	}
+
+
+    //TODO: improve this when the loot is synchronized
+    /// <summary>
+    /// Placeholder RPC to set fake weapons on replicated players
+    /// </summary>
+    /// <param name="type"></param>
+    [RPC]
+    private void replicateWeapon(int weaponTypeOrdinal)
+    {
+        if (!networkView.isMine)    //make sure that this is a replicate
+        {
+            if(currentGun)
+            {
+                Destroy(currentGun);
+            }
+            WeaponTypes type = (WeaponTypes)weaponTypeOrdinal;
+            currentGun = LootHandler.sharedHandler().createLootNoMatterWhat(type, transform);
+            currentGun.transform.parent = this.transform;
+			currentGun.transform.localPosition = Vector3.zero;
+			currentGun.transform.localRotation = Quaternion.identity;
+            currentGun.GetComponent<AbstractWeapon>().Mode = WeaponMode.HAND;
+        }
+    }
 
 }

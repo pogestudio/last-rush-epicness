@@ -72,7 +72,12 @@ public class ProjectileFactory : MonoBehaviour
 	/// <returns>The bullet.</returns>
 	private GameObject createProjectile (Transform gunOrigin)
 	{
-		GameObject newProjectile = Instantiate (bullet, gunOrigin.position, gunOrigin.rotation) as GameObject;	
+        GameObject newProjectile;
+        if (NetworkManager.offlineMode())
+		    newProjectile = Instantiate (bullet, gunOrigin.position, gunOrigin.rotation) as GameObject;
+        else
+            newProjectile = Network.Instantiate(bullet, gunOrigin.position, gunOrigin.rotation, 1) as GameObject;
+
 		return newProjectile;
 	}
 }

@@ -29,7 +29,7 @@ public class PlayerFinder
 		CompareDistance comparer = new CompareDistance (center);
 		playersAroundLocation.Sort (comparer);
 		
-		Debug.Log ("Player SORTED!");
+        //Debug.Log ("Player SORTED!");
 		
 		foreach (GameObject monster in playersAroundLocation) {
 			Debug.Log ("player position: " + monster.transform.position);
