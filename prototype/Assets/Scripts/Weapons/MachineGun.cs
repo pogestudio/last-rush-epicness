@@ -10,7 +10,6 @@ public class MachineGun : AbstractWeapon
 	{
 		base.Start ();
 		thisType = WeaponTypes.MachineGun;
-		weaponDamage = 5;
 		timeBetweenShots = 0.2f;
 		bulletSpeed = 20;
 

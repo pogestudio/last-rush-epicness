@@ -13,7 +13,6 @@ public class Gun : AbstractWeapon
          
 		timeBetweenShots = 0.5f;
 		bulletSpeed = 35;
-		weaponDamage = 20;
 
         gunMuzzle.light.enabled = false;
 	}
