@@ -14,12 +14,12 @@ public class SlowingEffect : MonoBehaviour
 	private float timeToStop;
 	private Color regularColor;
 	private Color slowColor = Color.blue;
-	private MonsterLogic monsterLogic;
+	private AbstractEnemy monsterLogic;
 	
 	// Use this for initialization
 	void Start ()
 	{
-		monsterLogic = gameObject.GetComponent<MonsterLogic> ();
+		monsterLogic = gameObject.GetComponent<AbstractEnemy> ();
 		timeToStop = Time.time + slowingDuration;
 		//save the color so we can set it back at the end. set a burnColor for the duration.
 		regularColor = gameObject.transform.renderer.material.color;

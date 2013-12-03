@@ -33,6 +33,18 @@ public class MonsterFactory : MonoBehaviour
 	//put everything regarding regular monster in here
 	
 	/// <summary>
+	/// Spawns a mini boss. 
+	/// </summary>
+	/// <param name="forPlayer">Player to spawn around</param>
+	public static void SpawnMiniBoss (GameObject forPlayer, Vector3 atPosition)
+	{
+		GameObject monster = Object.Instantiate (instance.regularMonster, Vector3.zero, Quaternion.identity) as GameObject;
+		MonsterLogic monstersLogic = monster.GetComponent ("MonsterLogic") as MonsterLogic;
+		instance.initializeMonster (monstersLogic, forPlayer);
+		monster.transform.position = instance.monsterStartingPosition (forPlayer.transform);
+	}
+	
+	/// <summary>
 	/// Spawns a regular monster. 
 	/// </summary>
 	/// <param name="forPlayer">Player to spawn around</param>
@@ -47,7 +59,7 @@ public class MonsterFactory : MonoBehaviour
 	public void initializeMonster (MonsterLogic monster, GameObject forPlayer)
 	{
 		monster.health = monsterStartingHealth (forPlayer.transform);
-		monster.player = forPlayer;
+		monster.target = forPlayer;
 		
 	}
 	

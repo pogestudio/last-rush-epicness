@@ -12,16 +12,16 @@ public class EffectFactory : MonoBehaviour
 	//THE AMMO
 	public GameObject smallExplosion;
 	public GameObject sphericNova;
+	public GameObject snowingFire;
 	
 	
 	public static EffectFactory sharedFactory ()
 	{
+		if (instance == null) {
+			GameObject placeholder = GameObject.Find ("EffectFactory");
+			instance = placeholder.GetComponent<EffectFactory> ();
+		}
 		return instance;
-	}
-	// Use this for initialization
-	void Start ()
-	{
-		instance = this;
 	}
 	
 	public GameObject deliverSmallExplosion (Transform effectOrigin)
@@ -32,6 +32,11 @@ public class EffectFactory : MonoBehaviour
 	public GameObject deliverSphericNova (Transform effectOrigin)
 	{
 		return returnObject (sphericNova, effectOrigin);
+	}
+	
+	public GameObject deliverSnowingFire (Transform effectOrigin)
+	{
+		return returnObject (snowingFire, effectOrigin);
 	}
 	
 	private GameObject returnObject (GameObject effect, Transform effectOrigin)

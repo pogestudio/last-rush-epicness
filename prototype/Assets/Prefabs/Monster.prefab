@@ -95,7 +95,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 420c2d232fdbe45a9aa74aef356ab91a, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b86c2f1660004f32b1dbfdf9577f86d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
@@ -113,7 +113,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   movingSpeed: 3
-  player: {fileID: 0}
+  target: {fileID: 0}
+  searchRadius: 80
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
