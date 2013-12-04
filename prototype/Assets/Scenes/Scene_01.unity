@@ -2571,10 +2571,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   terrain: {fileID: 2010410287}
   maxNoiseProportion: .600000024
-  noiseScale: .0799999982
+  noiseScale: .200000003
   scale: 10
   layers: 7
   seed: 0
+  mountainWidth: 20
 --- !u!1 &1058890176
 GameObject:
   m_ObjectHideFlags: 0
@@ -3039,7 +3040,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   distance: 8
-  height: 30
+  height: 20
 --- !u!1 &1353540397
 GameObject:
   m_ObjectHideFlags: 0

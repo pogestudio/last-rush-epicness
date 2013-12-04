@@ -30,8 +30,12 @@ public class WorldGenerator : MonoBehaviour {
 	/// </summary>
 	public int seed;
 
+	public int mountainWidth = 20;
+
 	private float perlinXOffset = 0.0f;
 	private float perlinYOffset = 0.0f;
+
+	private int mountainTextureIndex = 7;
 
 	// Use this for initialization
 	void Start () {
@@ -61,14 +65,62 @@ public class WorldGenerator : MonoBehaviour {
 					alphaMaps[x, y, activeLayer] = positionInLayer;
 					alphaMaps[x, y, activeLayer - 1] = 1.0f - alphaMaps[x, y, activeLayer];
 				}
+
+				// Textures for the mountains
+				if (y < mountainWidth*3 || y > terrain.terrainData.alphamapHeight - mountainWidth*3) {
+					float param;
+					if (y < mountainWidth*3)
+						param = (float)y;
+					else
+						param = (float)(terrain.terrainData.alphamapHeight - y);
+					
+					float alpha = (1.0f - param / (mountainWidth*3));
+					alphaMaps[x, y, mountainTextureIndex] = alpha;
+					for (int i = 0; i < terrain.terrainData.alphamapLayers; i++) {
+						if (i == mountainTextureIndex)
+							continue;
+						alphaMaps[x, y, i] *= (1 - alpha);
+					}
+				}
 			}
 		}
 
+		terrain.terrainData.SetHeights(0, 0, heightMap);
+		terrain.terrainData.SetAlphamaps(0, 0, alphaMaps);
+		
 		// Generate trees
 		int numTrees = 500 + (int)(Random.value * 3000.0f);
 		float treeX = Random.value;
 		float treeY = Random.value;
+
 		for (int i = 0; i < numTrees; i++) {
+			float dx = Random.value * 0.1f;
+			float dy = Random.value * 0.1f;
+
+			if (Random.value > 0.5)
+				treeX += dx;
+			else
+				treeX -= dx;
+
+			if (Random.value > 0.5)
+				treeY += dy;
+			else
+				treeY -= dy;
+
+			if (treeX > 1.0f)
+				treeX -= 1.0f;
+			if (treeY > 1.0f)
+				treeY -= 1.0f;
+
+			if (treeX < 0)
+				treeX += 1.0f;
+			if (treeY < 0)
+				treeY += 1.0f;
+
+			if ((treeY < (float)(mountainWidth*2) / (float)terrain.terrainData.alphamapHeight ||
+			     treeY > 1.0f - (float)(mountainWidth*2) / (float)terrain.terrainData.alphamapHeight))
+				treeY = Random.value;
+
 			TreeInstance tree = new TreeInstance();
 			tree.color = Color.white;
 			tree.heightScale = 0.75f + Random.value * 0.5f;
@@ -78,7 +130,7 @@ public class WorldGenerator : MonoBehaviour {
 			int activeLayer = (int)(treeX * (float)layers);
 			float positionInLayer = treeX - (float)activeLayer / (float)layers;
 
-
+			// Trees are mostly the same in the layer but may also be random
 			if (Random.value > positionInLayer * 3) {
 				tree.prototypeIndex = activeLayer % terrain.terrainData.treePrototypes.Length;
 			} else {
@@ -87,18 +139,21 @@ public class WorldGenerator : MonoBehaviour {
 
 			tree.widthScale = 0.75f + Random.value * 0.5f;
 			trees.Add(tree);
-			//Debug.Log ("Added tree at " + tree.position);
+		}
 
-			treeX += Random.value * 0.1f;
-			treeY += Random.value * 0.1f;
-			if (treeX > 1.0f)
-				treeX -= 1.0f;
-			if (treeY > 1.0f)
-				treeY -= 1.0f;
+		// Generate grass
+		for (int i = 0; i < terrain.terrainData.detailPrototypes.Length; i++) {
+			int[,] detailLayer = new int[terrain.terrainData.detailWidth, terrain.terrainData.detailHeight];
+
+			for (int x = 0; x < terrain.terrainData.detailWidth; x++) {
+				for (int y = 0; y < terrain.terrainData.detailHeight; y++) {
+					detailLayer[x, y] = (int)(2.0f * Mathf.PerlinNoise(perlinXOffset + 0.5f * (float)x / (float)terrain.terrainData.detailWidth, perlinYOffset + 0.5f * (float)y / (float)terrain.terrainData.detailHeight));
+				}
+			}
+
+			terrain.terrainData.SetDetailLayer(0, 0, i, detailLayer);
 		}
 		
-		terrain.terrainData.SetHeights(0, 0, heightMap);
-		terrain.terrainData.SetAlphamaps(0, 0, alphaMaps);
 		terrain.terrainData.treeInstances = trees.ToArray();
 		terrain.Flush();
 	}
@@ -110,8 +165,24 @@ public class WorldGenerator : MonoBehaviour {
 	/// <param name="x">The x coordinate.</param>
 	/// <param name="y">The y coordinate.</param>
 	float generateHeight(int x, int y) {
+		
 		float xCoord = perlinXOffset + ((float)x / (float)terrain.terrainData.alphamapWidth) * scale;
 		float yCoord = perlinYOffset + ((float)y / (float)terrain.terrainData.alphamapHeight) * scale;
+
+		if (y < mountainWidth*3 || y > terrain.terrainData.alphamapHeight - mountainWidth*3) {
+			float param;
+			if (y < mountainWidth*3)
+				param = (float)y;
+			else
+				param = (float)(terrain.terrainData.alphamapHeight - y);
+
+			float alpha = (1.0f - param / (mountainWidth*3));
+
+			return alpha * (0.5f * Mathf.Exp(-(param*param) / (float)(0.5f * mountainWidth * mountainWidth))
+				+ Mathf.PerlinNoise(xCoord, yCoord) + Mathf.PerlinNoise (xCoord * 3.0f, yCoord * 3.0f)) + 
+				(1.0f - alpha) * (Mathf.Min (Mathf.PerlinNoise(xCoord, yCoord), maxNoiseProportion) * noiseScale);
+		}
+
 		return Mathf.Min (Mathf.PerlinNoise(xCoord, yCoord), maxNoiseProportion) * noiseScale;
 	}
 
