@@ -14,6 +14,7 @@ public class MonsterFactory : MonoBehaviour
 	private GameObject majorBoss;*/
 	
 	private float mapHeight;
+	private Terrain terrain;
 	
 	void Start ()
 	{
@@ -25,7 +26,7 @@ public class MonsterFactory : MonoBehaviour
 			Debug.LogError ("don't have a regular monster. Fail Fail Fail");
 			
 		GameObject terrainObject = GameObject.Find ("Terrain");
-		Terrain terrain = terrainObject.GetComponent<Terrain> ();
+		terrain = terrainObject.GetComponent<Terrain> ();
 		mapHeight = terrain.terrainData.size.z;
 	}
 	
@@ -90,6 +91,7 @@ public class MonsterFactory : MonoBehaviour
 		float positiveOrNegative1 = Random.value > 0.5 ? -1 : 1;
 		float positiveOrNegative2 = Random.value > 0.5 ? -1 : 1;
 		Vector3 monsterPosition = new Vector3 (playerX + positiveOrNegative1 * randomX, playerTransform.position.y, playerZ + positiveOrNegative2 * randomZ);
+		monsterPosition.y = terrain.terrainData.GetHeight((int)monsterPosition.z, (int)monsterPosition.x) + ((CapsuleCollider)regularMonster.collider).height / 2.0f;
 		//Debug.Log("Spawning monster at " + monsterPosition);
 		return monsterPosition;
 		
