@@ -29,9 +29,9 @@ public class MonsterHomingMissileScript : MonoBehaviour
 		gameObject.transform.LookAt (PlayerToAimAt.transform.position);
 		gameObject.rigidbody.velocity = (gameObject.transform.forward * projectileSpeed);
 		//Debug.Log ("Setting missile velocity to " + gameObject.rigidbody.velocity);
-		Debug.Log ("current velocity :: " + gameObject.rigidbody.velocity);
-		Debug.Log ("current forward is :: " + gameObject.transform.forward);
-		Debug.Log ("current projectilespeed is :: " + projectileSpeed);
+//		Debug.Log ("current velocity :: " + gameObject.rigidbody.velocity);
+//		Debug.Log ("current forward is :: " + gameObject.transform.forward);
+//		Debug.Log ("current projectilespeed is :: " + projectileSpeed);
 	}
 		
 	void setNewTarget ()

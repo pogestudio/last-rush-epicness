@@ -54,7 +54,7 @@ public class EffectFactory : MonoBehaviour
 	
 	public void createLightningBetween (Vector3 originPos, Vector3 destPos)
 	{	
-		Debug.Log ("create lightning called");
+		
 		if (staticLightningLineRenderer == null) {
 			GameObject placeHolder = GameObject.Find ("LightningLineRenderer");
 			staticLightningLineRenderer = placeHolder.GetComponent<LineRenderer> ();
@@ -81,6 +81,8 @@ public class EffectFactory : MonoBehaviour
 			i++;
 			lastPoint = fwd;//so we know where we are starting from for the next arc
 		}
+		
+		Debug.Log ("create lightning called");
 		
 		//DONE! destroy lineRenderer
 		Destroy (lightningLineRenderer, 0.2F);
