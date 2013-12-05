@@ -15,9 +15,6 @@ public class BurnDPSEffect : MonoBehaviour
 	private float timeToStop;
 	private float nextTick;
 	
-	private Color regularColor;
-	private Color burnColor = Color.yellow;
-	
 	// Use this for initialization
 	void Start ()
 	{
@@ -27,9 +24,7 @@ public class BurnDPSEffect : MonoBehaviour
 		//destroy the script after a while, so that the color disappears
 		Destroy (this, burningDuration + 0.5F);
 		
-		//save the color so we can set it back at the end. set a burnColor for the duration.
-		regularColor = gameObject.transform.renderer.material.color;
-		gameObject.transform.renderer.material.color = burnColor;
+		EffectFactory.sharedFactory ().addBurningEffect (gameObject, burningDuration);
 		
 	}
 	
@@ -42,12 +37,6 @@ public class BurnDPSEffect : MonoBehaviour
 			nextTick = Time.time + 1F;
 			SkillEffect.wantToDamage (gameObject, (int)Mathf.Ceil (burningDamagePerSecond), weaponToCauseIt);
 		} 
-	}
-	
-	
-	void OnDestroy ()
-	{
-		gameObject.transform.renderer.material.color = regularColor;
 	}
 }
 

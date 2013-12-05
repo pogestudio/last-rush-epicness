@@ -94,4 +94,22 @@ public class EffectFactory : MonoBehaviour
 		v3.Normalize (); 
 		return v3; 
 	}
+	
+	public void addFrozenEffect (GameObject objectToAddTo, float duration)
+	{
+		//FOR NOW it just adds a new color. It DOES NOT REMOVE.
+		//Should be rewritten so that it adds a script/ParticleSystem which is destroyed after the duration
+		Color slowColor = Color.blue;
+		objectToAddTo.transform.renderer.material.color = slowColor;
+		
+	}
+	
+	public void addBurningEffect (GameObject objectToAddTo, float duration)
+	{
+		//FOR NOW it just adds a new color. It DOES NOT REMOVE.
+		//Should be rewritten so that it adds a script/ParticleSystem which is destroyed after the duration
+		Color burnColor = Color.yellow;
+		objectToAddTo.transform.renderer.material.color = burnColor;
+		
+	}
 }
