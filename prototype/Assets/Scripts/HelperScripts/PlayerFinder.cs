@@ -23,17 +23,17 @@ public class PlayerFinder
 	private ArrayList getSortedListOfPlayers (Vector3 center, float searchRadius)
 	{
 		ArrayList playersAroundLocation = playersWithinArea (center, searchRadius);
-		foreach (GameObject monster in playersAroundLocation) {
-			Debug.Log ("Monster position: " + monster.transform.position);
-		}
+//		foreach (GameObject monster in playersAroundLocation) {
+//			Debug.Log ("Monster position: " + monster.transform.position);
+//		}
 		CompareDistance comparer = new CompareDistance (center);
 		playersAroundLocation.Sort (comparer);
 		
-        //Debug.Log ("Player SORTED!");
+		//Debug.Log ("Player SORTED!");
 		
-		foreach (GameObject monster in playersAroundLocation) {
-			Debug.Log ("player position: " + monster.transform.position);
-		}
+//		foreach (GameObject monster in playersAroundLocation) {
+//			Debug.Log ("player position: " + monster.transform.position);
+//		}
 		
 		return playersAroundLocation;
 	}

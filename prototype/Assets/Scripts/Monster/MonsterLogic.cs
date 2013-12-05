@@ -32,8 +32,7 @@ public class MonsterLogic : AbstractEnemy
 	
 	void despawnIfTooFar ()
 	{
-		float distance = Vector3.Distance (target.transform.position, transform.position);
-		if (distance > despawnDistance) {
+		if (target == null || Vector3.Distance (target.transform.position, transform.position) > despawnDistance) {
 			Destroy (gameObject);
 		}
 	}
