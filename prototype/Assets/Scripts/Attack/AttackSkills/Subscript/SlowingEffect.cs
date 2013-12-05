@@ -12,8 +12,6 @@ public class SlowingEffect : MonoBehaviour
 	public float slowingPercentage;
 	
 	private float timeToStop;
-	private Color regularColor;
-	private Color slowColor = Color.blue;
 	private AbstractEnemy monsterLogic;
 	
 	// Use this for initialization
@@ -22,7 +20,6 @@ public class SlowingEffect : MonoBehaviour
 		monsterLogic = gameObject.GetComponent<AbstractEnemy> ();
 		timeToStop = Time.time + slowingDuration;
 		//save the color so we can set it back at the end. set a burnColor for the duration.
-		regularColor = gameObject.transform.renderer.material.color;
 		startSlowing ();
 	}
 	
@@ -36,13 +33,12 @@ public class SlowingEffect : MonoBehaviour
 	void OnDestroy ()
 	{
 		removeSlowing ();
-		gameObject.transform.renderer.material.color = regularColor;
 	}
 	
 	void startSlowing ()
 	{
 		//Debug.Log ("Started slowing");
-		gameObject.transform.renderer.material.color = slowColor;
+		EffectFactory.sharedFactory ().addFrozenEffect (gameObject, slowingDuration);
 		monsterLogic.movingSpeed = monsterLogic.movingSpeed * (1 - slowingPercentage);
 		
 	}
