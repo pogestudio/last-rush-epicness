@@ -82,7 +82,7 @@ public class MonsterFinder
 	
 	public bool targetIsEnemy (GameObject target)
 	{
-		return (target.tag == "RegularMonster") || (target.tag == "MiniBoss");
+		return (target != null && (target.tag == "RegularMonster") || (target.tag == "MiniBoss"));
 	}
 	
 }

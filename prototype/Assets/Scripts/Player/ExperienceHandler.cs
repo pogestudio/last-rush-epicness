@@ -47,6 +47,7 @@ public class ExperienceHandler : MonoBehaviour
 	/// </summary>
 	private void addAllSkills ()
 	{
+
 		//allSkills = new ArrayList ();
 		new Skill ("FrostNovaShot", WeaponTypes.MachineGun);
 		new Skill ("CriticalHit", WeaponTypes.HandGun);
@@ -55,6 +56,7 @@ public class ExperienceHandler : MonoBehaviour
 		new Skill ("ExplodingShot", WeaponTypes.HandGun);
 		new Skill ("HomingShot", WeaponTypes.HandGun);
 		new Skill ("LightningShot", WeaponTypes.Gatling);
+
 		
 	}
 	
