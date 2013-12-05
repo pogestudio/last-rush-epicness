@@ -140,12 +140,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 15000
-  movingSpeed: 5
+  defaultMovingSpeed: 5
   target: {fileID: 0}
   searchRadius: 80
   timeBetweenSpecialAttacks: 4
   castingTime: 3
-  chargingEffect: {fileID: 0}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

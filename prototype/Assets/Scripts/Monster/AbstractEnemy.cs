@@ -5,7 +5,12 @@ public class AbstractEnemy : MonoBehaviour
 {
 
 	public int health;
-	public float movingSpeed;
+	public float defaultMovingSpeed;
+	float _movingSpeed;
+	public float movingSpeed {
+		get { return _movingSpeed; }
+		set { _movingSpeed = Mathf.Max (value, 0); }
+	}
 	public GameObject target;
 	public float searchRadius = 80F;
 	
@@ -28,6 +33,7 @@ public class AbstractEnemy : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		movingSpeed = defaultMovingSpeed; // set the moving speed we have from editor. 
 		if (!target) {
 			Debug.Log ("Does not have initial target"); 
 		}
@@ -37,7 +43,7 @@ public class AbstractEnemy : MonoBehaviour
 	{
 		Vector3 delta = target.transform.position - transform.position;
 		delta.Normalize ();
-		float moveSpeed = movingSpeed * Time.deltaTime;
+		float moveSpeed = this.movingSpeed * Time.deltaTime;
 		transform.position = transform.position + (delta * moveSpeed);
 		transform.LookAt (target.transform);
 	}
