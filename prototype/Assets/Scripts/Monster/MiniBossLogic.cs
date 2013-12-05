@@ -11,23 +11,26 @@ public class MiniBossLogic : AbstractEnemy
 	private float timetoStopCasting;
 	public float castingTime;
 	
-	public GameObject chargingEffect;
-	
-	
-	void Start ()
-	{	
-		chargingEffect = EffectFactory.sharedFactory ().deliverSnowingFire (gameObject.transform);
-		chargingEffect.transform.parent = transform;
-		chargingEffect.transform.localPosition = new Vector3 (0, -0.2F, 0);
-		chargingEffect.transform.localScale = new Vector3 (1, 1, 1);
-		chargingEffect.transform.Rotate (-90F, 0, 0);
-		chargingEffect.SetActive (false);
-		
-	}
-
 	void Update ()
 	{
 	
+		
+
+		if (isCasting && Time.time > timetoStopCasting) {
+			//should stop casting
+			isCasting = false;
+			nextSpecialAttack = Time.time + timeBetweenSpecialAttacks;
+			performSpecialAttack ();
+			//Debug.Log ("Shoud stop casting. time to cast: " + nextSpecialAttack);
+		}
+		
+		
+		if (Time.time > nextSpecialAttack && !isCasting && target) {
+			//should start casting
+			timetoStopCasting = Time.time + castingTime;
+			isCasting = true;
+			EffectFactory.sharedFactory ().createMiniBossChargingEffect (gameObject, castingTime);
+		}
 		
 		if (target && !isCasting) {
 			walk ();
@@ -35,21 +38,6 @@ public class MiniBossLogic : AbstractEnemy
 			target = PlayerFinder.sharedHelper ().getClosestPlayer (transform.position, searchRadius);
 		}	
 		
-		
-		if (isCasting && Time.time > timetoStopCasting) {
-			isCasting = false;
-			nextSpecialAttack = Time.time + timeBetweenSpecialAttacks;
-			chargingEffect.SetActive (false);
-			performSpecialAttack ();
-			//Debug.Log ("Shoud stop casting. time to cast: " + nextSpecialAttack);
-		}
-		
-		
-		if (Time.time > nextSpecialAttack && !isCasting && target) {
-			timetoStopCasting = Time.time + castingTime;
-			isCasting = true;
-			chargingEffect.SetActive (true);
-		}
 		
 	}
 	
@@ -62,9 +50,6 @@ public class MiniBossLogic : AbstractEnemy
 		
 		GameObject anotherProj = MonsterAttackFactory.sharedFactory ().miniBossProjectile (gameObject.transform);
 		anotherProj.transform.position = anotherProj.transform.position + new Vector3 (2, 0, 0);
-		
-		
-		
 	}
 
 }

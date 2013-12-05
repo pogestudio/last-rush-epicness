@@ -24,22 +24,28 @@ public class EffectFactory : MonoBehaviour
 		return instance;
 	}
 	
-	public GameObject deliverSmallExplosion (Transform effectOrigin)
+	public void deliverSmallExplosion (Transform effectOrigin)
 	{
-		return returnObject (smallExplosion, effectOrigin);
+		instantiateObject (smallExplosion, effectOrigin);
 	}
 	
-	public GameObject deliverSphericNova (Transform effectOrigin)
+	public void deliverSphericNova (Transform effectOrigin)
 	{
-		return returnObject (sphericNova, effectOrigin);
+		instantiateObject (sphericNova, effectOrigin);
 	}
 	
-	public GameObject deliverSnowingFire (Transform effectOrigin)
+	public void createMiniBossChargingEffect (GameObject miniBoss, float timeToDestroy)
 	{
-		return returnObject (snowingFire, effectOrigin);
+		GameObject chargingEffect = instantiateObject (snowingFire, miniBoss.transform);
+		chargingEffect.transform.parent = miniBoss.transform;
+		chargingEffect.transform.localPosition = new Vector3 (0, -0.2F, 0);
+		chargingEffect.transform.localScale = new Vector3 (1, 1, 1);
+		chargingEffect.transform.Rotate (-90F, 0, 0);
+		chargingEffect.SetActive (true);
+		Destroy (chargingEffect, timeToDestroy);
 	}
 	
-	private GameObject returnObject (GameObject effect, Transform effectOrigin)
+	private GameObject instantiateObject (GameObject effect, Transform effectOrigin)
 	{
 		return Instantiate (effect, effectOrigin.position, effectOrigin.rotation) as GameObject;
 	}
