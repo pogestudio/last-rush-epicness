@@ -33,6 +33,6 @@ public class FrostNovaShot : SkillEffect
 
 	public override void createEffect (GameObject colliderObject)
 	{
-		EffectFactory.sharedFactory ().deliverSphericNova (transform);
+		EffectFactory.sharedFactory ().deliverSphericNova (transform.position);
 	}
 }

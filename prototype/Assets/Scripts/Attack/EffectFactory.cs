@@ -26,33 +26,61 @@ public class EffectFactory : MonoBehaviour
 		return instance;
 	}
 	
-	public void deliverSmallExplosion (Transform effectOrigin)
+	public void deliverSmallExplosion (Vector3 effectOrigin)
 	{
-		instantiateObject (smallExplosion, effectOrigin);
+        networkView.RPC("deliverSmallExplosionRPC", RPCMode.All, effectOrigin);
 	}
-	
-	public void deliverSphericNova (Transform effectOrigin)
+
+    [RPC]
+    private void deliverSmallExplosionRPC(Vector3 effectOrigin)
+    {
+        instantiateObject(smallExplosion, effectOrigin);
+    }
+
+    public void deliverSphericNova(Vector3 effectOrigin)
 	{
-		instantiateObject (sphericNova, effectOrigin);
+        networkView.RPC("deliverSphericNovaRPC", RPCMode.All, effectOrigin);
 	}
-	
+
+    [RPC]
+    private void deliverSphericNovaRPC(Vector3 effectOrigin)
+    {
+        instantiateObject(sphericNova, effectOrigin);
+    }
+
+
 	public void createMiniBossChargingEffect (GameObject miniBoss, float timeToDestroy)
 	{
-		GameObject chargingEffect = instantiateObject (snowingFire, miniBoss.transform);
-		chargingEffect.transform.parent = miniBoss.transform;
-		chargingEffect.transform.localPosition = new Vector3 (0, -0.2F, 0);
-		chargingEffect.transform.localScale = new Vector3 (1, 1, 1);
-		chargingEffect.transform.Rotate (-90F, 0, 0);
-		chargingEffect.SetActive (true);
-		Destroy (chargingEffect, timeToDestroy);
+        networkView.RPC("createMiniBossChargingEffectRPC", RPCMode.All, NetworkTranslator.ToId(miniBoss), timeToDestroy);
 	}
-	
-	private GameObject instantiateObject (GameObject effect, Transform effectOrigin)
+
+    [RPC]
+    private void createMiniBossChargingEffectRPC(NetworkViewID miniBossID, float timeToDestroy)
+    {
+        GameObject miniBoss = NetworkTranslator.ToInstance(miniBossID);
+        GameObject chargingEffect = instantiateObject(snowingFire, miniBoss.transform.position);
+        chargingEffect.transform.parent = miniBoss.transform;
+        chargingEffect.transform.localPosition = new Vector3(0, -0.2F, 0);
+        chargingEffect.transform.localScale = new Vector3(1, 1, 1);
+        chargingEffect.transform.Rotate(-90F, 0, 0);
+        chargingEffect.SetActive(true);
+        Destroy(chargingEffect, timeToDestroy);
+    }
+
+
+    private GameObject instantiateObject(GameObject effect, Vector3 effectOrigin)
 	{
-		return Instantiate (effect, effectOrigin.position, effectOrigin.rotation) as GameObject;
+        return Instantiate(effect, effectOrigin, Quaternion.identity) as GameObject;
 	}
-	
-	public void createLightningBetween (Vector3 originPos, Vector3 destPos)
+
+    public void createLightningBetween (Vector3 originPos, Vector3 destPos)
+    {
+        networkView.RPC("createLightningBetweenRPC", RPCMode.All, originPos, destPos);
+
+    }
+
+    [RPC]
+	private void createLightningBetweenRPC (Vector3 originPos, Vector3 destPos)
 	{	
 		
 		if (staticLightningLineRenderer == null) {
@@ -94,22 +122,37 @@ public class EffectFactory : MonoBehaviour
 		v3.Normalize (); 
 		return v3; 
 	}
-	
-	public void addFrozenEffect (GameObject objectToAddTo, float duration)
+
+    public void addFrozenEffect(GameObject objectToAddTo, float duration)
+    {
+        networkView.RPC("addFrozenEffectRPC", RPCMode.All, NetworkTranslator.ToId(objectToAddTo), duration);
+    }
+
+    [RPC]
+    private void addFrozenEffectRPC(NetworkViewID objectID, float duration)
 	{
+        GameObject objectToAddTo = NetworkTranslator.ToInstance(objectID);
 		//FOR NOW it just adds a new color. It DOES NOT REMOVE.
 		//Should be rewritten so that it adds a script/ParticleSystem which is destroyed after the duration
 		Color slowColor = Color.blue;
 		objectToAddTo.transform.renderer.material.color = slowColor;
-		
 	}
-	
+
+
+
 	public void addBurningEffect (GameObject objectToAddTo, float duration)
 	{
-		//FOR NOW it just adds a new color. It DOES NOT REMOVE.
-		//Should be rewritten so that it adds a script/ParticleSystem which is destroyed after the duration
-		Color burnColor = Color.yellow;
-		objectToAddTo.transform.renderer.material.color = burnColor;
-		
-	}
+        networkView.RPC("addBurningEffectRPC", RPCMode.All, NetworkTranslator.ToId(objectToAddTo), duration);
+
+    }
+
+    [RPC]
+    private void addBurningEffectRPC(NetworkViewID objectID, float duration)
+    {
+        GameObject objectToAddTo = NetworkTranslator.ToInstance(objectID);
+        //FOR NOW it just adds a new color. It DOES NOT REMOVE.
+        //Should be rewritten so that it adds a script/ParticleSystem which is destroyed after the duration
+        Color burnColor = Color.yellow;
+        objectToAddTo.transform.renderer.material.color = burnColor;
+    }
 }

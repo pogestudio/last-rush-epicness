@@ -20,6 +20,6 @@ public class ExplodingShot : SkillEffect
 	
 	public override void createEffect (GameObject colliderObject)
 	{
-		EffectFactory.sharedFactory ().deliverSmallExplosion (transform);
+		EffectFactory.sharedFactory ().deliverSmallExplosion (transform.position);
 	}
 }
