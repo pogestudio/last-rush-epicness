@@ -56,7 +56,8 @@ public class ExperienceHandler : MonoBehaviour
 //		allSkills.Add (new Skill ("ExplodingShot", WeaponTypes.HandGun));
 //		allSkills.Add (new Skill ("HomingShot", WeaponTypes.HandGun));
 		//		allSkills.Add (new Skill ("LightningShot", WeaponTypes.HandGun));
-		allSkills.Add (new Skill ("MultiShot", WeaponTypes.MachineGun));
+		//allSkills.Add (new Skill ("MultiShot", WeaponTypes.MachineGun));
+		allSkills.Add (new Skill ("PiercingShot", WeaponTypes.MachineGun));
 		
 	}
 	
