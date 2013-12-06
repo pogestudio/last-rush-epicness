@@ -27,6 +27,7 @@ public class PlayerMove : MonoBehaviour
                 rotationY = -rotationY;
 
             transform.eulerAngles = new Vector3(0, rotationY, 0);
+            rigidbody.angularVelocity = Vector3.zero;
         }
 	}
 }
