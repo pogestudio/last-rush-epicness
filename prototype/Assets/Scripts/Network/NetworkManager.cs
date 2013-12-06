@@ -67,6 +67,7 @@ public class NetworkManager : MonoBehaviour
             if (GUI.Button(new Rect(10, 30, 50, 30), "HOST"))
             {
                 Network.InitializeServer(MAX_PLAYERS, 123452, false);
+                Network.Connect("127.0.0.1", PORT);
                 state = NetworkState.HOST;
             }
             textAdress = GUI.TextField(new Rect(10, 60, 200, 20), textAdress, 16);
