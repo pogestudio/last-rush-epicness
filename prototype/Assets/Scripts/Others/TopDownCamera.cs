@@ -39,6 +39,36 @@ public class TopDownCamera : MonoBehaviour
         transform.position = new Vector3(x, y, z);
 
         transform.LookAt(target.position);
+
+		RaycastHit[] hits;
+		//Debug.Log ("transform.position = " + transform.position + ", target.position = " + target.position);
+		//Debug.DrawRay (transform.position, transform.forward * 100);
+
+		// For objects fading from last frame, reset them to fade back in
+		GameObject[] fadingObjs = GameObject.FindGameObjectsWithTag("Fading");
+		foreach (GameObject fadingObj in fadingObjs) {
+			FadeOut fo = fadingObj.GetComponent<FadeOut>();
+			if (fo)
+				fo.endFade();
+		}
+
+		// However, all objects we're still hitting with the raycast need to keep fading
+		hits = Physics.RaycastAll(transform.position - transform.forward * 5.0f, transform.forward, 1000.0f);
+		for (int i = 0; i < hits.Length; i++) {
+			if (!hits[i].transform.Equals(target)) {
+				FadeOut fo = hits[i].collider.gameObject.GetComponent<FadeOut>();
+				if (fo)
+					fo.startFade();
+			}
+		}
+
+		// Do the fade update for all fading objects
+		fadingObjs = GameObject.FindGameObjectsWithTag("Fading");
+		foreach (GameObject fadingObj in fadingObjs) {
+			FadeOut fo = fadingObj.GetComponent<FadeOut>();
+			if (fo)
+				fo.doFade();
+		}
     }
 }
 

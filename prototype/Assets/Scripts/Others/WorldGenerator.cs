@@ -124,6 +124,7 @@ public class WorldGenerator : MonoBehaviour {
 			TreeInstance tree = new TreeInstance();
 			tree.color = Color.white;
 			tree.heightScale = 0.75f + Random.value * 0.5f;
+			tree.widthScale = 0.75f + Random.value * 0.5f;
 			tree.lightmapColor = Color.white;
 			tree.position = new Vector3(treeY, heightMap[(int)(treeX * terrain.terrainData.alphamapWidth), (int)(treeY * terrain.terrainData.alphamapHeight)], treeX);
 
@@ -137,8 +138,12 @@ public class WorldGenerator : MonoBehaviour {
 				tree.prototypeIndex = ((int)(Random.value * 100.0f)) % terrain.terrainData.treePrototypes.Length;
 			}
 
-			tree.widthScale = 0.75f + Random.value * 0.5f;
-			trees.Add(tree);
+			GameObject treeObject = Object.Instantiate(terrain.terrainData.treePrototypes[tree.prototypeIndex].prefab, Vector3.zero, Quaternion.identity) as GameObject;
+			treeObject.transform.position = new Vector3(tree.position.x * terrain.terrainData.size.x - terrain.terrainData.size.x / 2.0f,
+			                                            tree.position.y * terrain.terrainData.size.y,
+			                                            tree.position.z * terrain.terrainData.size.z - terrain.terrainData.size.z / 2.0f);
+
+			//trees.Add(tree);
 		}
 
 		// Generate grass
@@ -177,13 +182,14 @@ public class WorldGenerator : MonoBehaviour {
 				param = (float)(terrain.terrainData.alphamapHeight - y);
 
 			float alpha = (1.0f - param / (mountainWidth*3));
+			float tmp = (float)mountainWidth + 100.0f * Mathf.PerlinNoise(xCoord*3.0f,yCoord*3.0f);
 
-			return alpha * (0.5f * Mathf.Exp(-(param*param) / (float)(0.5f * mountainWidth * mountainWidth))
+			return alpha * (0.5f * Mathf.Exp(-(param*param) / (float)(0.5f * tmp * tmp))
 				+ Mathf.PerlinNoise(xCoord, yCoord) + Mathf.PerlinNoise (xCoord * 3.0f, yCoord * 3.0f)) + 
-				(1.0f - alpha) * (Mathf.Min (Mathf.PerlinNoise(xCoord, yCoord), maxNoiseProportion) * noiseScale);
+				(1.0f - alpha) * 0.0f; //(Mathf.Min (Mathf.PerlinNoise(xCoord, yCoord), maxNoiseProportion) * noiseScale);
 		}
 
-		return Mathf.Min (Mathf.PerlinNoise(xCoord, yCoord), maxNoiseProportion) * noiseScale;
+		return 0.0f * Mathf.Min (Mathf.PerlinNoise(xCoord, yCoord), maxNoiseProportion) * noiseScale;
 	}
 
 	// Update is called once per frame
