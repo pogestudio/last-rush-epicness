@@ -12,7 +12,7 @@ enum NetworkState
 public class NetworkManager : MonoBehaviour
 {
     public const int MAX_PLAYERS = 32;
-    public const int PORT = 123452;
+    public const int PORT = 12123;
 
     private NetworkState state = NetworkState.NONE;
     private string textAdress = "127.0.0.1";
@@ -66,7 +66,8 @@ public class NetworkManager : MonoBehaviour
         {
             if (GUI.Button(new Rect(10, 30, 50, 30), "HOST"))
             {
-                Network.InitializeServer(MAX_PLAYERS, 123452, false);
+                Network.InitializeServer(MAX_PLAYERS, PORT, false);
+                //Network.Connect("127.0.0.1", PORT);
                 state = NetworkState.HOST;
             }
             textAdress = GUI.TextField(new Rect(10, 60, 200, 20), textAdress, 16);

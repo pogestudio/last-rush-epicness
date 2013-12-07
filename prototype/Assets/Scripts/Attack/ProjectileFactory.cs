@@ -33,7 +33,12 @@ public class ProjectileFactory : MonoBehaviour
 	/// <returns>The projectile, in a stand still state at the transform point given</returns>
 	public GameObject deliverProjectile (Transform gunOrigin, WeaponTypes weaponType, int weaponDamage)
 	{
-		GameObject projectileToFire = createProjectile (gunOrigin);
+		return deliverProjectileWithoutTransform (gunOrigin.position, gunOrigin.rotation, weaponType, weaponDamage);
+	}
+	
+	public GameObject deliverProjectileWithoutTransform (Vector3 position, Quaternion rotation, WeaponTypes weaponType, int weaponDamage)
+	{
+		GameObject projectileToFire = createProjectile (position, rotation);
 		addAttackSkills (projectileToFire, weaponDamage, weaponType);
 		projectileToFire.layer = LayerMask.NameToLayer ("Projectiles");
 		
@@ -70,13 +75,13 @@ public class ProjectileFactory : MonoBehaviour
 	/// Creates the projectile.
 	/// </summary>
 	/// <returns>The bullet.</returns>
-	private GameObject createProjectile (Transform gunOrigin)
+	private GameObject createProjectile (Vector3 position, Quaternion rotation)
 	{
-        GameObject newProjectile;
-        if (NetworkManager.offlineMode())
-		    newProjectile = Instantiate (bullet, gunOrigin.position, gunOrigin.rotation) as GameObject;
-        else
-            newProjectile = Network.Instantiate(bullet, gunOrigin.position, gunOrigin.rotation, 1) as GameObject;
+		GameObject newProjectile;
+		if (NetworkManager.offlineMode ())
+			newProjectile = Instantiate (bullet, position, rotation) as GameObject;
+		else
+			newProjectile = Network.Instantiate (bullet, position, rotation, 1) as GameObject;
 
 		return newProjectile;
 	}

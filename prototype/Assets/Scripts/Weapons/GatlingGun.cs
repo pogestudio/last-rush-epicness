@@ -9,6 +9,7 @@ public class GatlingGun : AbstractWeapon
     public float maxRotationSpeed = 200f;
 
     public GameObject spinningPart;
+    public GameObject heatModel;
 
     private float heatTimer = 0f;
     private float spinUpTimer = 0f;
@@ -78,6 +79,9 @@ public class GatlingGun : AbstractWeapon
             float dRotation = maxRotationSpeed*Time.deltaTime*(spinUpTimer/spinUpTime);
             spinningPart.transform.Rotate(0, 0, dRotation);
         }
+
+        //heat
+
     }
 
     public override void triggerDown()
