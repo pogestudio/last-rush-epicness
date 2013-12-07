@@ -2147,6 +2147,7 @@ GameObject:
   - 33: {fileID: 926093040}
   - 65: {fileID: 926093039}
   - 23: {fileID: 926093038}
+  - 114: {fileID: 926093042}
   m_Layer: 12
   m_Name: Wall1
   m_TagString: Untagged
@@ -2205,6 +2206,17 @@ Transform:
   m_LocalScale: {x: .300000012, y: 3, z: 8.45415306}
   m_Children: []
   m_Father: {fileID: 1410751563}
+--- !u!114 &926093042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 926093037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce4e54e8a246743ab8302d9317a284e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &947234406
 GameObject:
   m_ObjectHideFlags: 0
@@ -2574,7 +2586,7 @@ MonoBehaviour:
   noiseScale: .200000003
   scale: 10
   layers: 7
-  seed: 0
+  seed: 5
   mountainWidth: 20
 --- !u!1 &1058890176
 GameObject:
@@ -3004,7 +3016,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: .300000012
-  far clip plane: 1000
+  far clip plane: 50
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -3497,6 +3509,7 @@ GameObject:
   - 33: {fileID: 1638341124}
   - 65: {fileID: 1638341123}
   - 23: {fileID: 1638341122}
+  - 114: {fileID: 1638341126}
   m_Layer: 12
   m_Name: Wall2
   m_TagString: Untagged
@@ -3555,6 +3568,17 @@ Transform:
   m_LocalScale: {x: .300000012, y: 3, z: 8.45415306}
   m_Children: []
   m_Father: {fileID: 1410751563}
+--- !u!114 &1638341126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1638341121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce4e54e8a246743ab8302d9317a284e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1678425320
 GameObject:
   m_ObjectHideFlags: 0
@@ -3754,86 +3778,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 472905536}
   m_GameObject: {fileID: 1792647170}
   m_Mesh: {fileID: 4300026, guid: e7da0a6b88725fd49be111412a5416be, type: 3}
---- !u!1 &1838852878
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1838852883}
-  - 20: {fileID: 1838852882}
-  - 124: {fileID: 1838852881}
-  - 92: {fileID: 1838852880}
-  - 81: {fileID: 1838852879}
-  m_Layer: 0
-  m_Name: Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!81 &1838852879
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1838852878}
-  m_Enabled: 0
---- !u!92 &1838852880
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1838852878}
-  m_Enabled: 1
---- !u!124 &1838852881
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1838852878}
-  m_Enabled: 1
---- !u!20 &1838852882
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1838852878}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: .300000012
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_HDR: 0
-  m_OcclusionCulling: 1
---- !u!4 &1838852883
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1838852878}
-  m_LocalRotation: {x: .707106888, y: 0, z: 0, w: .707106769}
-  m_LocalPosition: {x: 0, y: 20, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
 --- !u!1 &1845346597
 GameObject:
   m_ObjectHideFlags: 0
@@ -4046,6 +3990,7 @@ GameObject:
   - 33: {fileID: 1975934182}
   - 65: {fileID: 1975934181}
   - 23: {fileID: 1975934180}
+  - 114: {fileID: 1975934184}
   m_Layer: 12
   m_Name: Wall3
   m_TagString: Untagged
@@ -4104,6 +4049,17 @@ Transform:
   m_LocalScale: {x: .300000012, y: 3, z: 8.45415306}
   m_Children: []
   m_Father: {fileID: 1410751563}
+--- !u!114 &1975934184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1975934179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce4e54e8a246743ab8302d9317a284e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1988394098
 GameObject:
   m_ObjectHideFlags: 0
