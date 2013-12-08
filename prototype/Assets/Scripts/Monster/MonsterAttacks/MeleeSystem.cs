@@ -16,26 +16,26 @@ If we add animation, so one can predict the hit from that, it could change.
 public class MeleeSystem : MonoBehaviour
 {
 
-	public int damage;
-	public float range;
-	private float fireRate = 1.0F;
+		public int damage;
+		public float range;
+		private float fireRate = 1.0F;
     
-	//only used internally
-	float nextFire = 0.0F;
+		//only used internally
+		float nextFire = 0.0F;
     
 
 	
-	// Update is called once per frame
-	void Update ()
-	{
-		RaycastHit hit;
-		Ray targetHitRay = new Ray (transform.position, transform.TransformDirection (Vector3.forward));
-		if (Physics.Raycast (targetHitRay, out hit, range)) {
-			//Debug.Log("SOMETHING hit");
-			if (hit.collider.tag == "Player" && Time.time > nextFire) {
-				hit.transform.SendMessage ("applyDamage", damage, SendMessageOptions.DontRequireReceiver);
-				nextFire = Time.time + fireRate;
-			}
+		// Update is called once per frame
+		void Update ()
+		{
+				RaycastHit hit;
+				Ray targetHitRay = new Ray (transform.position, transform.TransformDirection (Vector3.forward));
+				if (Physics.Raycast (targetHitRay, out hit, range)) {
+						//Debug.Log("SOMETHING hit");
+						if (PlayerFinder.sharedHelper ().targetIsPlayer (hit.transform.gameObject) && Time.time > nextFire) {
+								hit.transform.SendMessage ("applyDamage", damage, SendMessageOptions.DontRequireReceiver);
+								nextFire = Time.time + fireRate;
+						}
+				}
 		}
-	}
 }

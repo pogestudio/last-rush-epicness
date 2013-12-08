@@ -43,7 +43,7 @@ public class Skill
 		/// <param name="newXP">New X.</param>
 		public bool addXpToSkill (float newXP)
 		{
-				Debug.Log ("skill level  " + currentSkillLevel);
+				//Debug.Log ("skill level  " + currentSkillLevel);
 				float XpNeededForNextLevel = ExpLevels () [currentSkillLevel];
 				totalXP += newXP;
 				bool didLevelUp = false;

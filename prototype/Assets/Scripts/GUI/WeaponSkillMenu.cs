@@ -34,7 +34,9 @@ public class WeaponSkillMenu : MonoBehaviour
 				boxTexture.Apply ();
 				xpBarStyle = new GUIStyle ();
 				xpBarStyle.normal.background = boxTexture;
-		
+				
+				
+
 		}
 	
 		void Update ()
@@ -129,7 +131,7 @@ public class WeaponSkillMenu : MonoBehaviour
 				
 				
 				//this might be expensive!
-				Skill currentSkill = Skill.skillForWeaponType (WeaponTypes.MachineGun);//playerWeapons.currentWeaponType ());
+				Skill currentSkill = Skill.skillForWeaponType (getCurrentWeaponType ());
 				float playerProgress = (currentSkill.currentXp () - currentSkill.prevXpLimit ()) / (currentSkill.nextXpLimit () - currentSkill.prevXpLimit ());
 				string progressText = currentSkill.currentXp () + " / " + currentSkill.nextXpLimit () + " XP";
 				GUI.Box (new Rect (startX, startY, width, height), "", toolTipSkin.box);
@@ -139,6 +141,16 @@ public class WeaponSkillMenu : MonoBehaviour
 				
 				GUI.backgroundColor = defaultColor;
 		
+		}
+		
+		WeaponTypes getCurrentWeaponType ()
+		{
+				if (playerWeapons == null) {
+						GameObject player = GameObject.FindGameObjectWithTag ("Player");
+						playerWeapons = player.GetComponent<PlayerWeapons> ();
+				}
+		
+				return playerWeapons.currentWeaponType ();
 		}
 		
 	
