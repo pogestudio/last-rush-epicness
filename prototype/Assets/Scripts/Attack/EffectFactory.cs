@@ -39,6 +39,7 @@ public class EffectFactory : MonoBehaviour
 
     public void deliverSphericNova(Vector3 effectOrigin)
 	{
+        if (NetworkManager.offlineMode())
         networkView.RPC("deliverSphericNovaRPC", RPCMode.All, effectOrigin);
 	}
 
