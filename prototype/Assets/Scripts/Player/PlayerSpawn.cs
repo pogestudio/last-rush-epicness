@@ -11,10 +11,7 @@ public class PlayerSpawn : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        if (NetworkManager.offlineMode())
-            player = Instantiate(playerPrefab, transform.position, transform.rotation) as GameObject;   //Fallback for single player
-        else
-            player = Network.Instantiate(playerPrefab, transform.position, transform.rotation, 1) as GameObject;
+        player = Instantiate(playerPrefab, transform.position, transform.rotation) as GameObject;   //Fallback for single player
 
         //give the player his start weapon
         GameObject weaponInstance = LootHandler.sharedHandler().createLootNoMatterWhat(startWeapon, transform);

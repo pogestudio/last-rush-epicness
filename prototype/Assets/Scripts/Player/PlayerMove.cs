@@ -9,7 +9,7 @@ public class PlayerMove : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate()
 	{
-        if (networkView.isMine || NetworkManager.offlineMode())
+        if (networkView.isMine)
         {
             //move handling
             float dx = Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
