@@ -16,6 +16,7 @@ public class PlayerSpawn : MonoBehaviour
         else
             player = Network.Instantiate(playerPrefab, transform.position, transform.rotation, 1) as GameObject;
 
+		audio.Play ();
         //give the player his start weapon
         GameObject weaponInstance = LootHandler.sharedHandler().createLootNoMatterWhat(startWeapon, transform);
         player.GetComponent<PlayerWeapons>().pickWeapon(weaponInstance);
