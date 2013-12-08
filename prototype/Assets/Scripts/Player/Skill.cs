@@ -91,6 +91,24 @@ public class Skill
 		{
 				return ((float)currentSkillLevel) / 100F;
 		}
+		
+		public float currentXp ()
+		{
+				return totalXP;
+		}
+
+		public float nextXpLimit ()
+		{
+				return ExpLevels () [currentSkillLevel];
+		}
+
+		public float prevXpLimit ()
+		{
+				if (currentSkillLevel == 0)
+						return 0;
+				else 
+						return ExpLevels () [currentSkillLevel - 1];
+		}
 	
 }
 	

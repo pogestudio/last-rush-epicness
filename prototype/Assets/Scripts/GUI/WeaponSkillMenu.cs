@@ -10,9 +10,15 @@ public class WeaponSkillMenu : MonoBehaviour
 		private int indexOfChosenSkill;
 		public GUISkin toolTipSkin;
 		
+		private PlayerWeapons playerWeapons;
+		
+		private GUIStyle xpBarStyle;
+	
+		
 		int WSx = 50;
 		int WSy = 50;
 		int WSWidth = 200;
+		int WSYPadding = 20;
 	
 		
 		
@@ -22,10 +28,18 @@ public class WeaponSkillMenu : MonoBehaviour
 		void Start ()
 		{
 				WSx = Screen.width - XPadding * 2 - WSWidth - SIWidth;
+				Texture2D boxTexture = new Texture2D (1, 1);
+				Color fadeColor = new Color (196, 0, 0, 0.7F);
+				boxTexture.SetPixel (1, 1, fadeColor);
+				boxTexture.Apply ();
+				xpBarStyle = new GUIStyle ();
+				xpBarStyle.normal.background = boxTexture;
+		
 		}
 	
 		void Update ()
 		{
+				
 				if (Input.GetKeyDown ("n") && menuIsOpen) {
 						closeMenu ();
 				} else if (Input.GetKeyDown ("n") && !menuIsOpen) {
@@ -48,6 +62,8 @@ public class WeaponSkillMenu : MonoBehaviour
 		
 		void OnGUI ()
 		{
+				drawCurrentSkillProgress ();
+		
 				if (menuIsOpen) {
 						drawWeaponSkillMenu ();
 				}
@@ -60,7 +76,6 @@ public class WeaponSkillMenu : MonoBehaviour
 		{
 		
 				int WSHeight = 50;
-				int WSYPadding = 20;
 				//simply draw the same amount of boxes as we have lives.
 				
 				int currentY = WSy;
@@ -103,5 +118,28 @@ public class WeaponSkillMenu : MonoBehaviour
 		                     "$1 $2" 
 				);
 		}
+		
+		void drawCurrentSkillProgress ()
+		{
+				Color defaultColor = GUI.backgroundColor;
+				int width = 300;
+				int height = 40;
+				int startX = (Screen.width - width) / 2;
+				int startY = Screen.height - height - WSYPadding;
+				
+				
+				//this might be expensive!
+				Skill currentSkill = Skill.skillForWeaponType (WeaponTypes.MachineGun);//playerWeapons.currentWeaponType ());
+				float playerProgress = (currentSkill.currentXp () - currentSkill.prevXpLimit ()) / (currentSkill.nextXpLimit () - currentSkill.prevXpLimit ());
+				string progressText = currentSkill.currentXp () + " / " + currentSkill.nextXpLimit () + " XP";
+				GUI.Box (new Rect (startX, startY, width, height), "", toolTipSkin.box);
+				GUI.Box (new Rect (startX, startY, (int)width * playerProgress, height), "", xpBarStyle);
+				GUI.backgroundColor = Color.clear;
+				GUI.Box (new Rect (startX, startY, width, height), progressText, toolTipSkin.box);
+				
+				GUI.backgroundColor = defaultColor;
+		
+		}
+		
 	
 }
