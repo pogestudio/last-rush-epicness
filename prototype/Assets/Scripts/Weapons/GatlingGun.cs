@@ -88,6 +88,7 @@ public class GatlingGun : AbstractWeapon
 		public override void triggerUp ()
 		{
 				trigger = false;
+				audio.Stop ();
 		}
 
 		public override void fire ()
