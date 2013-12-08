@@ -41,6 +41,9 @@ public class AbstractEnemy : MonoBehaviour
 	
 	protected void walk ()
 	{
+        if (!networkView.isMine)
+            Debug.LogWarning("walk is called, shouldnt be since this object is a replicate");
+
 		Vector3 delta = target.transform.position - transform.position;
 		delta.Normalize ();
 		float moveSpeed = this.movingSpeed * Time.deltaTime;
