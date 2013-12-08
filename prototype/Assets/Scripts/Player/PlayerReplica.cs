@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerTags : MonoBehaviour {
+public class PlayerReplica : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

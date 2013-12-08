@@ -11,7 +11,7 @@ public class PlayerSpawn : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        player = Instantiate(playerPrefab, transform.position, transform.rotation) as GameObject;   //Fallback for single player
+        player = Network.Instantiate(playerPrefab, transform.position, transform.rotation, 1) as GameObject;   //Fallback for single player
 
 		audio.Play ();
         //give the player his start weapon
