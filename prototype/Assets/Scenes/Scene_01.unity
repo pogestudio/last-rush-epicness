@@ -2598,9 +2598,9 @@ MonoBehaviour:
   terrain: {fileID: 2010410287}
   maxNoiseProportion: .600000024
   noiseScale: .200000003
-  scale: 10
+  scale: 7
   layers: 7
-  seed: 5
+  seed: 0
   mountainWidth: 20
 --- !u!1 &1058890176
 GameObject:

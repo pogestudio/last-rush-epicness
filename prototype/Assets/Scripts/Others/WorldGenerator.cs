@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+
+using Random = UnityEngine.Random;
+using Object = UnityEngine.Object;
 
 public class WorldGenerator : MonoBehaviour {
 
@@ -25,8 +29,10 @@ public class WorldGenerator : MonoBehaviour {
 	/// </summary>
 	public int layers = 7;
 
+	private int[] layerOrder;
+
 	/// <summary>
-	/// RNG Seed.
+	/// RNG Seed, set to 0 to use the default.
 	/// </summary>
 	public int seed;
 
@@ -39,9 +45,18 @@ public class WorldGenerator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		if (seed == 0)
+			seed = Random.seed;
+
+		int originalSeed = Random.seed; // Store so we can set it back later
 		Random.seed = seed;
 		perlinXOffset = Random.value * 1000.0f;
 		perlinYOffset = Random.value * 1000.0f;
+
+		// Shuffle the layer order
+		layerOrder = new int[layers];
+		for (int i = 0; i < layers; i++)
+			layerOrder[i] = (3 * i + (int)perlinXOffset) % layers;
 
 		float[,] heightMap = new float[terrain.terrainData.alphamapWidth, terrain.terrainData.alphamapHeight];
 		float[,,] alphaMaps = new float[terrain.terrainData.alphamapWidth, terrain.terrainData.alphamapHeight, terrain.terrainData.alphamapLayers];
@@ -55,16 +70,28 @@ public class WorldGenerator : MonoBehaviour {
 				heightMap[x, y] = generateHeight(x, y);
 
 				// Alpha layers (textures)
-				int activeLayer = (int)(((float)x / (float)terrain.terrainData.alphamapWidth) * (float)layers);
+				int activeLayer = getActiveLayer(x);
 				float positionInLayer = (float)(x - activeLayer * (float)terrain.terrainData.alphamapWidth / (float)layers) / ((float)terrain.terrainData.alphamapWidth / (float)layers);
-				if (activeLayer == 0) {
-					// First layer starts at 0 height and is a single alpha layer
-					alphaMaps[x, y, activeLayer] = 1.0f;
-					heightMap[x, y] = heightMap[x, y] * positionInLayer;
+				
+				float xCoord = perlinXOffset + ((float)x / (float)terrain.terrainData.alphamapWidth) * scale;
+				float yCoord = perlinYOffset + ((float)y / (float)terrain.terrainData.alphamapHeight) * scale / 1.5f;
+
+				if (positionInLayer < 0.25f && activeLayer > 0) {
+					// Interpolate with previous layer
+					float param = positionInLayer / 0.25f;
+
+					alphaMaps[x, y, layerOrder[activeLayer]] = param + Mathf.PerlinNoise (xCoord, yCoord) * (1.0f - param);
+					alphaMaps[x, y, layerOrder[activeLayer - 1]] = 1.0f - alphaMaps[x, y, layerOrder[activeLayer]];
+
+				} else if (positionInLayer > 0.3f && activeLayer < layers - 1) {
+					// Add perlin noise towards next layer
+					float param = (positionInLayer - 0.3f) / 0.7f;
+					alphaMaps[x, y, layerOrder[activeLayer + 1]] = Mathf.PerlinNoise (xCoord, yCoord) * (1.0f - Mathf.Exp (-(param*param) / (0.5f * 0.7f * 0.7f)));
+					alphaMaps[x, y, layerOrder[activeLayer]] = 1.0f - alphaMaps[x, y, layerOrder[activeLayer + 1]];
 				} else {
-					alphaMaps[x, y, activeLayer] = positionInLayer;
-					alphaMaps[x, y, activeLayer - 1] = 1.0f - alphaMaps[x, y, activeLayer];
+					alphaMaps[x, y, layerOrder[activeLayer]] = 1.0f;
 				}
+
 
 				// Textures for the mountains
 				if (y < mountainWidth*3 || y > terrain.terrainData.alphamapHeight - mountainWidth*3) {
@@ -89,7 +116,7 @@ public class WorldGenerator : MonoBehaviour {
 		terrain.terrainData.SetAlphamaps(0, 0, alphaMaps);
 		
 		// Generate trees
-		int numTrees = 500 + (int)(Random.value * 3000.0f);
+		int numTrees = 2000 + (int)(Random.value * 1200.0f);
 		float treeX = Random.value;
 		float treeY = Random.value;
 
@@ -133,7 +160,7 @@ public class WorldGenerator : MonoBehaviour {
 
 			// Trees are mostly the same in the layer but may also be random
 			if (Random.value > positionInLayer * 3) {
-				tree.prototypeIndex = activeLayer % terrain.terrainData.treePrototypes.Length;
+				tree.prototypeIndex = layerOrder[activeLayer] % terrain.terrainData.treePrototypes.Length;
 			} else {
 				tree.prototypeIndex = ((int)(Random.value * 100.0f)) % terrain.terrainData.treePrototypes.Length;
 			}
@@ -161,6 +188,12 @@ public class WorldGenerator : MonoBehaviour {
 		
 		terrain.terrainData.treeInstances = trees.ToArray();
 		terrain.Flush();
+
+		Random.seed = originalSeed;
+	}
+
+	private int getActiveLayer(int x) {
+		return (int)(((float)x / (float)terrain.terrainData.alphamapWidth) * (float)layers);
 	}
 
 	/// <summary>

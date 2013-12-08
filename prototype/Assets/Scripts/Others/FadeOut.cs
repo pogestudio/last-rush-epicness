@@ -8,10 +8,10 @@ public class FadeOut : MonoBehaviour {
 	private float targetAlpha = 1.0f;
 	private float currentAlpha = 1.0f;
 
-	private bool fadeStarted = false;
+	//private bool fadeStarted = false;
 
 	private float changeSpeed = 0.05f;
-	private float changeFactor = 0.5f;
+	//private float changeFactor = 0.5f;
 
 	// Use this for initialization
 	void Start () {
@@ -31,13 +31,13 @@ public class FadeOut : MonoBehaviour {
 	}
 
 	public void startFade() {
-		fadeStarted = true;
+		//fadeStarted = true;
 		targetAlpha = 0.3f;
 		this.tag = "Fading";
 	}
 
 	public void endFade() {
-		fadeStarted = false;
+		//fadeStarted = false;
 		targetAlpha = 1.0f;
 	}
 

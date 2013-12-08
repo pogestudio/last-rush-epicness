@@ -91,7 +91,7 @@ public class MonsterFactory : MonoBehaviour
 		float positiveOrNegative1 = Random.value > 0.5 ? -1 : 1;
 		float positiveOrNegative2 = Random.value > 0.5 ? -1 : 1;
 		Vector3 monsterPosition = new Vector3 (playerX + positiveOrNegative1 * randomX, playerTransform.position.y, playerZ + positiveOrNegative2 * randomZ);
-		monsterPosition.y = terrain.terrainData.GetHeight((int)monsterPosition.z, (int)monsterPosition.x) + ((CapsuleCollider)regularMonster.collider).height / 2.0f;
+		//monsterPosition.y = terrain.terrainData.GetHeight((int)monsterPosition.z, (int)monsterPosition.x) + ((CapsuleCollider)regularMonster.collider).height / 2.0f;
 		//Debug.Log("Spawning monster at " + monsterPosition);
 		return monsterPosition;
 		
