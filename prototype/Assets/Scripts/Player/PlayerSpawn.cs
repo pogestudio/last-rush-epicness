@@ -13,6 +13,7 @@ public class PlayerSpawn : MonoBehaviour
     {
         player = Instantiate(playerPrefab, transform.position, transform.rotation) as GameObject;   //Fallback for single player
 
+		audio.Play ();
         //give the player his start weapon
         GameObject weaponInstance = LootHandler.sharedHandler().createLootNoMatterWhat(startWeapon, transform);
         player.GetComponent<PlayerWeapons>().pickWeapon(weaponInstance);

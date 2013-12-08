@@ -45,6 +45,7 @@ public class Gun : AbstractWeapon
 		GameObject projectile = ProjectileFactory.sharedFactory ().deliverProjectile (gunMuzzle, thisType, weaponDamage);
 		projectile.rigidbody.velocity = transform.TransformDirection (Vector3.forward * bulletSpeed);
         StartCoroutine(flash());
+		audio.Play ();
     }
 
     //shoot flash coroutine

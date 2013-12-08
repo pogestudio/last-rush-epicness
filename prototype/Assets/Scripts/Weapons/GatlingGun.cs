@@ -59,6 +59,7 @@ public class GatlingGun : AbstractWeapon
 
 				//smoke trigger
 				if (heatTimer >= heatTime) {
+						audio.Stop();
 						smokeEmiter.loop = true;
 						if (!smokeEmiter.isPlaying)
 								smokeEmiter.Play ();
@@ -96,6 +97,7 @@ public class GatlingGun : AbstractWeapon
 				projectile.rigidbody.velocity = transform.TransformDirection (Vector3.forward * bulletSpeed);
 				//Debug.Log("Weapon damage::" + weaponDamage);
 				StartCoroutine (flash ());
+		audio.Play ();
 
 		}
 

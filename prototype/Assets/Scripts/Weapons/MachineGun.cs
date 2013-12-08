@@ -46,6 +46,7 @@ public class MachineGun : AbstractWeapon
 		projectile.rigidbody.velocity = transform.TransformDirection (Vector3.forward * bulletSpeed);
 		//Debug.Log ("Weapon damage::" + weaponDamage);
 		StartCoroutine (flash ());
+		audio.Play ();
 	}
 
 	//shoot flash coroutine
