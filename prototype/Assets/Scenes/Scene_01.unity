@@ -650,7 +650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 1487289729}
-  glowingModel: {fileID: 0}
+  glowingModel: {fileID: 506791736}
   timeBetweenShots: .200000003
   bulletSpeed: 20
   weaponDamage: 5
@@ -2290,7 +2290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 1063990984}
-  glowingModel: {fileID: 0}
+  glowingModel: {fileID: 856214078}
   timeBetweenShots: .200000003
   bulletSpeed: 20
   weaponDamage: 5
@@ -2923,7 +2923,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 1353540398}
-  glowingModel: {fileID: 0}
+  glowingModel: {fileID: 469727980}
   timeBetweenShots: .5
   bulletSpeed: 35
   weaponDamage: 20
@@ -3515,7 +3515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 284209991}
-  glowingModel: {fileID: 0}
+  glowingModel: {fileID: 677582299}
   timeBetweenShots: .100000001
   bulletSpeed: 20
   weaponDamage: 2
@@ -4903,7 +4903,8 @@ MonoBehaviour:
   smallExplosion: {fileID: 100000, guid: abc7fa0bb4155487c9ef6487b5bcf52c, type: 2}
   sphericNova: {fileID: 100000, guid: 4ded9a4d58d0c498f8526107d63ba8ed, type: 2}
   snowingFire: {fileID: 100000, guid: 983064fb80d314e1d91b2574a76af379, type: 2}
-  burningEffect: {fileID: 0}
+  burningEffect: {fileID: 100000, guid: 15370ad3eb2a37d4e8a64bfacc13dc83, type: 2}
+  bloodSpurtEffect: {fileID: 100000, guid: a147cd496e04f4cfba043b3802330429, type: 2}
 --- !u!4 &982871704
 Transform:
   m_ObjectHideFlags: 0
@@ -5318,7 +5319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1058371897
 Transform:
   m_ObjectHideFlags: 0
@@ -5883,7 +5884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 1870221428}
-  glowingModel: {fileID: 0}
+  glowingModel: {fileID: 1975463105}
   timeBetweenShots: .5
   bulletSpeed: 35
   weaponDamage: 20
@@ -7532,7 +7533,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400008, guid: 015b97a4c62f14192a495d2f5fae6b75, type: 2}
   m_PrefabInternal: {fileID: 1161365233}
   m_GameObject: {fileID: 1514381848}
-  m_LocalRotation: {x: .696364284, y: .696364224, z: .122787677, w: .122787654}
+  m_LocalRotation: {x: .696364343, y: .696364284, z: .122787684, w: .122787662}
   m_LocalPosition: {x: .000923633517, y: .392713785, z: 1.74914539}
   m_LocalScale: {x: 100, y: 176.885422, z: 112.074524}
   m_Children: []
@@ -9405,7 +9406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 1609056477}
-  glowingModel: {fileID: 0}
+  glowingModel: {fileID: 916591580}
   timeBetweenShots: .600000024
   bulletSpeed: 20
   weaponDamage: 5
