@@ -47,10 +47,12 @@ public class WorldGenerator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        seed = NetworkManager.getSeed();
+
 		if (seed == 0)
 			seed = Random.seed;
 
-		int originalSeed = Random.seed; // Store so we can set it back later
+		int originalSeed = seed; // Store so we can set it back later
 		Random.seed = seed;
 		perlinXOffset = Random.value * 1000.0f;
 		perlinYOffset = Random.value * 1000.0f;

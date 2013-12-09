@@ -10,8 +10,6 @@ public class WeaponSkillMenu : MonoBehaviour
 		private int indexOfChosenSkill;
 		public GUISkin toolTipSkin;
 		
-		private PlayerWeapons playerWeapons;
-		
 		private GUIStyle xpBarStyle;
 	
 		
@@ -145,12 +143,7 @@ public class WeaponSkillMenu : MonoBehaviour
 		
 		WeaponTypes getCurrentWeaponType ()
 		{
-				if (playerWeapons == null) {
-						GameObject player = GameObject.FindGameObjectWithTag ("Player");
-						playerWeapons = player.GetComponent<PlayerWeapons> ();
-				}
-		
-				return playerWeapons.currentWeaponType ();
+            return PlayerWeapons.getMainPlayerWeaponType();
 		}
 		
 	

@@ -4,7 +4,7 @@ using System.Collections;
 public class ShotGun : AbstractWeapon
 {
 		public int magazineSize = 6;
-		public float firingRate = 0.3f; //delay beetween shots. Here timeBetween shot is the "reload" time since it's what defines the weapon DPS
+        public float reloadTime = 0.6f;
 		public float maxBulletSpread = 30f;
 		public int bulletPerShot = 4;
 
@@ -18,9 +18,9 @@ public class ShotGun : AbstractWeapon
 		void Start ()
 		{
 				base.Start ();
-				thisType = WeaponTypes.ShotGun;
+				type = WeaponTypes.ShotGun;
 				bulletSpeed = 20;
-				timeBetweenShots = 0.6f;    //Here timeBetween shot is the "reload" time since it's what defines the weapon DPS
+                timeBetweenShots = 0.3f;    //Here timeBetween shot is the "reload" time since it's what defines the weapon DPS
 
 				loadedBullets = magazineSize;
 
@@ -42,7 +42,7 @@ public class ShotGun : AbstractWeapon
 		public override void triggerHold ()
 		{
 				if (loadedBullets > 0 && delay <= 0) {
-						delay = firingRate;
+                        delay = timeBetweenShots;
 						loadedBullets--;
 						fire ();
 						StopCoroutine ("reloadLoop");    //restart reload delay
@@ -59,7 +59,7 @@ public class ShotGun : AbstractWeapon
 		{
 				//TODO : handle different projectile types?
 				for (int i = 0; i < bulletPerShot; i++) {
-						GameObject projectile = ProjectileFactory.sharedFactory ().deliverProjectile (gunMuzzle, thisType, weaponDamage);
+						GameObject projectile = ProjectileFactory.sharedFactory ().deliverProjectile (gunMuzzle, type, weaponDamage);
             
 						float randomSpread = (Random.value - 0.5f) * maxBulletSpread;
 						Quaternion randomRotation = Quaternion.Euler (0, randomSpread, 0);
@@ -83,16 +83,21 @@ public class ShotGun : AbstractWeapon
 
 		private IEnumerator reloadLoop ()
 		{
-				yield return new WaitForSeconds (timeBetweenShots);
+            yield return new WaitForSeconds(reloadTime);
 				while (true) {
 						if (mode == WeaponMode.HAND && loadedBullets < magazineSize) {
 								loadedBullets++;
 								reloadSound.Play ();
 								if (loadedBullets == magazineSize) {
-										pumpSound.PlayDelayed (timeBetweenShots);
+                                    pumpSound.PlayDelayed(reloadTime);
 								}
 						}
-						yield return new WaitForSeconds (timeBetweenShots);
+                        yield return new WaitForSeconds(reloadTime);
 				}
 		}
+
+        public override float normalizedWeaponSpeed()
+        {
+            return reloadTime;
+        }
 }

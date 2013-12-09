@@ -9,7 +9,7 @@ public class Gun : AbstractWeapon
 	void Start ()
 	{
 		base.Start ();
-		thisType = WeaponTypes.HandGun;
+		type = WeaponTypes.HandGun;
          
 		timeBetweenShots = 0.5f;
 		bulletSpeed = 35;
@@ -42,7 +42,7 @@ public class Gun : AbstractWeapon
 	public override void fire ()
 	{
 		//TODO : handle different projectile types?
-		GameObject projectile = ProjectileFactory.sharedFactory ().deliverProjectile (gunMuzzle, thisType, weaponDamage);
+		GameObject projectile = ProjectileFactory.sharedFactory ().deliverProjectile (gunMuzzle, type, weaponDamage);
 		projectile.rigidbody.velocity = transform.TransformDirection (Vector3.forward * bulletSpeed);
         StartCoroutine(flash());
 		audio.Play ();

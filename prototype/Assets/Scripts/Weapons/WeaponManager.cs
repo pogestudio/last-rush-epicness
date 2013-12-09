@@ -37,4 +37,16 @@ public class WeaponManager
 		weapon.GetComponent<AbstractWeapon> ().Mode = WeaponMode.RAGDOLL;
 	}
 
+    //public void updateAllGlowStates()
+    //{
+    //    foreach (Transform child in weaponsContainer.transform)
+    //    {
+    //        AbstractWeapon weaponScript = child.GetComponent<AbstractWeapon>();
+    //        if(weaponScript != null)
+    //        {
+    //            weaponScript.updateGlowState();
+    //        }
+    //    }
+    //}
+
 }
