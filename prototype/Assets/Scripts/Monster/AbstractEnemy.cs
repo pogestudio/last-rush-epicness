@@ -82,6 +82,12 @@ public class AbstractEnemy : MonoBehaviour
 				if (!target) {
 						Debug.Log ("Does not have initial target");
 				}
+				
+		}
+		
+		protected virtual void setUpMonsterAtStart ()
+		{
+		
 		}
 
 		protected void walk ()

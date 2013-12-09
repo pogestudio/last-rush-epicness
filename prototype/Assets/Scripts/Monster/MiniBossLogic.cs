@@ -34,7 +34,7 @@ public class MiniBossLogic : AbstractEnemy
 		float startHealth;
 	
 	
-		protected override void setupMonsterAtStart ()
+		protected override void setUpMonsterAtStart ()
 		{
 				startWidth = gameObject.renderer.bounds.size.x;
 				minimumWidth = startWidth * 0.1F;
@@ -207,7 +207,7 @@ public class MiniBossLogic : AbstractEnemy
 		void randomizeNextSpecialAttack ()
 		{
 				int randomInt = Mathf.RoundToInt (Random.Range (0, (int)BossSpecialAttacks.BossSpecialAttacksMAX - 1));
-				specialAttackToPerform = BossSpecialAttacks.FireStorm;//(BossSpecialAttacks)randomInt;
+				specialAttackToPerform = (BossSpecialAttacks)randomInt;
 		}
 	
 		void castLightningAttack ()
