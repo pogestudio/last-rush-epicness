@@ -29,6 +29,8 @@ public class WorldGenerator : MonoBehaviour {
 	/// </summary>
 	public int layers = 7;
 
+	public GameObject[] additionalProps;
+
 	private int[] layerOrder;
 
 	/// <summary>
@@ -169,9 +171,29 @@ public class WorldGenerator : MonoBehaviour {
 			treeObject.transform.position = new Vector3(tree.position.x * terrain.terrainData.size.x - terrain.terrainData.size.x / 2.0f,
 			                                            tree.position.y * terrain.terrainData.size.y,
 			                                            tree.position.z * terrain.terrainData.size.z - terrain.terrainData.size.z / 2.0f);
+			//treeObject.transform.localScale = new Vector3(tree.widthScale, tree.heightScale, tree.widthScale);
+
+			Quaternion rot = treeObject.transform.rotation;
+			rot.eulerAngles = new Vector3(0.0f, Random.value * 360.0f, 0.0f);
+			treeObject.transform.rotation = rot;
 
 			//trees.Add(tree);
 		}
+
+		// Generate props
+		for (int i = 0; i < additionalProps.Length; i++) {
+			int numProps = (int)(20 + Random.value * 50f);
+			for (int j = 0; j < numProps; j++) {
+				GameObject prop = Object.Instantiate(additionalProps[i]) as GameObject;
+				prop.transform.position = new Vector3(100f + Random.value * (terrain.terrainData.size.x - 100f) - terrain.terrainData.size.x / 2.0f,
+				                                      0,
+				                                      100f + Random.value * (terrain.terrainData.size.z - 100f) - terrain.terrainData.size.z / 2.0f);
+				Quaternion rot = prop.transform.rotation;
+				rot.eulerAngles = new Vector3(0.0f, Random.value * 360.0f, 0.0f);
+				prop.transform.rotation = rot;
+			}
+		}
+
 
 		// Generate grass
 		for (int i = 0; i < terrain.terrainData.detailPrototypes.Length; i++) {
