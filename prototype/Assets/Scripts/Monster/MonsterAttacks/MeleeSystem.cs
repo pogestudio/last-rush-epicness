@@ -32,7 +32,7 @@ public class MeleeSystem : MonoBehaviour
 		Ray targetHitRay = new Ray (transform.position, transform.TransformDirection (Vector3.forward));
 		if (Physics.Raycast (targetHitRay, out hit, range)) {
 			//Debug.Log("SOMETHING hit");
-			if (hit.collider.tag == "Player" && Time.time > nextFire) {
+			if (hit.collider.CompareTag("Player") && Time.time > nextFire) {
 				hit.transform.SendMessage ("applyDamage", damage, SendMessageOptions.DontRequireReceiver);
 				nextFire = Time.time + fireRate;
 			}

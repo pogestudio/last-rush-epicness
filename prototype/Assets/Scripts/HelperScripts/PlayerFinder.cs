@@ -66,7 +66,7 @@ public class PlayerFinder
 	
 	public bool targetIsPlayer (GameObject target)
 	{
-		return (target.tag == "Player");
+		return (target.CompareTag("Player"));
 	}
 	
 }
