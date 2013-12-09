@@ -12,32 +12,50 @@ enum BossSpecialAttacks
 
 public class MiniBossLogic : AbstractEnemy
 {
-
+	
 		private bool isCasting = false;
 		private float nextSpecialAttack = 3; // don't cast at once. 
 		public float timeBetweenSpecialAttacks;
 		private float timetoStopCasting;
 		private float castingTime;
-		
+	
 		bool castLightning;
-		
+	
 		private BossSpecialAttacks specialAttackToPerform;
-		
+	
 		float lightningThickness = 0.3F;
 		float lightningAttackMaxDistance = 25;
+	
+	
+		/// FOR SIZE
+	
+		float startWidth;
+		float minimumWidth;
+		float startHealth;
+	
+	
+		protected override void setupMonsterAtStart ()
+		{
+				startWidth = gameObject.renderer.bounds.size.x;
+				minimumWidth = startWidth * 0.1F;
+				startHealth = health;
 		
+		}
+	
 		void Update ()
 		{
-
+		
 				if (networkView.isMine) {
-						if (!target) {
-								target = PlayerFinder.sharedHelper ().getClosestPlayer (transform.position, searchRadius);
-								return;
-						}
+						//updateSize ();
+			
+//						if (!target) {
+//								target = PlayerFinder.sharedHelper ().getClosestPlayer (transform.position, searchRadius);
+//								return;
+//						}
+			
 						if (castLightning) { //one of the special attacks. for a nice special effects it should be here.
 								//&& ((timetoStopCasting - Time.time) / castingTime < Mathf.Pow (Random.value, 2))
 								//bail out proportionally, so that it's thicker at the end of the casting time.
-								Debug.Log ("want to cast lightning");
 								transform.LookAt (target.transform);
 								castLightningAttack ();
 						}
@@ -48,26 +66,45 @@ public class MiniBossLogic : AbstractEnemy
 								performSpecialAttack ();
 								//Debug.Log ("Shoud stop casting. time to cast: " + nextSpecialAttack);
 						}
-
-
-						if (Time.time > nextSpecialAttack && !isCasting) {
+			
+			
+						if (Time.time > nextSpecialAttack && !isCasting && target) {
 								//should start casting
 								randomizeNextSpecialAttack ();
 								isCasting = true;
 								castAttack ();
 								timetoStopCasting = Time.time + castingTime;
 						}
-
-						if (!isCasting) {
+			
+						if (target && !isCasting) {
 								walk ();
+						} else if (!target) {
+								target = PlayerFinder.sharedHelper ().getClosestPlayer (transform.position, searchRadius);
 						}
 				}
-
+		
 		}
-
+	
+		void updateSize ()
+		{
+				float currentSize = gameObject.renderer.bounds.size.x;
+				float currentHealthProgess = health / startHealth;
+				float sizeWeShouldBeAt = startWidth * currentHealthProgess;
+		
+				//				Debug.Log ("current size: " + currentSize);
+				//				Debug.Log ("health prog: " + currentHealthProgess);
+				//				Debug.Log ("sizeWeshouldbeat: " + sizeWeShouldBeAt);
+		
+				if (currentSize > minimumWidth && (currentSize - sizeWeShouldBeAt) > 0.01F) {
+						float diff = sizeWeShouldBeAt / currentSize;
+						Debug.Log ("Diff : " + diff);
+						transform.localScale = new Vector3 (sizeWeShouldBeAt, sizeWeShouldBeAt, sizeWeShouldBeAt);
+				}
+		}
+	
 		void performSpecialAttack ()
 		{
-
+		
 				switch (specialAttackToPerform) {
 				case BossSpecialAttacks.HomingMissiles:
 						{
@@ -93,9 +130,9 @@ public class MiniBossLogic : AbstractEnemy
 						break;
 				}
 		
-			
-		}
 		
+		}
+	
 		void castAttack ()
 		{
 				switch (specialAttackToPerform) {
@@ -124,7 +161,7 @@ public class MiniBossLogic : AbstractEnemy
 				}
 		
 		}
-    
+	
 		void shootHomingMissiles ()
 		{
 				GameObject newProjectile = MonsterAttackFactory.sharedFactory ().miniBossProjectile (gameObject.transform);
@@ -134,7 +171,7 @@ public class MiniBossLogic : AbstractEnemy
 				GameObject anotherProj = MonsterAttackFactory.sharedFactory ().miniBossProjectile (gameObject.transform);
 				anotherProj.transform.position = anotherProj.transform.position + new Vector3 (2, 0, 0);
 		}
-		
+	
 		void shootLightningAttack ()
 		{
 				float distance = Vector3.Distance (target.transform.position, transform.position);
@@ -142,28 +179,28 @@ public class MiniBossLogic : AbstractEnemy
 						Debug.Log ("Player is " + distance + " units away, aborting");
 						return;
 				}
-				
+		
 				EffectFactory.sharedFactory ().createLightningBetween (transform.position, target.transform.position, lightningThickness * 3F);
 				int damage = 1;
 				target.transform.SendMessage ("applyDamage", damage, SendMessageOptions.DontRequireReceiver);
 		
 		}
-		
+	
 		void randomizeNextSpecialAttack ()
 		{
 				int randomInt = Mathf.RoundToInt (Random.Range (0, (int)BossSpecialAttacks.BossSpecialAttacksMAX - 1));
 				specialAttackToPerform = (BossSpecialAttacks)randomInt;
 		}
-		
+	
 		void castLightningAttack ()
 		{
 				float timeLeftToCast = timetoStopCasting - Time.time;
 				float castingProgress = 1 - timeLeftToCast / castingTime;
 				Vector3 pointForwardOfMiniBoss = transform.position + transform.forward * 5;
 				EffectFactory.sharedFactory ().createLightningBetween (transform.position, pointForwardOfMiniBoss, lightningThickness * castingProgress);
-				Debug.Log ("casting lightning between points: " + transform.position);
-				Debug.Log ("and: " + pointForwardOfMiniBoss);
+				//Debug.Log ("casting lightning between points: " + transform.position);
+				//Debug.Log ("and: " + pointForwardOfMiniBoss);
 		
 		}
-
+	
 }

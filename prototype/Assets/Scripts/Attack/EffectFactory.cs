@@ -117,7 +117,7 @@ public class EffectFactory : MonoBehaviour
 						lastPoint = fwd;//so we know where we are starting from for the next arc
 				}
 		
-				Debug.Log ("create lightning called");
+				//Debug.Log ("create lightning called");
 		
 				//DONE! destroy lineRenderer
 				Destroy (lightningLineRenderer, 0.2F);
