@@ -56,7 +56,7 @@ public class ProjectileFactory : MonoBehaviour
 	private GameObject addAttackSkills (GameObject projectileToFire, int damage, WeaponTypes weaponType)
 	{
 		//no matter what, add a regular shot
-		SkillEffect regularShot = projectileToFire.AddComponent ("RegularShot") as SkillEffect;
+        SkillEffect regularShot = projectileToFire.AddComponent("RegularShot") as SkillEffect;
 		regularShot.setUpProjectile (damage, weaponType);
 		
 		foreach (Skill attackSkill in Skill.allSkills) {
