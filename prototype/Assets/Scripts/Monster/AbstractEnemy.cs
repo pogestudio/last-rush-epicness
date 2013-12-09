@@ -3,6 +3,8 @@ using System.Collections;
 
 public class AbstractEnemy : MonoBehaviour
 {
+	public GameObject bloodSpurtEffect;
+	private GameObject[] effects;
 
     public int health;
     public float defaultMovingSpeed;
@@ -19,14 +21,37 @@ public class AbstractEnemy : MonoBehaviour
     {
         //Debug.Log ("Monster should die");
         DropsLoot lootComponent = gameObject.GetComponent<DropsLoot>();
-        lootComponent.ShouldDropLoot();
-        Destroy(gameObject);
+		lootComponent.ShouldDropLoot();
+        
+		if (bloodSpurtEffect) {
+			for (int i = 0; i < effects.Length; i++) {
+				if (!effects[i]) {
+					Destroy (effects[i]);
+					effects[i] = null;
+				}
+			}
+		}
+
+		Destroy(gameObject);
+
     }
 
 
     public void applyDamage(int damage)
     {
         networkView.RPC("applyDamageRPC", RPCMode.All, damage);
+
+		
+		if (bloodSpurtEffect) {
+			for (int i = 0; i < effects.Length; i++) {
+				if (!effects[i]) {
+					effects[i] = Instantiate(bloodSpurtEffect, transform.position, Quaternion.LookRotation(transform.position - target.transform.position)) as GameObject;
+					Destroy (effects[i], 1.0f);
+					break;
+				}
+			}
+			
+		}
     }
 
     [RPC]
@@ -35,6 +60,8 @@ public class AbstractEnemy : MonoBehaviour
         if (networkView.isMine)
         {
             health -= damage;
+
+
             if (health <= 0)
             {
                 die();
@@ -46,6 +73,8 @@ public class AbstractEnemy : MonoBehaviour
     void Start()
     {
         movingSpeed = defaultMovingSpeed; // set the moving speed we have from editor. 
+		if (bloodSpurtEffect)
+			effects = new GameObject[4];
         if (!target)
         {
             Debug.Log("Does not have initial target");
@@ -60,7 +89,8 @@ public class AbstractEnemy : MonoBehaviour
         Vector3 delta = target.transform.position - transform.position;
         delta.Normalize();
         float moveSpeed = this.movingSpeed * Time.deltaTime;
-        transform.position = transform.position + (delta * moveSpeed);
+        //transform.position = transform.position + (delta * moveSpeed);
+		rigidbody.AddForce(delta * moveSpeed, ForceMode.Acceleration);
         transform.LookAt(target.transform);
     }
 }
