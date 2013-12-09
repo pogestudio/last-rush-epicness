@@ -20,14 +20,19 @@ public class MonsterLogic : AbstractEnemy
 	
 	// Update is called once per frame
 	void Update ()
-	{		
-		if (target) {
-			walk ();
-		} else {
-			target = PlayerFinder.sharedHelper ().getClosestPlayer (transform.position, searchRadius);
-		}
-		despawnIfTooFar ();
-		
+	{
+        if (networkView.isMine)
+        {
+            if (target)
+            {
+                walk();
+            }
+            else
+            {
+                target = PlayerFinder.sharedHelper().getClosestPlayer(transform.position, searchRadius);
+            }
+            despawnIfTooFar();
+        }
 	}
 	
 	void despawnIfTooFar ()

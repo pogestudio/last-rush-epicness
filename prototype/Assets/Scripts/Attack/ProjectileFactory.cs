@@ -77,11 +77,7 @@ public class ProjectileFactory : MonoBehaviour
 	/// <returns>The bullet.</returns>
 	private GameObject createProjectile (Vector3 position, Quaternion rotation)
 	{
-		GameObject newProjectile;
-		if (NetworkManager.offlineMode ())
-			newProjectile = Instantiate (bullet, position, rotation) as GameObject;
-		else
-			newProjectile = Network.Instantiate (bullet, position, rotation, 1) as GameObject;
+        GameObject newProjectile = Network.Instantiate(bullet, position, rotation, 1) as GameObject;
 
 		return newProjectile;
 	}

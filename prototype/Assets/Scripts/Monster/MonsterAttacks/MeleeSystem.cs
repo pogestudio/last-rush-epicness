@@ -19,12 +19,12 @@ public class MeleeSystem : MonoBehaviour
 	public int damage;
 	public float range;
 	private float fireRate = 1.0F;
-    
+
 	//only used internally
 	float nextFire = 0.0F;
-    
 
-	
+
+
 	// Update is called once per frame
 	void Update ()
 	{
@@ -32,7 +32,7 @@ public class MeleeSystem : MonoBehaviour
 		Ray targetHitRay = new Ray (transform.position, transform.TransformDirection (Vector3.forward));
 		if (Physics.Raycast (targetHitRay, out hit, range)) {
 			//Debug.Log("SOMETHING hit");
-			if (hit.collider.CompareTag("Player") && Time.time > nextFire) {
+			if (PlayerFinder.sharedHelper ().targetIsPlayer (hit.transform.gameObject) && Time.time > nextFire) {
 				hit.transform.SendMessage ("applyDamage", damage, SendMessageOptions.DontRequireReceiver);
 				nextFire = Time.time + fireRate;
 			}

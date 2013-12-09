@@ -39,7 +39,7 @@ public class MonsterFactory : MonoBehaviour
 	/// <param name="forPlayer">Player to spawn around</param>
 	public static void SpawnMiniBoss (GameObject forPlayer, Vector3 atPosition)
 	{
-		GameObject monster = Object.Instantiate (instance.regularMonster, Vector3.zero, Quaternion.identity) as GameObject;
+		GameObject monster = Network.Instantiate (instance.regularMonster, Vector3.zero, Quaternion.identity,1) as GameObject;
 		MonsterLogic monstersLogic = monster.GetComponent ("MonsterLogic") as MonsterLogic;
 		instance.initializeMonster (monstersLogic, forPlayer);
 		monster.transform.position = instance.monsterStartingPosition (forPlayer.transform);
@@ -51,7 +51,7 @@ public class MonsterFactory : MonoBehaviour
 	/// <param name="forPlayer">Player to spawn around</param>
 	public static void SpawnMonster (GameObject forPlayer)
 	{
-		GameObject monster = Object.Instantiate (instance.regularMonster, Vector3.zero, Quaternion.identity) as GameObject;
+        GameObject monster = Network.Instantiate(instance.regularMonster, Vector3.zero, Quaternion.identity, 1) as GameObject;
 		MonsterLogic monstersLogic = monster.GetComponent ("MonsterLogic") as MonsterLogic;
 		instance.initializeMonster (monstersLogic, forPlayer);
 		monster.transform.position = instance.monsterStartingPosition (forPlayer.transform);

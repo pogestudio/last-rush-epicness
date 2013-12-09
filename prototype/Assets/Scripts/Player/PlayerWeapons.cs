@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerWeapons : MonoBehaviour
 {
-	public float MaximumPickupRange = 3;
+    public float MaximumPickupRange = 3;
 
     private GameObject currentGun;
     private AbstractWeapon currentGunScript;
@@ -19,7 +19,7 @@ public class PlayerWeapons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (networkView.isMine || NetworkManager.offlineMode())
+        if (networkView.isMine)
         {
             //WEAPON FIRING
             if (currentGun)
@@ -58,29 +58,29 @@ public class PlayerWeapons : MonoBehaviour
         }
     }
 
-	public void pickWeapon(GameObject newWeapon)
-	{
-		    AbstractWeapon newWeaponScript = newWeapon.GetComponent<AbstractWeapon>();
-		
-			//set new weapon transform so it's in player's hand
-			newWeapon.transform.parent = this.transform;
-			newWeapon.transform.localPosition = Vector3.zero;
-			newWeapon.transform.localRotation = Quaternion.identity;
-			newWeaponScript.Mode = WeaponMode.HAND;
+    public void pickWeapon(GameObject newWeapon)
+    {
+        AbstractWeapon newWeaponScript = newWeapon.GetComponent<AbstractWeapon>();
 
-			//drop current weapon
-            if (currentGun != null && newWeapon!= currentGun)
-            {
-                AbstractWeapon oldGunScript = currentGun.GetComponent<AbstractWeapon>();
-                WeaponManager.get().manage(oldGunScript);
-            }
+        //set new weapon transform so it's in player's hand
+        newWeapon.transform.parent = this.transform;
+        newWeapon.transform.localPosition = Vector3.zero;
+        newWeapon.transform.localRotation = Quaternion.identity;
+        newWeaponScript.Mode = WeaponMode.HAND;
 
-			currentGun = newWeapon;
-            currentGunScript = newWeaponScript;
+        //drop current weapon
+        if (currentGun != null && newWeapon != currentGun)
+        {
+            AbstractWeapon oldGunScript = currentGun.GetComponent<AbstractWeapon>();
+            WeaponManager.get().manage(oldGunScript);
+        }
+
+        currentGun = newWeapon;
+        currentGunScript = newWeaponScript;
 
         //replicate
-            networkView.RPC("replicateWeapon", RPCMode.Others, (int)newWeaponScript.thisType);
-	}
+        networkView.RPC("replicateWeapon", RPCMode.Others, (int)newWeaponScript.thisType);
+    }
 
 
     //TODO: improve this when the loot is synchronized
@@ -91,19 +91,24 @@ public class PlayerWeapons : MonoBehaviour
     [RPC]
     private void replicateWeapon(int weaponTypeOrdinal)
     {
-        if (!networkView.isMine)    //make sure that this is a replicate
-        {
-            if(currentGun)
+        if (!networkView.isMine)
+        {    //make sure that this is a replicate
+            if (currentGun)
             {
                 Destroy(currentGun);
             }
             WeaponTypes type = (WeaponTypes)weaponTypeOrdinal;
             currentGun = LootHandler.sharedHandler().createLootNoMatterWhat(type, transform);
             currentGun.transform.parent = this.transform;
-			currentGun.transform.localPosition = Vector3.zero;
-			currentGun.transform.localRotation = Quaternion.identity;
+            currentGun.transform.localPosition = Vector3.zero;
+            currentGun.transform.localRotation = Quaternion.identity;
             currentGun.GetComponent<AbstractWeapon>().Mode = WeaponMode.HAND;
         }
+    }
+
+    public WeaponTypes currentWeaponType()
+    {
+        return currentGunScript.thisType;
     }
 
 }
