@@ -5,16 +5,48 @@ public class PlayerWeapons : MonoBehaviour
 {
     public float MaximumPickupRange = 3;
 
-    private GameObject currentGun;
-    private AbstractWeapon currentGunScript;
+    private GameObject currentWeapon;
+    private AbstractWeapon currentWeaponScript;
+    private static PlayerWeapons mainPlayerScript;
 
     void Awake()
     {
+        GameObject mainPlayer = GameObject.FindGameObjectWithTag("Player");
+        if (mainPlayer == null)
+            Debug.LogError("Unnable to find main player!");
+
+        mainPlayerScript = mainPlayer.GetComponent<PlayerWeapons>();
+        if (mainPlayerScript == null)
+            Debug.LogError("Unnable to find main player weapon script!");
     }
 
     void Start()
     {
     }
+
+    public static PlayerWeapons getMainPlayerScript()
+    {
+        return mainPlayerScript;
+    }
+
+    public static GameObject getMainPlayerWeapon()
+    {
+        return mainPlayerScript.currentWeapon;
+    }
+
+    public static WeaponTypes getMainPlayerWeaponType()
+    {
+        return mainPlayerScript.currentWeaponScript.Type;
+    }
+
+    public static AbstractWeapon getMainPlayerWeaponScript()
+    {
+        if (!mainPlayerScript)
+            return null;
+
+        return mainPlayerScript.currentWeaponScript;
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -22,15 +54,15 @@ public class PlayerWeapons : MonoBehaviour
         if (networkView.isMine)
         {
             //WEAPON FIRING
-            if (currentGun)
+            if (currentWeapon)
             {
                 if (Input.GetButtonDown("Fire1"))
-                    currentGunScript.triggerDown();
+                    currentWeaponScript.triggerDown();
                 else if (Input.GetButtonUp("Fire1"))
-                    currentGunScript.triggerUp();
+                    currentWeaponScript.triggerUp();
 
                 if (Input.GetButton("Fire1"))
-                    currentGunScript.triggerHold();
+                    currentWeaponScript.triggerHold();
             }
             //WEAPON PICKING
             if (Input.GetKeyDown(KeyCode.E))
@@ -69,17 +101,17 @@ public class PlayerWeapons : MonoBehaviour
         newWeaponScript.Mode = WeaponMode.HAND;
 
         //drop current weapon
-        if (currentGun != null && newWeapon != currentGun)
+        if (currentWeapon != null && newWeapon != currentWeapon)
         {
-            AbstractWeapon oldGunScript = currentGun.GetComponent<AbstractWeapon>();
+            AbstractWeapon oldGunScript = currentWeapon.GetComponent<AbstractWeapon>();
             WeaponManager.get().manage(oldGunScript);
         }
 
-        currentGun = newWeapon;
-        currentGunScript = newWeaponScript;
+        currentWeapon = newWeapon;
+        currentWeaponScript = newWeaponScript;
 
         //replicate
-        networkView.RPC("replicateWeapon", RPCMode.Others, (int)newWeaponScript.thisType);
+        networkView.RPC("replicateWeapon", RPCMode.Others, (int)newWeaponScript.Type);
     }
 
 
@@ -93,22 +125,18 @@ public class PlayerWeapons : MonoBehaviour
     {
         if (!networkView.isMine)
         {    //make sure that this is a replicate
-            if (currentGun)
+            if (currentWeapon)
             {
-                Destroy(currentGun);
+                Destroy(currentWeapon);
             }
             WeaponTypes type = (WeaponTypes)weaponTypeOrdinal;
-            currentGun = LootHandler.sharedHandler().createLootNoMatterWhat(type, transform);
-            currentGun.transform.parent = this.transform;
-            currentGun.transform.localPosition = Vector3.zero;
-            currentGun.transform.localRotation = Quaternion.identity;
-            currentGun.GetComponent<AbstractWeapon>().Mode = WeaponMode.HAND;
+            currentWeapon = LootHandler.sharedHandler().createLootNoMatterWhat(type, transform);
+            currentWeapon.transform.parent = this.transform;
+            currentWeapon.transform.localPosition = Vector3.zero;
+            currentWeapon.transform.localRotation = Quaternion.identity;
+            currentWeapon.GetComponent<AbstractWeapon>().Mode = WeaponMode.HAND;
         }
     }
 
-    public WeaponTypes currentWeaponType()
-    {
-        return currentGunScript.thisType;
-    }
 
 }

@@ -156,7 +156,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400018}
-  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: glow
   m_TagString: Untagged
@@ -435,7 +434,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.02783203, y: .322867721, z: -975.391357}
+  m_LocalPosition: {x: 4.59259033, y: .322867721, z: -973.531982}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400030}
@@ -1100,7 +1099,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 400020}
-  thisType: 1
+  glowingModel: {fileID: 100018}
   timeBetweenShots: .600000024
   bulletSpeed: 20
   weaponDamage: 5
@@ -1111,19 +1110,6 @@ MonoBehaviour:
   reloadSound: {fileID: 8200002}
   shotSound: {fileID: 8200004}
   pumpSound: {fileID: 8200000}
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f4f06c1d87d51442b7bb7b67e874756, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pulseSize: .5
-  pulseSpeed: 5
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

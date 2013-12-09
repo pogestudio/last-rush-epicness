@@ -22,14 +22,18 @@ public enum WeaponMode
 public abstract class AbstractWeapon : MonoBehaviour
 {
     public Transform gunMuzzle;
-    public WeaponTypes thisType;
+    public GameObject glowingModel;
+    protected WeaponTypes type;
+    public WeaponTypes Type
+    {
+        get { return type; }
+    }
 
     private float despawnDelay = 20F; //if it hasnt been picked up in 20, despawn.
     private float despawnSafety = (float)60 * 60 * 2; //incremetn despawn time with this if you pick it up. Should be a lot, like two hours
     private float timeToDespawn;
 
-    private GameObject weaponGlowObject;
-
+    private Vector3 GlowbaseScale;
 
     public float timeBetweenShots;
     public int bulletSpeed;
@@ -50,9 +54,6 @@ public abstract class AbstractWeapon : MonoBehaviour
                         collider.enabled = true;
                         timeToDespawn = Time.time + despawnDelay;
 
-                        if (weaponGlowObject)
-                            weaponGlowObject.SetActive(true);
-
                         break;
                     }
                 case WeaponMode.HOLSTER:
@@ -60,9 +61,6 @@ public abstract class AbstractWeapon : MonoBehaviour
                         rigidbody.isKinematic = true;
                         collider.enabled = false;
                         timeToDespawn = Time.time + despawnSafety;
-
-                        if (weaponGlowObject)
-                            weaponGlowObject.SetActive(false);
 
                         break;
                     }
@@ -72,9 +70,6 @@ public abstract class AbstractWeapon : MonoBehaviour
                         collider.enabled = false;
                         timeToDespawn = Time.time + despawnSafety;
 
-                        if (weaponGlowObject)
-                            weaponGlowObject.SetActive(false);
-
                         break;
                     }
             }
@@ -82,17 +77,12 @@ public abstract class AbstractWeapon : MonoBehaviour
     }
 
 
-    public float getDPS()
-    {
-        return weaponDamage / timeBetweenShots;
-    }
 
     protected void Awake()
     {
-        WeaponGlow weaponGlow = GetComponentInChildren<WeaponGlow>();
-        if (weaponGlow != null)
+        if (glowingModel != null)
         {
-            weaponGlowObject = weaponGlow.gameObject;
+            GlowbaseScale = glowingModel.transform.localScale;
         }
         else
         {
@@ -114,6 +104,7 @@ public abstract class AbstractWeapon : MonoBehaviour
 
     public void Start()
     {
+        StartCoroutine(updateGlowState());
     }
 
     public void Update()
@@ -122,8 +113,50 @@ public abstract class AbstractWeapon : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
     }
 
+    IEnumerator updateGlowState()
+    {
+        while (true)
+        {
+            AbstractWeapon playerWeaponScript = PlayerWeapons.getMainPlayerWeaponScript();
+            if (playerWeaponScript != null)
+            {
+                if (mode == WeaponMode.RAGDOLL && PlayerWeapons.getMainPlayerWeaponScript().getDPS() < this.getDPS())
+                {
+                    glowingModel.SetActive(true);
+                    StopCoroutine("glowLoop");
+                    StartCoroutine("glowLoop");
+                }
+                else
+                {
+                    StopCoroutine("glowLoop");
+                    glowingModel.SetActive(false);
+                }
+            }
+            else
+            {
+                StopCoroutine("glowLoop");
+                glowingModel.SetActive(false);
+            }
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    IEnumerator glowLoop()
+    {
+        while (true)
+        {
+            if (glowingModel)
+            {
+                float pulseSize = 0.5f;
+                float pulseSpeed = 5f;
+                glowingModel.transform.localScale = GlowbaseScale * ((Mathf.Sin(Time.time * pulseSpeed) + 2.1f) * pulseSize);
+            }
+            yield return null;
+        }
+    }
 
     /// <summary>
     /// Should be called by the sub-class (specific weapon) whenever it wants to instantiate a projectile
@@ -145,5 +178,9 @@ public abstract class AbstractWeapon : MonoBehaviour
     }
 
 
+    public float getDPS()
+    {
+        return weaponDamage / normalizedWeaponSpeed();
+    }
 
 }

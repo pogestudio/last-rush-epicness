@@ -18,7 +18,7 @@ public class ShotGun : AbstractWeapon
 		void Start ()
 		{
 				base.Start ();
-				thisType = WeaponTypes.ShotGun;
+				type = WeaponTypes.ShotGun;
 				bulletSpeed = 20;
                 timeBetweenShots = 0.3f;    //Here timeBetween shot is the "reload" time since it's what defines the weapon DPS
 
@@ -59,7 +59,7 @@ public class ShotGun : AbstractWeapon
 		{
 				//TODO : handle different projectile types?
 				for (int i = 0; i < bulletPerShot; i++) {
-						GameObject projectile = ProjectileFactory.sharedFactory ().deliverProjectile (gunMuzzle, thisType, weaponDamage);
+						GameObject projectile = ProjectileFactory.sharedFactory ().deliverProjectile (gunMuzzle, type, weaponDamage);
             
 						float randomSpread = (Random.value - 0.5f) * maxBulletSpread;
 						Quaternion randomRotation = Quaternion.Euler (0, randomSpread, 0);

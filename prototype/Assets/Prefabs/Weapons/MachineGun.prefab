@@ -144,7 +144,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400016}
-  - 114: {fileID: 11400002}
   m_Layer: 9
   m_Name: glow
   m_TagString: Untagged
@@ -452,7 +451,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100018}
   m_LocalRotation: {x: 0, y: 0, z: -.294979662, w: .955503583}
-  m_LocalPosition: {x: 2.50061059, y: 2.28836823, z: -974.720581}
+  m_LocalPosition: {x: 4.26123047, y: .58013916, z: -974.002197}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400030}
@@ -1157,23 +1156,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 400020}
-  thisType: 1
+  glowingModel: {fileID: 100016}
   timeBetweenShots: .200000003
   bulletSpeed: 20
   weaponDamage: 5
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f4f06c1d87d51442b7bb7b67e874756, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pulseSize: .5
-  pulseSpeed: 5
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

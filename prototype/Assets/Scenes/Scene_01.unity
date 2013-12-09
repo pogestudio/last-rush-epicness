@@ -530,7 +530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 1487289729}
-  thisType: 1
+  glowingModel: {fileID: 506791736}
   timeBetweenShots: .200000003
   bulletSpeed: 20
   weaponDamage: 5
@@ -2069,7 +2069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 1063990984}
-  thisType: 1
+  glowingModel: {fileID: 856214078}
   timeBetweenShots: .200000003
   bulletSpeed: 20
   weaponDamage: 5
@@ -2217,10 +2217,10 @@ Transform:
   m_Children:
   - {fileID: 1237522309}
   - {fileID: 638396642}
-  - {fileID: 1157506169}
   - {fileID: 520833821}
-  - {fileID: 142656247}
+  - {fileID: 1157506169}
   - {fileID: 417533842}
+  - {fileID: 142656247}
   - {fileID: 1883103552}
   m_Father: {fileID: 0}
 --- !u!1 &424506440
@@ -2411,7 +2411,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 506791737}
-  - 114: {fileID: 506791738}
   m_Layer: 9
   m_Name: glow
   m_TagString: Untagged
@@ -2438,20 +2437,6 @@ Transform:
   - {fileID: 548029579}
   - {fileID: 1354884751}
   m_Father: {fileID: 142656247}
---- !u!114 &506791738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400002, guid: d1a00fe259791004c9faff2f6f73715d,
-    type: 2}
-  m_PrefabInternal: {fileID: 472905536}
-  m_GameObject: {fileID: 506791736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f4f06c1d87d51442b7bb7b67e874756, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pulseSize: .5
-  pulseSpeed: 5
 --- !u!1 &520833820
 GameObject:
   m_ObjectHideFlags: 0
@@ -2527,7 +2512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 1353540398}
-  thisType: 0
+  glowingModel: {fileID: 2086011317}
   timeBetweenShots: .5
   bulletSpeed: 35
   weaponDamage: 20
@@ -3115,7 +3100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 284209991}
-  thisType: 1
+  glowingModel: {fileID: 677582299}
   timeBetweenShots: .100000001
   bulletSpeed: 20
   weaponDamage: 2
@@ -3336,7 +3321,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 677582300}
-  - 114: {fileID: 677582301}
   m_Layer: 0
   m_Name: glow
   m_TagString: Untagged
@@ -3363,20 +3347,6 @@ Transform:
   - {fileID: 308602842}
   - {fileID: 1014196442}
   m_Father: {fileID: 638396642}
---- !u!114 &677582301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400002, guid: 2f7fa97321826924dbf562039366d9a1,
-    type: 2}
-  m_PrefabInternal: {fileID: 1022001932}
-  m_GameObject: {fileID: 677582299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f4f06c1d87d51442b7bb7b67e874756, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pulseSize: .5
-  pulseSpeed: 5
 --- !u!1 &686151797
 GameObject:
   m_ObjectHideFlags: 0
@@ -3787,7 +3757,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 856214079}
-  - 114: {fileID: 856214080}
   m_Layer: 9
   m_Name: glow
   m_TagString: Untagged
@@ -3814,20 +3783,6 @@ Transform:
   - {fileID: 558954302}
   - {fileID: 265109709}
   m_Father: {fileID: 417533842}
---- !u!114 &856214080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400002, guid: d1a00fe259791004c9faff2f6f73715d,
-    type: 2}
-  m_PrefabInternal: {fileID: 1200515086}
-  m_GameObject: {fileID: 856214078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f4f06c1d87d51442b7bb7b67e874756, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pulseSize: .5
-  pulseSpeed: 5
 --- !u!1 &868298440
 GameObject:
   m_ObjectHideFlags: 0
@@ -3894,7 +3849,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 916591581}
-  - 114: {fileID: 916591582}
   m_Layer: 0
   m_Name: glow
   m_TagString: Untagged
@@ -3917,20 +3871,6 @@ Transform:
   - {fileID: 214353173}
   - {fileID: 1086547464}
   m_Father: {fileID: 1883103552}
---- !u!114 &916591582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400002, guid: 04ff7183c60d244499e30068b19b4887,
-    type: 2}
-  m_PrefabInternal: {fileID: 1844215389}
-  m_GameObject: {fileID: 916591580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f4f06c1d87d51442b7bb7b67e874756, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pulseSize: .5
-  pulseSpeed: 5
 --- !u!1 &926093037
 GameObject:
   m_ObjectHideFlags: 0
@@ -5258,7 +5198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 1870221428}
-  thisType: 0
+  glowingModel: {fileID: 1564102674}
   timeBetweenShots: .5
   bulletSpeed: 35
   weaponDamage: 20
@@ -6927,7 +6867,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1564102675}
-  - 114: {fileID: 1564102676}
   m_Layer: 9
   m_Name: glow
   m_TagString: Untagged
@@ -6950,20 +6889,6 @@ Transform:
   - {fileID: 1603404727}
   - {fileID: 1269469215}
   m_Father: {fileID: 1157506169}
---- !u!114 &1564102676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400002, guid: 418fc09df725e3140b5fcaaf70fb00ad,
-    type: 2}
-  m_PrefabInternal: {fileID: 1276960853}
-  m_GameObject: {fileID: 1564102674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f4f06c1d87d51442b7bb7b67e874756, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pulseSize: .5
-  pulseSpeed: 5
 --- !u!1 &1596769188
 GameObject:
   m_ObjectHideFlags: 0
@@ -8091,7 +8016,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 1609056477}
-  thisType: 1
+  glowingModel: {fileID: 916591580}
   timeBetweenShots: .600000024
   bulletSpeed: 20
   weaponDamage: 5
@@ -9967,7 +9892,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2086011318}
-  - 114: {fileID: 2086011319}
   m_Layer: 9
   m_Name: glow
   m_TagString: Untagged
@@ -9990,20 +9914,6 @@ Transform:
   - {fileID: 375435112}
   - {fileID: 1932163915}
   m_Father: {fileID: 520833821}
---- !u!114 &2086011319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400002, guid: 418fc09df725e3140b5fcaaf70fb00ad,
-    type: 2}
-  m_PrefabInternal: {fileID: 462424457}
-  m_GameObject: {fileID: 2086011317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f4f06c1d87d51442b7bb7b67e874756, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pulseSize: .5
-  pulseSpeed: 5
 --- !u!1 &2086197733
 GameObject:
   m_ObjectHideFlags: 0
