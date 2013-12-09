@@ -3912,12 +3912,12 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11400002, guid: 2f7fa97321826924dbf562039366d9a1, type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 11400002, guid: 2f7fa97321826924dbf562039366d9a1, type: 2}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 2f7fa97321826924dbf562039366d9a1, type: 2}
   m_RootGameObject: {fileID: 638396641}
   m_IsPrefabParent: 0
@@ -4026,7 +4026,7 @@ MonoBehaviour:
   additionalProps:
   - {fileID: 100000, guid: 980636691d6d947539c8c4718788d66e, type: 2}
   - {fileID: 100002, guid: c84231c5ef5464969b3a3b6dd547de50, type: 2}
-  - {fileID: 100002, guid: c84231c5ef5464969b3a3b6dd547de50, type: 2}
+  - {fileID: 100000, guid: a632b40b65c704358808ffd48c12524b, type: 2}
   - {fileID: 100000, guid: 7c583185af679485a8cd3e2ce9734c2a, type: 2}
   seed: 0
   mountainWidth: 20
@@ -6202,7 +6202,7 @@ MonoBehaviour:
   machineGun: {fileID: 100018, guid: d1a00fe259791004c9faff2f6f73715d, type: 2}
   handGun: {fileID: 100010, guid: 418fc09df725e3140b5fcaaf70fb00ad, type: 2}
   gatling: {fileID: 100032, guid: 2f7fa97321826924dbf562039366d9a1, type: 2}
-  shotGun: {fileID: 0}
+  shotGun: {fileID: 100022, guid: 04ff7183c60d244499e30068b19b4887, type: 2}
 --- !u!1 &1731626490
 GameObject:
   m_ObjectHideFlags: 0
@@ -7257,8 +7257,8 @@ LineRenderer:
   m_SortingOrder: 0
   m_SortingLayerID: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 1}
   m_Parameters:
     startWidth: .200000003
     endWidth: .200000003

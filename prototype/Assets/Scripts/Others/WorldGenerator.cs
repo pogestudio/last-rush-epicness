@@ -185,9 +185,9 @@ public class WorldGenerator : MonoBehaviour {
 			int numProps = (int)(20 + Random.value * 50f);
 			for (int j = 0; j < numProps; j++) {
 				GameObject prop = Object.Instantiate(additionalProps[i]) as GameObject;
-				prop.transform.position = new Vector3(100f + Random.value * (terrain.terrainData.size.x - 100f) - terrain.terrainData.size.x / 2.0f,
+				prop.transform.position = new Vector3(300f + Random.value * (terrain.terrainData.size.x - 300f) - terrain.terrainData.size.x / 2.0f,
 				                                      0,
-				                                      100f + Random.value * (terrain.terrainData.size.z - 100f) - terrain.terrainData.size.z / 2.0f);
+				                                      300f + Random.value * (terrain.terrainData.size.z - 300f) - terrain.terrainData.size.z / 2.0f);
 				Quaternion rot = prop.transform.rotation;
 				rot.eulerAngles = new Vector3(0.0f, Random.value * 360.0f, 0.0f);
 				prop.transform.rotation = rot;

@@ -101,7 +101,7 @@ public abstract class AbstractWeapon : MonoBehaviour
 		/// Will be overwritten in subclasses where it matters.
 		/// </summary>
 		/// <returns>The weapon speed.</returns>
-		public float normalizedWeaponSpeed ()
+		public virtual float normalizedWeaponSpeed ()
 		{
 				return timeBetweenShots;
 		}
