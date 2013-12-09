@@ -3,8 +3,8 @@ using System.Collections;
 
 public class AbstractEnemy : MonoBehaviour
 {
-	public GameObject bloodSpurtEffect;
-	private GameObject[] effects;
+    public GameObject bloodSpurtEffect;
+    private GameObject[] effects;
 
     public int health;
     public float defaultMovingSpeed;
@@ -19,44 +19,43 @@ public class AbstractEnemy : MonoBehaviour
 
     private void die()
     {
+        networkView.RPC("dieRPC", RPCMode.All);
+    }
+
+
+    [RPC]
+    private void dieRPC()
+    {
         //Debug.Log ("Monster should die");
         DropsLoot lootComponent = gameObject.GetComponent<DropsLoot>();
-		lootComponent.ShouldDropLoot();
-        
-		if (bloodSpurtEffect) {
-			for (int i = 0; i < effects.Length; i++) {
-				if (!effects[i]) {
-					Destroy (effects[i]);
-					effects[i] = null;
-				}
-			}
-		}
+        lootComponent.ShouldDropLoot();
 
-		Destroy(gameObject);
-
+        if (bloodSpurtEffect)
+        {
+            for (int i = 0; i < effects.Length; i++)
+            {
+                if (!effects[i])
+                {
+                    Destroy(effects[i]);
+                    effects[i] = null;
+                }
+            }
+        }
+        Destroy(gameObject);
     }
 
 
     public void applyDamage(int damage)
     {
-        networkView.RPC("applyDamageRPC", RPCMode.All, damage);
-
-		
-		if (bloodSpurtEffect) {
-			for (int i = 0; i < effects.Length; i++) {
-				if (!effects[i]) {
-					effects[i] = Instantiate(bloodSpurtEffect, transform.position, Quaternion.LookRotation(transform.position - target.transform.position)) as GameObject;
-					Destroy (effects[i], 1.0f);
-					break;
-				}
-			}
-			
-		}
+        Vector3 shotDir = transform.position - target.transform.position;   //TODO replace with BULLET direction (not related to target or whatever)
+        networkView.RPC("applyDamageRPC", RPCMode.All, damage, shotDir);
     }
 
     [RPC]
-    private void applyDamageRPC(int damage)
+    private void applyDamageRPC(int damage, Vector3 shotDir)
     {
+
+        //real damage
         if (networkView.isMine)
         {
             health -= damage;
@@ -67,14 +66,28 @@ public class AbstractEnemy : MonoBehaviour
                 die();
             }
         }
+
+        //effect
+        if (bloodSpurtEffect)
+        {
+            for (int i = 0; i < effects.Length; i++)
+            {
+                if (!effects[i])
+                {
+                    effects[i] = Instantiate(bloodSpurtEffect, transform.position, Quaternion.LookRotation(shotDir)) as GameObject;
+                    Destroy(effects[i], 1.0f);
+                    break;
+                }
+            }
+        }
     }
 
     // Use this for initialization
     void Start()
     {
         movingSpeed = defaultMovingSpeed; // set the moving speed we have from editor. 
-		if (bloodSpurtEffect)
-			effects = new GameObject[4];
+        if (bloodSpurtEffect)
+            effects = new GameObject[4];
         if (!target)
         {
             Debug.Log("Does not have initial target");
@@ -90,7 +103,7 @@ public class AbstractEnemy : MonoBehaviour
         delta.Normalize();
         float moveSpeed = this.movingSpeed * Time.deltaTime;
         //transform.position = transform.position + (delta * moveSpeed);
-		rigidbody.AddForce(delta * moveSpeed, ForceMode.Acceleration);
+        rigidbody.AddForce(delta * moveSpeed, ForceMode.Acceleration);
         transform.LookAt(target.transform);
     }
 }

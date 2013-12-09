@@ -36,12 +36,12 @@ public class PlayerHealth : MonoBehaviour
 
 	public void applyDamage (int damage)
 	{
-		audio.Play ();
-		health -= damage;
-		healthBar.setLife (health);
-		if (health <= 0) {
-			die ();
-		}
+        //audio.Play ();
+        //health -= damage;
+        //healthBar.setLife (health);
+        //if (health <= 0) {
+        //    die ();
+        //}
 	}
 
 }
