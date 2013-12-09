@@ -32,7 +32,7 @@ public abstract class AbstractWeapon : MonoBehaviour
 	public int bulletSpeed;
 	public int weaponDamage;
 
-	private WeaponMode mode;
+	protected WeaponMode mode;
 	public WeaponMode Mode {
 		get { return mode; }
 		set {
