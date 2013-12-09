@@ -28,7 +28,7 @@ public abstract class AbstractWeapon : MonoBehaviour
     private float despawnSafety = (float)60 * 60 * 2; //incremetn despawn time with this if you pick it up. Should be a lot, like two hours
     private float timeToDespawn;
 
-    private GameObject weaponGlow;
+    private GameObject weaponGlowObject;
 
 
     public float timeBetweenShots;
@@ -49,6 +49,10 @@ public abstract class AbstractWeapon : MonoBehaviour
                         rigidbody.isKinematic = false;
                         collider.enabled = true;
                         timeToDespawn = Time.time + despawnDelay;
+
+                        if (weaponGlowObject)
+                            weaponGlowObject.SetActive(true);
+
                         break;
                     }
                 case WeaponMode.HOLSTER:
@@ -56,6 +60,10 @@ public abstract class AbstractWeapon : MonoBehaviour
                         rigidbody.isKinematic = true;
                         collider.enabled = false;
                         timeToDespawn = Time.time + despawnSafety;
+
+                        if (weaponGlowObject)
+                            weaponGlowObject.SetActive(false);
+
                         break;
                     }
                 case WeaponMode.HAND:
@@ -63,6 +71,10 @@ public abstract class AbstractWeapon : MonoBehaviour
                         rigidbody.isKinematic = true;
                         collider.enabled = false;
                         timeToDespawn = Time.time + despawnSafety;
+
+                        if (weaponGlowObject)
+                            weaponGlowObject.SetActive(false);
+
                         break;
                     }
             }
@@ -77,11 +89,16 @@ public abstract class AbstractWeapon : MonoBehaviour
 
     protected void Awake()
     {
-        weaponGlow = GetComponentInChildren<WeaponGlow>().gameObject;
-        if (weaponGlow == null)
+        WeaponGlow weaponGlow = GetComponentInChildren<WeaponGlow>();
+        if (weaponGlow != null)
+        {
+            weaponGlowObject = weaponGlow.gameObject;
+        }
+        else
         {
             Debug.Log("No weaponGlow found");
         }
+
         if (gunMuzzle == null)
         {
             Debug.Log("Weapon muzzle is not set");

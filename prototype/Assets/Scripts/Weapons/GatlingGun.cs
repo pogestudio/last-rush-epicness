@@ -73,8 +73,6 @@ public class GatlingGun : AbstractWeapon
 						spinningPart.transform.Rotate (0, 0, dRotation);
 				}
 
-				//heat
-
 		}
 
 		public override void triggerDown ()
