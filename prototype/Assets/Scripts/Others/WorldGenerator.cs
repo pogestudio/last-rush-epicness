@@ -178,6 +178,7 @@ public class WorldGenerator : MonoBehaviour {
 			Quaternion rot = treeObject.transform.rotation;
 			rot.eulerAngles = new Vector3(0.0f, Random.value * 360.0f, 0.0f);
 			treeObject.transform.rotation = rot;
+			treeObject.transform.parent = terrain.transform;
 
 			//trees.Add(tree);
 		}
@@ -193,6 +194,7 @@ public class WorldGenerator : MonoBehaviour {
 				Quaternion rot = prop.transform.rotation;
 				rot.eulerAngles = new Vector3(0.0f, Random.value * 360.0f, 0.0f);
 				prop.transform.rotation = rot;
+				prop.transform.parent = terrain.transform;
 			}
 		}
 
