@@ -31,7 +31,7 @@ GameObject:
   - 114: {fileID: 11400004}
   - 54: {fileID: 5400000}
   - 148: {fileID: 14800000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MiniBoss
   m_TagString: MiniBoss
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   serializedVersion: 2
-  m_Mass: 100
+  m_Mass: 50
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
@@ -145,7 +145,6 @@ MonoBehaviour:
   target: {fileID: 0}
   searchRadius: 80
   timeBetweenSpecialAttacks: 4
-  castingTime: 3
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -119,9 +119,7 @@ public class MiniBossLogic : AbstractEnemy
 						}
 				case BossSpecialAttacks.FireStorm:
 						{
-								castingTime = 3.0F;
-								timetoStopCasting = Time.time + castingTime;
-								EffectFactory.sharedFactory ().createMiniBossChargingEffect (gameObject, castingTime);
+								//do nothinnn.
 								break;
 						}
 			
@@ -150,8 +148,7 @@ public class MiniBossLogic : AbstractEnemy
 						}
 				case BossSpecialAttacks.FireStorm:
 						{
-								castingTime = 3.0F;
-								EffectFactory.sharedFactory ().createMiniBossChargingEffect (gameObject, castingTime);
+								createFireStorm ();
 								break;
 						}
 			
@@ -161,14 +158,35 @@ public class MiniBossLogic : AbstractEnemy
 				}
 		
 		}
+		
+		void createFireStorm ()
+		{
+				//these should be created now and then set a timer. When its time, theyll start moving by themselves.
+				castingTime = 3.0F;
+				float projectileSpeed = 20;
+				for (float i = 0; i < 360; i = i + 45) {
+			
+						float z = Mathf.Sin (i) * 2;
+						float x = Mathf.Cos (i) * 2;
+						GameObject proj = MonsterAttackFactory.sharedFactory ().createMiniBossStraightProjectile (gameObject.transform);
+						Vector3 newVector = new Vector3 (x, 0, z);
+						proj.transform.position = proj.transform.position + newVector;
+						StraightProjectileLogic logic = proj.GetComponent<StraightProjectileLogic> ();
+						logic.initialDirection = newVector;
+						logic.projectileSpeed = projectileSpeed;
+						logic.waitTime = castingTime;
+						Debug.Log ("spawned projectile at position::" + newVector);
+				}
+		
+		}
 	
 		void shootHomingMissiles ()
 		{
-				GameObject newProjectile = MonsterAttackFactory.sharedFactory ().miniBossProjectile (gameObject.transform);
+				GameObject newProjectile = MonsterAttackFactory.sharedFactory ().createMiniBossHomingProjectile (gameObject.transform);
 				newProjectile.transform.position = newProjectile.transform.position + new Vector3 (0, 0, 2);
 		
 		
-				GameObject anotherProj = MonsterAttackFactory.sharedFactory ().miniBossProjectile (gameObject.transform);
+				GameObject anotherProj = MonsterAttackFactory.sharedFactory ().createMiniBossHomingProjectile (gameObject.transform);
 				anotherProj.transform.position = anotherProj.transform.position + new Vector3 (2, 0, 0);
 		}
 	
@@ -189,7 +207,7 @@ public class MiniBossLogic : AbstractEnemy
 		void randomizeNextSpecialAttack ()
 		{
 				int randomInt = Mathf.RoundToInt (Random.Range (0, (int)BossSpecialAttacks.BossSpecialAttacksMAX - 1));
-				specialAttackToPerform = (BossSpecialAttacks)randomInt;
+				specialAttackToPerform = BossSpecialAttacks.FireStorm;//(BossSpecialAttacks)randomInt;
 		}
 	
 		void castLightningAttack ()
