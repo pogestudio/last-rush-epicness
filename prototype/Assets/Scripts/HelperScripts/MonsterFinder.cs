@@ -82,7 +82,7 @@ public class MonsterFinder
 	
 		public bool targetIsEnemy (GameObject target)
 		{
-				return (target.layer.Equals ("Monsters"));
+			return (target.layer == LayerMask.NameToLayer("Monsters"));
 		}
 	
 }
