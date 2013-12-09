@@ -8,13 +8,21 @@ public class FadeOut : MonoBehaviour {
 	private float targetAlpha = 1.0f;
 	private float currentAlpha = 1.0f;
 
-	//private bool fadeStarted = false;
-
 	private float changeSpeed = 0.05f;
-	//private float changeFactor = 0.5f;
 
 	// Use this for initialization
 	void Start () {
+		for (int i = 0; i < transform.childCount; i++) {
+			GameObject child = transform.GetChild(i).gameObject;
+			if (child.GetComponent<Renderer>() && !child.GetComponent<FadeOut>()) {
+				child.AddComponent<FadeOut>();
+			}
+		}
+
+		if (!renderer) {
+			return;
+		}
+
 		originalShaders = new Shader[renderer.materials.Length];
 
 		for (int i = 0; i < renderer.materials.Length; i++) {
@@ -22,26 +30,43 @@ public class FadeOut : MonoBehaviour {
 		}
 	}
 
-	void Update() {
-		/*if (fadeStarted) {
-			fadeStarted = false;
-		} else {
-			targetAlpha = 1.0f;
-		}*/
-	}
-
 	public void startFade() {
-		//fadeStarted = true;
 		targetAlpha = 0.3f;
 		this.tag = "Fading";
+
+		FadeOut[] childFades = GetComponentsInChildren<FadeOut>();
+		if (childFades.Length > 0) {
+			foreach (FadeOut childFade in childFades) {
+				childFade.targetAlpha = 0.3f;
+				childFade.tag = "Fading";
+			}
+		}
 	}
 
 	public void endFade() {
-		//fadeStarted = false;
 		targetAlpha = 1.0f;
+
+		FadeOut[] childFades = GetComponentsInChildren<FadeOut>();
+		if (childFades.Length > 0) {
+			foreach (FadeOut childFade in childFades)
+				childFade.targetAlpha = 1.0f;
+		}
 	}
 
 	public void doFade() {
+		FadeOut[] childFades = GetComponentsInChildren<FadeOut>();
+
+		if (renderer)
+			doActualFade();
+
+		if (childFades.Length > 0) {
+			foreach (FadeOut childFade in childFades)
+				if (childFade.GetComponent<Renderer>())
+					childFade.doActualFade();
+		}
+	}
+
+	private void doActualFade() {
 		if (currentAlpha < targetAlpha && (targetAlpha - currentAlpha) >= changeSpeed/2.0f) {
 			currentAlpha += changeSpeed;
 			
@@ -65,7 +90,6 @@ public class FadeOut : MonoBehaviour {
 			currentAlpha = 1.0f;
 			this.tag = "";
 			for (int i = 0; i < renderer.materials.Length; i++) {
-				//Debug.Log (originalShaders[i].name);
 				renderer.materials[i].shader = originalShaders[i];
 			}
 		} else {

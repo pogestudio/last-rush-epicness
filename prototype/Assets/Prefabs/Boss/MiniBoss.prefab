@@ -31,7 +31,7 @@ GameObject:
   - 114: {fileID: 11400004}
   - 54: {fileID: 5400000}
   - 148: {fileID: 14800000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MiniBoss
   m_TagString: MiniBoss
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.94038677, y: 2, z: -967.067932}
+  m_LocalPosition: {x: -27.9984131, y: 1.97167039, z: -965.874756}
   m_LocalScale: {x: 3.94334078, y: 3.94334078, z: 3.94334078}
   m_Children:
   - {fileID: 400000}
@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46616ceaaeabc4a4f978eb089b86e261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloodSpurtEffect: {fileID: 100000, guid: a147cd496e04f4cfba043b3802330429, type: 2}
   health: 15000
   defaultMovingSpeed: 5
   target: {fileID: 0}
