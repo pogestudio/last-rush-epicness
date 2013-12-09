@@ -69,7 +69,8 @@ public class LootHandler
 		void fixStatsOfWeapon (GameObject weapon, Transform monsterLocation)
 		{
 				AbstractWeapon weaponLogic = weapon.GetComponent<AbstractWeapon> ();
-				weaponLogic.weaponDamage = calculateWeaponDamage (weaponLogic.timeBetweenShots, monsterLocation.position);
+				float weaponSpeed = weaponLogic.normalizedWeaponSpeed ();
+				weaponLogic.weaponDamage = calculateWeaponDamage (weaponSpeed, monsterLocation.position);
 				Debug.Log ("current weapondamage:: " + weaponLogic.weaponDamage);
 		}
 	

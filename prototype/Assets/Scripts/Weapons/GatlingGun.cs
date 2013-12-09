@@ -59,7 +59,7 @@ public class GatlingGun : AbstractWeapon
 
 				//smoke trigger
 				if (heatTimer >= heatTime) {
-						audio.Stop();
+						audio.Stop ();
 						smokeEmiter.loop = true;
 						if (!smokeEmiter.isPlaying)
 								smokeEmiter.Play ();
@@ -98,7 +98,7 @@ public class GatlingGun : AbstractWeapon
 				projectile.rigidbody.velocity = transform.TransformDirection (Vector3.forward * bulletSpeed);
 				//Debug.Log("Weapon damage::" + weaponDamage);
 				StartCoroutine (flash ());
-		audio.Play ();
+				audio.Play ();
 
 		}
 
@@ -108,5 +108,10 @@ public class GatlingGun : AbstractWeapon
 				gunMuzzle.light.enabled = true;
 				yield return 0;
 				gunMuzzle.light.enabled = false;
+		}
+		
+		public override float normalizedWeaponSpeed ()
+		{
+				return (timeBetweenShots + (heatTime + spinUpTime) / (heatTime / timeBetweenShots));
 		}
 }
