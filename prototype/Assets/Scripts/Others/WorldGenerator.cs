@@ -47,10 +47,12 @@ public class WorldGenerator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        seed = NetworkManager.getSeed();
+
 		if (seed == 0)
 			seed = Random.seed;
 
-		int originalSeed = Random.seed; // Store so we can set it back later
+		int originalSeed = seed; // Store so we can set it back later
 		Random.seed = seed;
 		perlinXOffset = Random.value * 1000.0f;
 		perlinYOffset = Random.value * 1000.0f;
@@ -181,18 +183,20 @@ public class WorldGenerator : MonoBehaviour {
 		}
 
 		// Generate props
-		for (int i = 0; i < additionalProps.Length; i++) {
-			int numProps = (int)(20 + Random.value * 50f);
-			for (int j = 0; j < numProps; j++) {
-				GameObject prop = Object.Instantiate(additionalProps[i]) as GameObject;
-				prop.transform.position = new Vector3(100f + Random.value * (terrain.terrainData.size.x - 100f) - terrain.terrainData.size.x / 2.0f,
-				                                      0,
-				                                      100f + Random.value * (terrain.terrainData.size.z - 100f) - terrain.terrainData.size.z / 2.0f);
-				Quaternion rot = prop.transform.rotation;
-				rot.eulerAngles = new Vector3(0.0f, Random.value * 360.0f, 0.0f);
-				prop.transform.rotation = rot;
-			}
-		}
+        for (int i = 0; i < additionalProps.Length; i++)
+        {
+            int numProps = (int)(20 + Random.value * 50f);
+            for (int j = 0; j < numProps; j++)
+            {
+                GameObject prop = Object.Instantiate(additionalProps[i]) as GameObject;
+                prop.transform.position = new Vector3(100f + Random.value * (terrain.terrainData.size.x - 100f) - terrain.terrainData.size.x / 2.0f,
+                                                      0,
+                                                      100f + Random.value * (terrain.terrainData.size.z - 100f) - terrain.terrainData.size.z / 2.0f);
+                Quaternion rot = prop.transform.rotation;
+                rot.eulerAngles = new Vector3(0.0f, Random.value * 360.0f, 0.0f);
+                prop.transform.rotation = rot;
+            }
+        }
 
 
 		// Generate grass

@@ -16,6 +16,7 @@ public class NetworkManager : MonoBehaviour
 
     private NetworkState state = NetworkState.NONE;
     private string textAdress = "127.0.0.1";
+    private static int seed = 0;
 
     private static NetworkManager instance;
 
@@ -27,6 +28,11 @@ public class NetworkManager : MonoBehaviour
     public static NetworkManager get()
     {
         return instance;
+    }
+
+    public static int getSeed()
+    {
+        return seed;
     }
 
     void Awake()
@@ -53,8 +59,9 @@ public class NetworkManager : MonoBehaviour
     }
 
     [RPC]
-    void StartGame()
+    void StartGame(int sharedSeed)
     {
+        seed = sharedSeed;
         Debug.Log("Game Start!");
         Application.LoadLevel("Scene_01");
         state = NetworkState.PLAYING;
@@ -84,7 +91,8 @@ public class NetworkManager : MonoBehaviour
         {
             if (GUI.Button(new Rect(10, 30, 50, 30), "START"))
             {
-                networkView.RPC("StartGame",RPCMode.All);
+                int randomSeed = Random.Range(0, int.MaxValue);
+                networkView.RPC("StartGame", RPCMode.All, randomSeed);
             }
         }
 
