@@ -27,6 +27,8 @@ public abstract class AbstractWeapon : MonoBehaviour
 	private float despawnDelay = 20F; //if it hasnt been picked up in 20, despawn.
 	private float despawnSafety = (float)60 * 60 * 2; //incremetn despawn time with this if you pick it up. Should be a lot, like two hours
 	private float timeToDespawn;
+
+    private GameObject weaponGlow;
 	
 	public float timeBetweenShots;
 	public int bulletSpeed;
@@ -63,8 +65,17 @@ public abstract class AbstractWeapon : MonoBehaviour
 		}
 	}
 
+    public float getDPS()
+    {
+        return weaponDamage / timeBetweenShots;
+    }
+
 	protected void Awake ()
 	{
+        weaponGlow = GetComponentInChildren<WeaponGlow>().gameObject;
+        if (weaponGlow == null) {
+            Debug.Log("No weaponGlow found");
+        }
 		if (gunMuzzle == null) {
 			Debug.Log ("Weapon muzzle is not set");
 		}
