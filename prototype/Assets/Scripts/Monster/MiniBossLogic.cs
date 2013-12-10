@@ -18,13 +18,15 @@ public class MiniBossLogic : AbstractEnemy
 		public float timeBetweenSpecialAttacks;
 		private float timetoStopCasting;
 		private float castingTime;
+		
+		private RigidbodyConstraints constraintsFromEditor;
 	
 		bool castLightning;
 	
 		private BossSpecialAttacks specialAttackToPerform;
 	
 		float lightningThickness = 0.3F;
-		float lightningAttackMaxDistance = 25;
+		float lightningAttackMaxDistance = 20;
 	
 	
 		/// FOR SIZE
@@ -36,9 +38,12 @@ public class MiniBossLogic : AbstractEnemy
 	
 		protected override void setUpMonsterAtStart ()
 		{
+				Debug.Log ("miniboss set up!");
 				startWidth = gameObject.renderer.bounds.size.x;
 				minimumWidth = startWidth * 0.1F;
 				startHealth = health;
+				
+				constraintsFromEditor = transform.rigidbody.constraints;
 		
 		}
 	
@@ -63,6 +68,7 @@ public class MiniBossLogic : AbstractEnemy
 								//should stop casting
 								isCasting = false;
 								nextSpecialAttack = Time.time + timeBetweenSpecialAttacks;
+								unFreezePosition ();
 								performSpecialAttack ();
 								//Debug.Log ("Shoud stop casting. time to cast: " + nextSpecialAttack);
 						}
@@ -72,6 +78,7 @@ public class MiniBossLogic : AbstractEnemy
 								//should start casting
 								randomizeNextSpecialAttack ();
 								isCasting = true;
+								freezePosition ();
 								castAttack ();
 								timetoStopCasting = Time.time + castingTime;
 						}
@@ -83,6 +90,16 @@ public class MiniBossLogic : AbstractEnemy
 						}
 				}
 		
+		}
+		
+		void freezePosition ()
+		{
+				transform.rigidbody.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
+		}
+		
+		void unFreezePosition ()
+		{
+				transform.rigidbody.constraints = constraintsFromEditor;
 		}
 	
 		void updateSize ()
@@ -165,7 +182,6 @@ public class MiniBossLogic : AbstractEnemy
 				castingTime = 3.0F;
 				float projectileSpeed = 20;
 				for (float i = 0; i < 360; i = i + 45) {
-			
 						float z = Mathf.Sin (i) * 2;
 						float x = Mathf.Cos (i) * 2;
 						GameObject proj = MonsterAttackFactory.sharedFactory ().createMiniBossStraightProjectile (gameObject.transform);
@@ -175,7 +191,7 @@ public class MiniBossLogic : AbstractEnemy
 						logic.initialDirection = newVector;
 						logic.projectileSpeed = projectileSpeed;
 						logic.waitTime = castingTime;
-						Debug.Log ("spawned projectile at position::" + newVector);
+						//Debug.Log ("spawned projectile at position::" + newVector);
 				}
 		
 		}
@@ -193,21 +209,31 @@ public class MiniBossLogic : AbstractEnemy
 		void shootLightningAttack ()
 		{
 				float distance = Vector3.Distance (target.transform.position, transform.position);
+				Vector3 lightPos = target.transform.position;
 				if (distance > lightningAttackMaxDistance) {
-						Debug.Log ("Player is " + distance + " units away, aborting");
-						return;
+						Vector3 directionOfPlayer = target.transform.position - transform.position;
+						directionOfPlayer.Normalize ();
+						lightPos = transform.position + directionOfPlayer * lightningAttackMaxDistance;
+				
+				} else {
+						//if its inside, do damage
+						int damage = 1;
+						target.transform.SendMessage ("applyDamage", damage, SendMessageOptions.DontRequireReceiver);
 				}
 		
-				EffectFactory.sharedFactory ().createLightningBetween (transform.position, target.transform.position, lightningThickness * 3F);
-				int damage = 1;
-				target.transform.SendMessage ("applyDamage", damage, SendMessageOptions.DontRequireReceiver);
+				EffectFactory.sharedFactory ().createLightningBetween (transform.position, lightPos, lightningThickness * 3F);
+				
 		
 		}
 	
 		void randomizeNextSpecialAttack ()
 		{
-				int randomInt = Mathf.RoundToInt (Random.Range (0, (int)BossSpecialAttacks.BossSpecialAttacksMAX - 1));
+				Debug.Log ("Attack MAx" + (int)BossSpecialAttacks.BossSpecialAttacksMAX);
+				float randomizedFloat = Random.Range (0F, (float)((int)BossSpecialAttacks.BossSpecialAttacksMAX - 1));
+				Debug.Log ("randomized float" + randomizedFloat);
+				int randomInt = Mathf.RoundToInt (randomizedFloat);
 				specialAttackToPerform = (BossSpecialAttacks)randomInt;
+				Debug.Log ("random int: " + randomInt + " special attack : " + specialAttackToPerform);
 		}
 	
 		void castLightningAttack ()

@@ -140,12 +140,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46616ceaaeabc4a4f978eb089b86e261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bloodSpurtEffect: {fileID: 100000, guid: a147cd496e04f4cfba043b3802330429, type: 2}
   health: 15000
-  defaultMovingSpeed: 5
+  defaultMovingSpeed: 300
   target: {fileID: 0}
   searchRadius: 80
-  timeBetweenSpecialAttacks: 4
+  timeBetweenSpecialAttacks: 8
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

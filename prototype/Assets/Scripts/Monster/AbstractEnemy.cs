@@ -61,6 +61,8 @@ public class AbstractEnemy : MonoBehaviour
 						Debug.Log ("Does not have initial target");
 				}
 				
+				setUpMonsterAtStart ();
+				
 		}
 		
 		protected virtual void setUpMonsterAtStart ()
@@ -75,9 +77,10 @@ public class AbstractEnemy : MonoBehaviour
 
 				Vector3 delta = target.transform.position - transform.position;
 				delta.Normalize ();
-				float moveSpeed = this.movingSpeed * Time.deltaTime;
+				float moveSpeed = movingSpeed * Time.deltaTime;
 				//transform.position = transform.position + (delta * moveSpeed);
-				rigidbody.AddForce (delta * moveSpeed, ForceMode.Acceleration);
+				rigidbody.velocity = delta * moveSpeed;
+				//rigidbody.AddForce (delta * moveSpeed, ForceMode.Acceleration);
 				transform.LookAt (target.transform);
 		}
 
