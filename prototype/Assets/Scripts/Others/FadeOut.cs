@@ -95,7 +95,8 @@ public class FadeOut : MonoBehaviour {
 		} else {
 			Shader shader = Shader.Find ("Transparent/Diffuse");
 			for (int i = 0; i < renderer.materials.Length; i++) {
-				renderer.materials[i].shader = shader;
+				if (!renderer.materials[i].shader.name.Contains ("Bark"))
+					renderer.materials[i].shader = shader;
 			}
 		}
 	}

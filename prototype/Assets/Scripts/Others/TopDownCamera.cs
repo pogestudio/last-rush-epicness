@@ -53,7 +53,7 @@ public class TopDownCamera : MonoBehaviour
 		}
 
 		// However, all objects we're still hitting with the raycast need to keep fading
-		hits = Physics.RaycastAll(transform.position - transform.forward * 5.0f, transform.forward, 1000.0f);
+		hits = Physics.RaycastAll(transform.position - transform.forward * 10.0f, transform.forward, 1000.0f);
 		for (int i = 0; i < hits.Length; i++) {
 			if (!hits[i].transform.Equals(target)) {
 				FadeOut fo = hits[i].collider.gameObject.GetComponent<FadeOut>();

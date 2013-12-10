@@ -120,7 +120,7 @@ public class WorldGenerator : MonoBehaviour {
 		terrain.terrainData.SetAlphamaps(0, 0, alphaMaps);
 		
 		// Generate trees
-		int numTrees = 2000 + (int)(Random.value * 1200.0f);
+		int numTrees = 1000 + (int)(Random.value * 600.0f);
 		float treeX = Random.value;
 		float treeY = Random.value;
 
