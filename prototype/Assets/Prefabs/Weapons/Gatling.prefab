@@ -1852,7 +1852,7 @@ MonoBehaviour:
   timeBetweenShots: .100000001
   bulletSpeed: 20
   weaponDamage: 2
-  heatTime: 5
+  heatTime: 7
   spinUpTime: 2
   maxRotationSpeed: 1000
   spinningPart: {fileID: 100048}

@@ -102,7 +102,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &11400000
 MonoBehaviour:
@@ -128,7 +128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4820b4f143efc49b78abe3753faa261b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bloodSpurtEffect: {fileID: 100000, guid: a147cd496e04f4cfba043b3802330429, type: 2}
   health: 50
   defaultMovingSpeed: 250
   target: {fileID: 0}

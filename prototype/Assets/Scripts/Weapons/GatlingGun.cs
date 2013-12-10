@@ -4,7 +4,7 @@ using System.Collections;
 public class GatlingGun : AbstractWeapon
 {
 
-		public float heatTime = 5f;
+		public float heatTime = 7f;
 		public float spinUpTime = 2f;
 		public float maxRotationSpeed = 200f;
 
@@ -41,7 +41,7 @@ public class GatlingGun : AbstractWeapon
 				if (trigger)
 						spinUpTimer += Time.deltaTime;
 				else
-						spinUpTimer -= Time.deltaTime;
+						spinUpTimer -= Time.deltaTime/2;    //spin up twice faster than slowing down
 
 				spinUpTimer = Mathf.Clamp (spinUpTimer, 0, spinUpTime);
 
