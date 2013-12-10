@@ -228,12 +228,12 @@ public class MiniBossLogic : AbstractEnemy
 	
 		void randomizeNextSpecialAttack ()
 		{
-				Debug.Log ("Attack MAx" + (int)BossSpecialAttacks.BossSpecialAttacksMAX);
+				//Debug.Log ("Attack MAx" + (int)BossSpecialAttacks.BossSpecialAttacksMAX);
 				float randomizedFloat = Random.Range (0F, (float)((int)BossSpecialAttacks.BossSpecialAttacksMAX - 1));
-				Debug.Log ("randomized float" + randomizedFloat);
+				//Debug.Log ("randomized float" + randomizedFloat);
 				int randomInt = Mathf.RoundToInt (randomizedFloat);
 				specialAttackToPerform = (BossSpecialAttacks)randomInt;
-				Debug.Log ("random int: " + randomInt + " special attack : " + specialAttackToPerform);
+				//Debug.Log ("random int: " + randomInt + " special attack : " + specialAttackToPerform);
 		}
 	
 		void castLightningAttack ()

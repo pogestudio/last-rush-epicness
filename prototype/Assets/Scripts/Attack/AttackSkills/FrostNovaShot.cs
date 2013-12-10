@@ -9,7 +9,6 @@ public class FrostNovaShot : SkillEffect
 
 		public override void doDamage (GameObject colliderObject)
 		{
-				Debug.Log ("Nova fired!");
 				ArrayList monstersWithinNova = MonsterFinder.sharedHelper ().monstersWithinArea (transform.position, novaDistance);
 				foreach (GameObject monster in monstersWithinNova) {
 						SlowingEffect existingEffect = monster.GetComponent<SlowingEffect> ();

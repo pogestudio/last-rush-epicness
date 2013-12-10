@@ -71,7 +71,7 @@ public class LootHandler
 				AbstractWeapon weaponLogic = weapon.GetComponent<AbstractWeapon> ();
 				float weaponSpeed = weaponLogic.normalizedWeaponSpeed ();
 				weaponLogic.weaponDamage = calculateWeaponDamage (weaponSpeed, monsterLocation.position);
-				Debug.Log ("current weapondamage:: " + weaponLogic.weaponDamage);
+				//Debug.Log ("current weapondamage:: " + weaponLogic.weaponDamage);
 		}
 	
 		int calculateWeaponDamage (float weaponSpeed, Vector3 monsterPosition)
