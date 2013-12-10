@@ -68,15 +68,15 @@ public class LightningStrike : MonoBehaviour
 		void setNewTarget ()
 		{
 				if (ignoreList == null || ignoreList.Count == 0) {
-						Debug.Log ("ignore list is zeeeero");
+//						Debug.Log ("ignore list is zeeeero");
 						ignoreList = new ArrayList ();
 				} else {
 						//Debug.Log ("ignorelist count is :: " + ignoreList.Count);
 				}
 				ignoreList.Add (currentMonster);
-				if (currentMonster.tag == "MiniBoss") {
-						Debug.Log ("adding miniboss to ignorelist");
-				}
+//				if (currentMonster.tag == "MiniBoss") {
+//						Debug.Log ("adding miniboss to ignorelist");
+//				}
 				nextMonster = MonsterFinder.sharedHelper ().getClosestMonsterExcept (ignoreList, gameObject.transform.position, searchRadius);
 		}
 
@@ -90,6 +90,7 @@ public class LightningStrike : MonoBehaviour
 				lStrike.amountOfJumps = this.amountOfJumps - 1;
 				lStrike.nextJump = this.nextJump + this.timeBetweenJumps;
 				lStrike.ignoreList = this.ignoreList;
+				Debug.Log ("the next ignorelist is... " + lStrike.ignoreList + " with " + lStrike.ignoreList.Count + " elements!");
 		}
 }
 

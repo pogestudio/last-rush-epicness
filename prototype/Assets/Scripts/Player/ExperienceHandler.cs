@@ -49,16 +49,16 @@ public class ExperienceHandler : MonoBehaviour
 		private void addAllSkills ()
 		{
 
-			allSkills = new ArrayList ();
-			allSkills.Add (new Skill ("FrostNovaShot", WeaponTypes.Gatling, "Colder than Lady Gagas tits, these projectiles slow everything around them upon impact"));
-			//allSkills.Add (new Skill ("CriticalHit", WeaponTypes.Gatling));
-			//allSkills.Add (new Skill ("BurningShot", WeaponTypes.MachineGun));
-			//allSkills.Add (new Skill ("ShrapnelShot", WeaponTypes.Gatling));
-			allSkills.Add (new Skill ("ExplodingShot", WeaponTypes.HandGun, "Ever wondered what it feels like to fire a dynamite? New witch craft technology enables you to do just that."));
-			//allSkills.Add (new Skill ("HomingShot", WeaponTypes.HandGun));
-			allSkills.Add (new Skill ("LightningShot", WeaponTypes.MachineGun, "Zeus fury is released upon the foes! "));
-			allSkills.Add (new Skill ("MultiShot", WeaponTypes.ShotGun, "Fire one, fire two, or why not more? By adding on this skill you will quickly find out that one muzzle can do the work of several."));
-			//allSkills.Add (new Skill ("PiercingShot", WeaponTypes.MachineGun, "This shit fires piercing shots, with piercing abilities close to that of LA Ink"));
+				allSkills = new ArrayList ();
+				//allSkills.Add (new Skill ("FrostNovaShot", WeaponTypes.Gatling, "Colder than Lady Gagas tits, these projectiles slow everything around them upon impact"));
+				//allSkills.Add (new Skill ("CriticalHit", WeaponTypes.Gatling));
+				//allSkills.Add (new Skill ("BurningShot", WeaponTypes.MachineGun));
+				//allSkills.Add (new Skill ("ShrapnelShot", WeaponTypes.Gatling));
+				//allSkills.Add (new Skill ("ExplodingShot", WeaponTypes.HandGun, "Ever wondered what it feels like to fire a dynamite? New witch craft technology enables you to do just that."));
+				//allSkills.Add (new Skill ("HomingShot", WeaponTypes.HandGun));
+				allSkills.Add (new Skill ("LightningShot", WeaponTypes.MachineGun, "Zeus fury is released upon the foes! "));
+				//allSkills.Add (new Skill ("MultiShot", WeaponTypes.ShotGun, "Fire one, fire two, or why not more? By adding on this skill you will quickly find out that one muzzle can do the work of several."));
+				//allSkills.Add (new Skill ("PiercingShot", WeaponTypes.MachineGun, "This shit fires piercing shots, with piercing abilities close to that of LA Ink"));
 
 		}
 

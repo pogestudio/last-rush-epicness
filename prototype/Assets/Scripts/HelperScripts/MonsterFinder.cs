@@ -38,19 +38,25 @@ public class MonsterFinder
 				return monstersAroundLocation;
 		}
 	
-		public GameObject getClosestMonsterExcept (GameObject thisMonster, Vector3 center, float searchRadius)
-		{
-				ArrayList monstersAroundLocation = getSortedListOfNearbyMonsters (center, searchRadius);
-				monstersAroundLocation.Remove (thisMonster);
-				return firstOrNull (monstersAroundLocation);
-		}
+//		public GameObject getClosestMonsterExcept (GameObject thisMonster, Vector3 center, float searchRadius)
+//		{
+//				ArrayList monstersAroundLocation = getSortedListOfNearbyMonsters (center, searchRadius);
+//				monstersAroundLocation.Remove (thisMonster);
+//				return firstOrNull (monstersAroundLocation);
+//		}
 	
 		public GameObject getClosestMonsterExcept (ArrayList listOfExcepts, Vector3 center, float searchRadius)
 		{
 				ArrayList monstersAroundLocation = getSortedListOfNearbyMonsters (center, searchRadius);
+				Debug.Log ("list of excepts:: " + listOfExcepts.Count);
+				Debug.Log ("monsters around before removing : " + monstersAroundLocation.Count);
 				foreach (GameObject exception in listOfExcepts) {
-						monstersAroundLocation.Remove (exception);
+						if (monstersAroundLocation.Contains (exception)) {
+								Debug.Log ("We are removing an object!");
+								monstersAroundLocation.Remove (exception);
+						}
 				}
+				Debug.Log ("monsters around after removing : " + monstersAroundLocation.Count);
 				return firstOrNull (monstersAroundLocation);
 		}
 	
@@ -82,7 +88,7 @@ public class MonsterFinder
 	
 		public bool targetIsEnemy (GameObject target)
 		{
-			return (target.layer == LayerMask.NameToLayer("Monsters"));
+				return (target.layer == LayerMask.NameToLayer ("Monsters"));
 		}
 	
 }
