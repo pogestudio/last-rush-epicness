@@ -14,6 +14,7 @@ public class EffectFactory : MonoBehaviour
     public GameObject snowingFire;
 
     public GameObject burningEffect;
+    public GameObject frozenEffect;
     public GameObject bloodSpurtEffect;
 
 
@@ -82,7 +83,7 @@ public class EffectFactory : MonoBehaviour
         GameObject effect = Instantiate(bloodSpurtEffect, origin, Quaternion.LookRotation(direction)) as GameObject;
         ParticleSystem system = effect.GetComponentInChildren<ParticleSystem>();
 
-        Destroy(effect, system.duration + 1f);
+        Destroy(effect, system.duration + 0.1f);
     }
 
 
@@ -164,6 +165,10 @@ public class EffectFactory : MonoBehaviour
         //Should be rewritten so that it adds a script/ParticleSystem which is destroyed after the duration
         Color slowColor = new Color(0.6f, 1f, 1f);
         objectToAddTo.transform.renderer.material.color = slowColor;
+
+        GameObject frozen = Instantiate(frozenEffect, Vector3.zero, Quaternion.identity) as GameObject;
+        frozen.transform.parent = objectToAddTo.transform;
+        frozen.transform.localPosition = Vector3.zero;
     }
 
 

@@ -3,7 +3,6 @@ using System.Collections;
 
 public class AbstractEnemy : MonoBehaviour
 {
-		public GameObject bloodSpurtEffect;
 		private GameObject[] effects;
 
 		public int health;
@@ -28,15 +27,6 @@ public class AbstractEnemy : MonoBehaviour
 				//Debug.Log ("Monster should die");
 				DropsLoot lootComponent = gameObject.GetComponent<DropsLoot> ();
 				lootComponent.ShouldDropLoot ();
-
-				if (bloodSpurtEffect) {
-						for (int i = 0; i < effects.Length; i++) {
-								if (!effects [i]) {
-										Destroy (effects [i]);
-										effects [i] = null;
-								}
-						}
-				}
 				Destroy (gameObject);
 		}
 
@@ -60,25 +50,13 @@ public class AbstractEnemy : MonoBehaviour
 								die ();
 						}
 				}
-
-				//effect
-				if (bloodSpurtEffect) {
-						for (int i = 0; i < effects.Length; i++) {
-								if (!effects [i]) {
-										effects [i] = Instantiate (bloodSpurtEffect, transform.position, Quaternion.LookRotation (shotDir)) as GameObject;
-										Destroy (effects [i], 1.0f);
-										break;
-								}
-						}
-				}
 		}
 
 		// Use this for initialization
 		void Start ()
 		{
 				movingSpeed = defaultMovingSpeed; // set the moving speed we have from editor. 
-				if (bloodSpurtEffect)
-						effects = new GameObject[4];
+
 				if (!target) {
 						Debug.Log ("Does not have initial target");
 				}

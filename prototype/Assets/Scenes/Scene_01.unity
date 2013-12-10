@@ -4904,6 +4904,7 @@ MonoBehaviour:
   sphericNova: {fileID: 100000, guid: 4ded9a4d58d0c498f8526107d63ba8ed, type: 2}
   snowingFire: {fileID: 100000, guid: 983064fb80d314e1d91b2574a76af379, type: 2}
   burningEffect: {fileID: 100000, guid: 15370ad3eb2a37d4e8a64bfacc13dc83, type: 2}
+  frozenEffect: {fileID: 100004, guid: 35eb351ad77e2ee4dbacda9e551daf11, type: 2}
   bloodSpurtEffect: {fileID: 100000, guid: a147cd496e04f4cfba043b3802330429, type: 2}
 --- !u!4 &982871704
 Transform:
@@ -5319,7 +5320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1058371897
 Transform:
   m_ObjectHideFlags: 0
