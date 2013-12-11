@@ -51,7 +51,7 @@ public class LootHandler
 		{
 				float chanceOfDropping = 1F;
 				if (lootRarity == LootTable.RegularLoot) {
-						chanceOfDropping = 0.05F;
+						chanceOfDropping = 0.2F;
 				}
 				bool shouldDrop = chanceOfDropping >= Random.value;
 				return shouldDrop;
@@ -77,6 +77,10 @@ public class LootHandler
 		int calculateWeaponDamage (float weaponSpeed, Vector3 monsterPosition)
 		{
 				float dps = dpsForMapPosition (monsterPosition);
+				
+				// add randomizer
+				float Randomizer = Random.Range (0.8F, 1.2F);
+				dps = dps * Randomizer;
 				int damagePerShot = (int)(dps * weaponSpeed);
 				return damagePerShot;
 		}
