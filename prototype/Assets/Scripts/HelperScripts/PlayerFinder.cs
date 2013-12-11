@@ -64,11 +64,10 @@ public class PlayerFinder
 				return players;
 		}
 	
-
-	public bool targetIsPlayer (GameObject target)
-	{
-		return (target.CompareTag("Player"));
-	}
+		public bool targetIsPlayer (GameObject target)
+		{
+				return (target.CompareTag ("Player") || target.CompareTag ("OtherPlayer"));
+		}
 
 }
 

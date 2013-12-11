@@ -30,12 +30,14 @@ public class SpawnMonsterAroundMe : MonoBehaviour
 		// Update is called once per frame
 		void Update ()
 		{
-				if (timeToIgnore > Time.time)
-						return;
-				if (reachMaxSpawnRateAfterThisTime > Time.time && Time.time > nextSpawn) { //spawn slowly!
+				if (timeToIgnore > Time.time) {
+				
+				} else if (reachMaxSpawnRateAfterThisTime > Time.time && Time.time > nextSpawn) { //spawn slowly!
 						MonsterFactory.SpawnMonster (gameObject);
 						nextSpawn = Time.time + (spawnRate) * (reachMaxSpawnRateAfterThisTime - Time.time) / reachMaxSpawnRateAfterThisTime;
+						//	Debug.Log ("Deprecated spawn. Next spawn rate " + nextSpawn);
 				} else if (Time.time > nextSpawn) {	//regular spawn!
+						//	Debug.Log ("Regular spawn");
 						MonsterFactory.SpawnMonster (gameObject);
 						nextSpawn = Time.time + spawnRate;
 				}
