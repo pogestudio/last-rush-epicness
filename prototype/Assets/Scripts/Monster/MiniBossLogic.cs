@@ -38,9 +38,9 @@ public class MiniBossLogic : AbstractEnemy
 	
 		protected override void setUpMonsterAtStart ()
 		{
-				Debug.Log ("miniboss set up!");
+//				Debug.Log ("miniboss set up!");
 				startWidth = gameObject.renderer.bounds.size.x;
-				minimumWidth = startWidth * 0.1F;
+				minimumWidth = startWidth * 0.3F;
 				startHealth = health;
 				
 				constraintsFromEditor = transform.rigidbody.constraints;
@@ -49,9 +49,9 @@ public class MiniBossLogic : AbstractEnemy
 	
 		void Update ()
 		{
+				updateSize ();
 		
 				if (networkView.isMine) {
-						//updateSize ();
 			
 //						if (!target) {
 //								target = PlayerFinder.sharedHelper ().getClosestPlayer (transform.position, searchRadius);
@@ -111,12 +111,13 @@ public class MiniBossLogic : AbstractEnemy
 				//				Debug.Log ("current size: " + currentSize);
 				//				Debug.Log ("health prog: " + currentHealthProgess);
 				//				Debug.Log ("sizeWeshouldbeat: " + sizeWeShouldBeAt);
-		
-				if (currentSize > minimumWidth && (currentSize - sizeWeShouldBeAt) > 0.01F) {
-						float diff = sizeWeShouldBeAt / currentSize;
-						Debug.Log ("Diff : " + diff);
-						transform.localScale = new Vector3 (sizeWeShouldBeAt, sizeWeShouldBeAt, sizeWeShouldBeAt);
-				}
+				sizeWeShouldBeAt = Mathf.Max (minimumWidth, sizeWeShouldBeAt);
+				
+				//float diff = sizeWeShouldBeAt / currentSize;
+				//Debug.Log ("Diff : " + diff);
+				
+				Vector3 newSize = new Vector3 (sizeWeShouldBeAt, sizeWeShouldBeAt, sizeWeShouldBeAt);
+				networkView.RPC ("setSizeRPC", RPCMode.All, newSize);
 		}
 	
 		void performSpecialAttack ()
@@ -246,5 +247,13 @@ public class MiniBossLogic : AbstractEnemy
 				//Debug.Log ("and: " + pointForwardOfMiniBoss);
 		
 		}
+		
+	
+		[RPC]
+		void setSizeRPC (Vector3 newSize)
+		{
+				transform.localScale = newSize;
+		}
+	
 	
 }
