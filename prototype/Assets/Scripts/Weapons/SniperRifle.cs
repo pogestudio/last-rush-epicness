@@ -32,6 +32,7 @@ public class SniperRifle : RaycastWeapon
 		if (delay <= 0) {
 			delay = timeBetweenShots;
 			fire ();
+            audio.Play();
 		}
 	}
 	
