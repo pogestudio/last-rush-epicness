@@ -26,12 +26,11 @@ public class AbstractEnemy : MonoBehaviour
 
 		public void applyDamage (int damage)
 		{
-				Vector3 shotDir = transform.position - target.transform.position;   //TODO replace with BULLET direction (not related to target or whatever)
-				networkView.RPC ("applyDamageRPC", RPCMode.All, damage, shotDir);
+				networkView.RPC ("applyDamageRPC", RPCMode.All, damage);
 		}
 
 		[RPC]
-		private void applyDamageRPC (int damage, Vector3 shotDir)
+		private void applyDamageRPC (int damage)
 		{
 
 				//real damage
