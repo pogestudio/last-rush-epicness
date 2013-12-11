@@ -17,14 +17,16 @@ public class SpawnMonsterAroundMe : MonoBehaviour
 		// Use this for initialization
 		void Start ()
 		{
-				if (!networkView.isMine)
+		
+				if (!networkView.isMine) {
 						this.enabled = false;
+						
+				}
+				Debug.Log ("Network view ismine:: " + networkView.isMine);
+
 
 				if (spawnRate == 0F)
-						Debug.LogError ("spawnRate should be set in scene. is not!");
-						
-						
-		
+						Debug.LogError ("spawnRate should be set in scene. is not!");	
 		}
 	
 		// Update is called once per frame
