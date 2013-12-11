@@ -93,10 +93,7 @@ public class NetworkManager : MonoBehaviour
         }
         else if (state == NetworkState.HOST)
         {
-            GUI.Label(new Rect(10, 10, 1000, 20), "connect to " + Network.player.ipAddress);
-            GUI.Label(new Rect(10, 30, 1000, 20), "Other players connected: " + Network.connections.Length);
-
-            if (GUI.Button(new Rect(10, 60, 50, 30), "START"))
+            if (GUI.Button(new Rect(10, 30, 50, 30), "START"))
             {
                 int randomSeed = Random.Range(0, int.MaxValue);
                 Network.maxConnections = Network.connections.Length;
