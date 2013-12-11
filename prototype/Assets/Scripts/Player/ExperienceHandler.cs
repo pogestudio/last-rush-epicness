@@ -28,6 +28,8 @@ public class ExperienceHandler : MonoBehaviour
 
 		private ArrayList allSkills;
 
+		public GameObject levelUpEffect;
+
 		/// <summary>
 		/// Use this to retrieve the singleton
 		/// </summary>
@@ -83,5 +85,10 @@ public class ExperienceHandler : MonoBehaviour
 		private void skillLeveledUp (WeaponTypes weaponType)
 		{
 				Debug.Log ("Skill leveled up for weaponType :: " + weaponType);
+				if (levelUpEffect) {
+					GameObject effect = GameObject.Instantiate(levelUpEffect) as GameObject;
+					effect.transform.parent = gameObject.transform;
+					effect.transform.localPosition = Vector3.zero;
+				}
 		}
 }
