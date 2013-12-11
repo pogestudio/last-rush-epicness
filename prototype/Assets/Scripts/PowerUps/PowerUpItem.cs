@@ -19,6 +19,8 @@ public class PowerUpItem : MonoBehaviour
 						return;
 		
 				ImprovedSkillChance powerUp = collidingObject.gameObject.AddComponent<ImprovedSkillChance> ();
+				powerUp.powerupItem = this.gameObject;
+				powerUp.powerupPlayer = collidingObject.gameObject;
 				Destroy (powerUp, timeForPowerUpToLast);
 				
 				Destroy (gameObject);
