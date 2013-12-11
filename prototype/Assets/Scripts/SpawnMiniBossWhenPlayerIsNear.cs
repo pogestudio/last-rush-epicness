@@ -39,7 +39,7 @@ public class SpawnMiniBossWhenPlayerIsNear : MonoBehaviour
 	{
         Debug.Log("spawning boss");
 		if (!hasSpawned) {
-			GameObject newBoss = Instantiate (miniBoss, transform.position, transform.rotation) as GameObject;
+			GameObject newBoss = Network.Instantiate (miniBoss, transform.position, transform.rotation, 1) as GameObject;
 			hasSpawned = true;
 		}
 		Destroy (gameObject);

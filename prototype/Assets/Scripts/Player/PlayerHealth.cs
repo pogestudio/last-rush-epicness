@@ -12,36 +12,40 @@ health - the starting of the player
 
 public class PlayerHealth : MonoBehaviour
 {
-		public int health = 3;
-	
-		private HealthBarLogic healthBar;
+	public int health = 3;
 
-		void Start ()
-		{
-				//Find the gameobject with the healthbarlogic and assign at start.
-				//It should be tagged with "HealthBar". 
-				GameObject healthBarContainer = GameObject.FindGameObjectWithTag ("HealthBar");
-				healthBar = healthBarContainer.GetComponent<HealthBarLogic> () as HealthBarLogic;
-				if (!healthBar)
-						Debug.LogError ("FAIL! Need a logic script for health bar!");
-				healthBar.setLife (health); //set the initial life.
-	
-		}
-		private void die ()
-		{
-				//	Debug.Log ("Player should die");
-				//gameObject.SetActive (false);
-				Destroy (gameObject);
-		}
+	private HealthBarLogic healthBar;
 
-		public void applyDamage (int damage)
+	void Start()
+	{
+		//Find the gameobject with the healthbarlogic and assign at start.
+		//It should be tagged with "HealthBar". 
+		GameObject healthBarContainer = GameObject.FindGameObjectWithTag("HealthBar");
+		healthBar = healthBarContainer.GetComponent<HealthBarLogic>() as HealthBarLogic;
+		if (!healthBar)
+			Debug.LogError("FAIL! Need a logic script for health bar!");
+		healthBar.setLife(health); //set the initial life.
+
+	}
+	private void die()
+	{
+		//	Debug.Log ("Player should die");
+		//gameObject.SetActive (false);
+		Destroy(gameObject);
+	}
+
+	public void applyDamage(int damage)
+	{
+		if (networkView.isMine)
 		{
-				audio.Play ();
-				health -= damage;
-				healthBar.setLife (health);
-				if (health <= 0) {
-						die ();
-				}
+			audio.Play();
+			health -= damage;
+			healthBar.setLife(health);
+			if (health <= 0)
+			{
+				die();
+			}
 		}
+	}
 
 }
