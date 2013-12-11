@@ -99,8 +99,8 @@ public class LootHandler
 				float playerProg = playerProgressInMap * 100; // get real numbers for formula
 		
 				float maxDPS = 500F;
-				float minDPS = 25F;
-				float completeProgress = 100F;
+				float minDPS = 50F;
+				float completeProgress = 40F;
 		
 				float C = Mathf.Pow (10, Mathf.Log10 (maxDPS - minDPS) / completeProgress);
 				float CtothePowerOfX = Mathf.Pow (C, playerProg);
