@@ -6,6 +6,7 @@ public class PlayerSpawn : MonoBehaviour
 {
     public GameObject playerPrefab;
     public WeaponTypes startWeapon;
+    public GameObject[] models;
     GameObject player;
     private int playersToWait;
 
@@ -66,6 +67,20 @@ public class PlayerSpawn : MonoBehaviour
 
 
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<TopDownCamera>().target = player.transform;
+
+        int randomModelIndex = Random.Range(0, models.Length);
+        networkView.RPC("initPlayerReplica", RPCMode.AllBuffered, NetworkTranslator.ToId(player), randomModelIndex);
+    }
+
+    [RPC]
+    private void initPlayerReplica(NetworkViewID id, int modelIndex)
+    {
+        GameObject player = NetworkTranslator.ToInstance(id);
+        GameObject model = Instantiate(models[modelIndex]) as GameObject;
+        model.transform.parent = player.transform;
+        model.transform.localPosition = Vector3.zero;
+        model.transform.localRotation = Quaternion.identity;
+        model.name = "model";
     }
 
     void OnGUI()
