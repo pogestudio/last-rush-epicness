@@ -29,6 +29,7 @@ public class DayNightCycle : MonoBehaviour
         sun = GetComponentInChildren<Light>();
         sun.transform.localRotation = Quaternion.identity;
         transform.rotation = Quaternion.Euler(summerness,0,0);
+        setAllFlashlights(false);
     }
 
     // Update is called once per frame
@@ -53,11 +54,22 @@ public class DayNightCycle : MonoBehaviour
 
     private IEnumerator night()
     {
+        setAllFlashlights(true);
         sun.enabled = false;
         isDay = false;
         yield return new WaitForSeconds(nightDurationSeconds);
+        setAllFlashlights(false);
         sun.enabled = true;
         isDay = true;
         dayTimer = 0;
+    }
+
+    private void setAllFlashlights(bool on)
+    {
+        FlashLight[] list = FindObjectsOfType<FlashLight>();
+        foreach (FlashLight script in list)
+        {
+            script.toggleOnOff(on);
+        }
     }
 }
