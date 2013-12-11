@@ -2478,10 +2478,10 @@ Transform:
   m_Children:
   - {fileID: 1237522309}
   - {fileID: 638396642}
-  - {fileID: 520833821}
   - {fileID: 1157506169}
-  - {fileID: 417533842}
+  - {fileID: 520833821}
   - {fileID: 142656247}
+  - {fileID: 417533842}
   - {fileID: 1883103552}
   m_Father: {fileID: 0}
 --- !u!1 &424506440
@@ -7530,7 +7530,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400008, guid: 015b97a4c62f14192a495d2f5fae6b75, type: 2}
   m_PrefabInternal: {fileID: 1161365233}
   m_GameObject: {fileID: 1514381848}
-  m_LocalRotation: {x: .696364284, y: .696364224, z: .122787677, w: .122787654}
+  m_LocalRotation: {x: .696364343, y: .696364284, z: .122787684, w: .122787662}
   m_LocalPosition: {x: .000923633517, y: .392713785, z: 1.74914539}
   m_LocalScale: {x: 100, y: 176.885422, z: 112.074524}
   m_Children: []
@@ -9010,6 +9010,7 @@ GameObject:
   - 4: {fileID: 1857448259}
   - 114: {fileID: 1857448258}
   - 82: {fileID: 1857448260}
+  - 148: {fileID: 1857448261}
   m_Layer: 0
   m_Name: PlayerSpawn
   m_TagString: Untagged
@@ -9099,6 +9100,18 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!148 &1857448261
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1857448257}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 0}
+  m_ViewID:
+    m_ID: 2
+    m_Type: 1
 --- !u!1 &1863639017
 GameObject:
   m_ObjectHideFlags: 0

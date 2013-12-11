@@ -16,6 +16,7 @@ public class NetworkManager : MonoBehaviour
 
     private NetworkState state = NetworkState.NONE;
     private string textAdress = "127.0.0.1";
+
     private static int seed = 0;
 
     private static NetworkManager instance;
@@ -67,8 +68,11 @@ public class NetworkManager : MonoBehaviour
         state = NetworkState.PLAYING;
     }
 
+
     void OnGUI()
     {
+        
+
         if (state == NetworkState.NONE)
         {
             if (GUI.Button(new Rect(10, 30, 50, 30), "HOST"))
@@ -92,6 +96,7 @@ public class NetworkManager : MonoBehaviour
             if (GUI.Button(new Rect(10, 30, 50, 30), "START"))
             {
                 int randomSeed = Random.Range(0, int.MaxValue);
+                Network.maxConnections = Network.connections.Length;
                 networkView.RPC("StartGame", RPCMode.All, randomSeed);
             }
         }

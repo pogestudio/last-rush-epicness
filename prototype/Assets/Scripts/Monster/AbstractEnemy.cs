@@ -15,19 +15,12 @@ public class AbstractEnemy : MonoBehaviour
 		public GameObject target;
 		public float searchRadius = 80F;
 
-		private void die ()
-		{
-				networkView.RPC ("dieRPC", RPCMode.All);
-		}
-
-
-		[RPC]
-		private void dieRPC ()
+        private void die()
 		{
 				//Debug.Log ("Monster should die");
 				DropsLoot lootComponent = gameObject.GetComponent<DropsLoot> ();
 				lootComponent.ShouldDropLoot ();
-				Destroy (gameObject);
+				Network.Destroy(gameObject);
 		}
 
 
