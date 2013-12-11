@@ -56,7 +56,7 @@ public class ExperienceHandler : MonoBehaviour
 			allSkills.Add (new Skill ("FrostNovaShot", WeaponTypes.Gatling, "Colder than Lady Gagas tits, these projectiles slow everything around them upon impact"));
 			//allSkills.Add (new Skill ("CriticalHit", WeaponTypes.Gatling));
 			//allSkills.Add (new Skill ("BurningShot", WeaponTypes.MachineGun));
-			//allSkills.Add (new Skill ("ShrapnelShot", WeaponTypes.Gatling));
+			//allSkills.Add (new Skill ("ShrapnelShot", WeaponTypes.Gatling, ""));
 			allSkills.Add (new Skill ("ExplodingShot", WeaponTypes.HandGun, "Ever wondered what it feels like to fire a dynamite? New witch craft technology enables you to do just that."));
 			//allSkills.Add (new Skill ("HomingShot", WeaponTypes.HandGun));
 			allSkills.Add (new Skill ("LightningShot", WeaponTypes.MachineGun, "Zeus fury is released upon the foes! "));

@@ -4,6 +4,8 @@ using System.Collections;
 public abstract class RaycastWeapon : AbstractWeapon {
 
 	public LineRenderer lineRenderer;
+	private bool isMultishot = false;
+	private bool isShrapnelShot = false;
 
 	void Start() {
 		//lineRenderer = new LineRenderer();
@@ -11,14 +13,34 @@ public abstract class RaycastWeapon : AbstractWeapon {
 
 	public override void fire ()
 	{
-		RaycastHit[] hits = Physics.RaycastAll(gunMuzzle.position, transform.forward);
+		// Find if we have any special treatment effects
 
-		//Debug.DrawRay(gunMuzzle.position, transform.forward * 1000f, Color.red, 2f);
+		GameObject ghostProjectile = ProjectileFactory.sharedFactory().deliverProjectile(gunMuzzle, type, weaponDamage);
+		ghostProjectile.SetActive(false);
+
+		// TODO: Homingshot
+
+		SkillEffect[] effects = ghostProjectile.GetComponents<SkillEffect>();
+		foreach (SkillEffect effect in effects) {
+			if (effect is MultiShot && !isMultishot) {
+				isMultishot = true;
+				Quaternion originalRotation = transform.rotation;
+				transform.Rotate(Vector3.up, -15.0f);
+				fire();
+				transform.rotation = originalRotation;
+				transform.Rotate(Vector3.up, 15.0f);
+				fire();
+				transform.rotation = originalRotation;
+				isMultishot = false;
+			}
+		}
+
+		RaycastHit[] hits = Physics.RaycastAll(gunMuzzle.position, transform.forward);
 
 		// Need to sort by distance (closest first)
 		hits = sortByDistance(hits);
 
-		//SkillEffect[] effects = ghostProjectile.GetComponents<SkillEffect>();
+
 		bool isPierce = false;
 
 		foreach (RaycastHit hit in hits) {
@@ -27,9 +49,7 @@ public abstract class RaycastWeapon : AbstractWeapon {
 			GameObject target = hit.collider.gameObject;
 			//Debug.Log ("Hit " + target.name);
 
-			GameObject ghostProjectile = ProjectileFactory.sharedFactory().deliverProjectile(gunMuzzle, type, weaponDamage);
-			ghostProjectile.SetActive(false);
-			SkillEffect[] effects = ghostProjectile.GetComponents<SkillEffect>();
+			effects = ghostProjectile.GetComponents<SkillEffect>();
 
 			foreach (SkillEffect effect in effects) {
 				if (effect.targetIsEnemy(target) && !(effect is ShrapnelShot) && !(effect is PiercingShot)) {
@@ -41,6 +61,32 @@ public abstract class RaycastWeapon : AbstractWeapon {
 				if (effect is PiercingShot) {
 					isPierce = true;
 				}
+
+				if (effect.targetIsEnemy(target) && effect is ShrapnelShot && !isShrapnelShot) {
+					Vector3 originalPosition = gunMuzzle.position;
+					Quaternion originalRotation = transform.rotation;
+
+					isShrapnelShot = true;
+					isMultishot = true;
+					for (int i = 0; i < 4; i++) {
+						float rotationAngle;
+						float factor = (float)i / 4f;
+
+						if (factor < 0.5) {
+							rotationAngle = -(135 - (90) * factor);
+						} else {
+							rotationAngle = 45 + 90 * factor;
+						}
+
+						transform.Rotate(Vector3.up, rotationAngle);
+						gunMuzzle.position = hit.point;
+						fire();
+						transform.rotation = originalRotation;
+					}
+					isShrapnelShot = false;
+					isMultishot = false;
+					gunMuzzle.position = originalPosition;
+				}
 			}
 
 			LineRenderer tmp = GameObject.Instantiate(lineRenderer) as LineRenderer;
@@ -49,16 +95,17 @@ public abstract class RaycastWeapon : AbstractWeapon {
 			tmp.SetColors(Color.white, Color.white);
 			tmp.SetPosition(0, gunMuzzle.position);
 			tmp.SetPosition(1, hit.point);
-			Destroy(tmp, 0.5f);
-
-
-			// TODO: Shrapnel, multishot, homingshot
+			Destroy(tmp.gameObject, 0.5f);
 
 			if (!isPierce)
 				break;
 
 			Destroy (ghostProjectile);
+
+			ghostProjectile = ProjectileFactory.sharedFactory().deliverProjectile(gunMuzzle, type, weaponDamage);
+			ghostProjectile.SetActive(false);
 		}
+		Destroy(ghostProjectile);
 
 		StartCoroutine(flash ());
 		if (audio)
