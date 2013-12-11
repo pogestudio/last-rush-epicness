@@ -4982,8 +4982,8 @@ MonoBehaviour:
   glowingModel: {fileID: 100000}
   timeBetweenShots: .5
   bulletSpeed: 0
-  weaponDamage: 10
-  lineRenderer: {fileID: 0}
+  weaponDamage: 40
+  lineRenderer: {fileID: 12000000, guid: 1965a28209cb346cf92cc13f02020d9b, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

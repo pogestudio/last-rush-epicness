@@ -132,10 +132,11 @@ public class WeaponSkillMenu : MonoBehaviour
 				Skill currentSkill = Skill.skillForWeaponType (getCurrentWeaponType ());
 				float playerProgress = (currentSkill.currentXp () - currentSkill.prevXpLimit ()) / (currentSkill.nextXpLimit () - currentSkill.prevXpLimit ());
 				string progressText = currentSkill.currentXp () + " / " + currentSkill.nextXpLimit () + " XP";
+				string barText = SplitCamelCase (currentSkill.currentWeaponType.ToString ()) + "\n" + progressText;
 				GUI.Box (new Rect (startX, startY, width, height), "", toolTipSkin.box);
 				GUI.Box (new Rect (startX, startY, (int)width * playerProgress, height), "", xpBarStyle);
 				GUI.backgroundColor = Color.clear;
-				GUI.Box (new Rect (startX, startY, width, height), progressText, toolTipSkin.box);
+				GUI.Box (new Rect (startX, startY, width, height), barText, toolTipSkin.box);
 				
 				GUI.backgroundColor = defaultColor;
 		
@@ -143,7 +144,7 @@ public class WeaponSkillMenu : MonoBehaviour
 		
 		WeaponTypes getCurrentWeaponType ()
 		{
-            return PlayerWeapons.getMainPlayerWeaponType();
+				return PlayerWeapons.getMainPlayerWeaponType ();
 		}
 		
 	

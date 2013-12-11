@@ -22,14 +22,14 @@ public class MonsterAttackFactory : MonoBehaviour
 	
 		public GameObject createMiniBossHomingProjectile (Transform bossOrigin)
 		{
-				GameObject newProjectile = Instantiate (miniBossHomingProjectile, bossOrigin.position, bossOrigin.rotation) as GameObject;	
+				GameObject newProjectile = Network.Instantiate (miniBossHomingProjectile, bossOrigin.position, bossOrigin.rotation,1) as GameObject;	
 		
 				return newProjectile;
 		}
 	
 		public GameObject createMiniBossStraightProjectile (Transform bossOrigin)
 		{
-				GameObject newProjectile = Instantiate (miniBossStraightProjectile, bossOrigin.position, bossOrigin.rotation) as GameObject;	
+				GameObject newProjectile = Network.Instantiate (miniBossStraightProjectile, bossOrigin.position, bossOrigin.rotation,1) as GameObject;	
 		
 				return newProjectile;
 		}

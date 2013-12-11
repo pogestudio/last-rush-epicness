@@ -71,7 +71,16 @@ public abstract class SkillEffect : MonoBehaviour
 	
 	public void destroyProjectileWithDelay (GameObject projectile)
 	{
-		Destroy (projectile, 0.05F); // let other components do their stuff
+        StartCoroutine("destroyProjectile", projectile);
 	}
+
+    public IEnumerator destroyProjectile(GameObject projectile)
+    {
+        yield return null; //Wait for 1 frame, let other components do their stuff
+        yield return null; //Wait for 1 frame, let other components do their stuff
+        yield return null; //Wait for 1 frame, let other components do their stuff
+        Network.Destroy(projectile);
+        yield return null;
+    }
 
 }
