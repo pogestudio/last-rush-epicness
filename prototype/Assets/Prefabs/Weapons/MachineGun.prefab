@@ -451,7 +451,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100018}
   m_LocalRotation: {x: 0, y: 0, z: .707106829, w: .707106829}
-  m_LocalPosition: {x: 7.96289062, y: .318747103, z: -978.174072}
+  m_LocalPosition: {x: 4.90911865, y: .318747044, z: -970.608582}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400030}
@@ -1157,6 +1157,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 400020}
   glowingModel: {fileID: 100016}
+  redGlow: {fileID: 2100000, guid: 6dce68c0c8e53a2409af295d7317b8b8, type: 2}
+  greenGlow: {fileID: 2100000, guid: 4bd95dcfc98fcdc4d86b16f540d785bc, type: 2}
   timeBetweenShots: .200000003
   bulletSpeed: 20
   weaponDamage: 5

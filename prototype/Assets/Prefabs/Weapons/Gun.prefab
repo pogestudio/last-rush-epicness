@@ -701,6 +701,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 400012}
   glowingModel: {fileID: 100022}
+  redGlow: {fileID: 2100000, guid: 6dce68c0c8e53a2409af295d7317b8b8, type: 2}
+  greenGlow: {fileID: 2100000, guid: 4bd95dcfc98fcdc4d86b16f540d785bc, type: 2}
   timeBetweenShots: .5
   bulletSpeed: 35
   weaponDamage: 20
