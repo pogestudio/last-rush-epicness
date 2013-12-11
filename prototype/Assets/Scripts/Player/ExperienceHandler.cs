@@ -10,6 +10,7 @@ public enum WeaponTypes
 		MachineGun = 1,
 		Gatling = 2,
 		ShotGun = 3,
+		SniperRifle = 4,
 		WeaponTypesMAX,
 };
 
@@ -60,7 +61,7 @@ public class ExperienceHandler : MonoBehaviour
 			//allSkills.Add (new Skill ("HomingShot", WeaponTypes.HandGun));
 			allSkills.Add (new Skill ("LightningShot", WeaponTypes.MachineGun, "Zeus fury is released upon the foes! "));
 			allSkills.Add (new Skill ("MultiShot", WeaponTypes.ShotGun, "Fire one, fire two, or why not more? By adding on this skill you will quickly find out that one muzzle can do the work of several."));
-			//allSkills.Add (new Skill ("PiercingShot", WeaponTypes.MachineGun, "This shit fires piercing shots, with piercing abilities close to that of LA Ink"));
+			allSkills.Add (new Skill ("PiercingShot", WeaponTypes.SniperRifle, "This shit fires piercing shots, with piercing abilities close to that of LA Ink"));
 
 		}
 

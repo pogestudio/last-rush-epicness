@@ -62,7 +62,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.34753418, y: 1.33160472, z: -933.70459}
+  m_LocalPosition: {x: 9.47399902, y: 1.33160472, z: -939.540405}
   m_LocalScale: {x: 2.66320944, y: 2.66320944, z: 2.66320944}
   m_Children:
   - {fileID: 400002}
@@ -193,12 +193,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e52b0d412f9c247c784b5a35fbd3476e, type: 3}
+  m_Script: {fileID: 11500000, guid: c51fea61989c64e42b59b18282bd626a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: .0500000007
-  maxChange: .300000012
-  midpoint: .300000012
+  maxChange: 1
+  midpoint: 1.5
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -448,7 +448,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     type: 4
-    radius: 1
+    radius: .600000024
     angle: 2
     length: 5
     boxX: 1
@@ -503,7 +503,7 @@ ParticleSystem:
     time3: 0
     m_BurstCount: 0
   SizeModule:
-    enabled: 0
+    enabled: 1
     curve:
       scalar: 1
       maxCurve:
@@ -515,7 +515,7 @@ ParticleSystem:
           outSlope: 0
           tangentMode: 0
         - time: 1
-          value: 1
+          value: 0
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -578,16 +578,16 @@ ParticleSystem:
       maxGradient:
         key0:
           serializedVersion: 2
-          rgba: 4294913024
+          rgba: 4294967295
         key1:
           serializedVersion: 2
-          rgba: 4278255611
+          rgba: 4278240255
         key2:
           serializedVersion: 2
-          rgba: 255
+          rgba: 3539081
         key3:
           serializedVersion: 2
-          rgba: 0
+          rgba: 16722944
         key4:
           serializedVersion: 2
           rgba: 0
@@ -600,10 +600,10 @@ ParticleSystem:
         key7:
           serializedVersion: 2
           rgba: 0
-        ctime0: 10409
-        ctime1: 28334
-        ctime2: 39128
-        ctime3: 0
+        ctime0: 0
+        ctime1: 10409
+        ctime2: 36237
+        ctime3: 36237
         ctime4: 0
         ctime5: 0
         ctime6: 0
@@ -616,7 +616,7 @@ ParticleSystem:
         atime5: 0
         atime6: 0
         atime7: 0
-        m_NumColorKeys: 2
+        m_NumColorKeys: 3
         m_NumAlphaKeys: 2
       minGradient:
         key0:
