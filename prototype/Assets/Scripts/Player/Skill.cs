@@ -14,7 +14,6 @@ public class Skill
 				this.currentWeaponType = weaponType;
 				this.componentName = componentName;
 				this.description = description;
-		
 		}
 	
 
@@ -23,6 +22,8 @@ public class Skill
 		public int currentSkillLevel = 0;
 		private float totalXP;
 		
+		private static GameObject thisPlayer; // used to check for power ups
+	
 		public static Skill skillForWeaponType (WeaponTypes weaponType)
 		{
 				int length = allSkills.Count;
@@ -86,11 +87,7 @@ public class Skill
 				return shouldAddEffect;
 			
 		}
-		
-		public float chanceToAddEffect ()
-		{
-				return ((float)currentSkillLevel) / 100F;
-		}
+
 		
 		public float currentXp ()
 		{
@@ -108,6 +105,29 @@ public class Skill
 						return 0;
 				else 
 						return ExpLevels () [currentSkillLevel - 1];
+		}
+		
+	
+		public float chanceToAddEffect ()
+		{
+				float regularChance = ((float)currentSkillLevel) / 100F;
+				float theCurrentChance = regularChance;
+				ImprovedSkillChance powerUp = playerObject ().GetComponent<ImprovedSkillChance> ();
+				if (powerUp != null) {
+						//Debug.Log ("fetching improved skill chance");
+						theCurrentChance = powerUp.getImprovedChance ();
+				}
+		
+				return theCurrentChance;
+		}
+		
+
+		private GameObject playerObject ()
+		{
+				if (thisPlayer == null) {
+						thisPlayer = GameObject.FindGameObjectWithTag ("Player");
+				}
+				return thisPlayer;
 		}
 	
 }

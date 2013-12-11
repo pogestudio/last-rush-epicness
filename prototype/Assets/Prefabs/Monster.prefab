@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
-  defaultMovingSpeed: 250
+  defaultMovingSpeed: 150
   target: {fileID: 0}
   searchRadius: 80
 --- !u!114 &11400004
