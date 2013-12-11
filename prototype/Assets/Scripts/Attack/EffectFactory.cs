@@ -91,18 +91,21 @@ public class EffectFactory : MonoBehaviour
 		{
 				return Instantiate (effect, effectOrigin, Quaternion.identity) as GameObject;
 		}
-
+		
+		public void createLightningBetween (Vector3 originPos, Vector3 destPos)
+		{
+				createLightningBetween (originPos, destPos, 0.2F);
+		
+		}
+		
+		
 		public void createLightningBetween (Vector3 originPos, Vector3 destPos, float lightningThickness)
 		{
 				networkView.RPC ("createLightningBetweenRPC", RPCMode.All, originPos, destPos, lightningThickness);
 
 		}
 
-		public void createLightningBetween (Vector3 originPos, Vector3 destPos)
-		{
-				createLightningBetween (originPos, destPos, 0.2F);
-
-		}
+		
 
 		[RPC]
 		private void createLightningBetweenRPC (Vector3 originPos, Vector3 destPos, float lightningThickness)
@@ -139,7 +142,7 @@ public class EffectFactory : MonoBehaviour
 				//Debug.Log ("create lightning called");
 
 				//DONE! destroy lineRenderer
-				Destroy (lightningLineRenderer, 0.2F);
+				Destroy (lightningLineRenderer.gameObject, 0.1F);
 		}
 
 		Vector3 Randomize (Vector3 v3, float inaccuracy2)
