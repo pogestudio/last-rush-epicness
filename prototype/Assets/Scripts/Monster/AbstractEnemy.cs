@@ -15,12 +15,12 @@ public class AbstractEnemy : MonoBehaviour
 		public GameObject target;
 		public float searchRadius = 80F;
 
-        private void die()
+		private void die ()
 		{
 				//Debug.Log ("Monster should die");
 				DropsLoot lootComponent = gameObject.GetComponent<DropsLoot> ();
 				lootComponent.ShouldDropLoot ();
-				Network.Destroy(gameObject);
+				Network.Destroy (gameObject);
 		}
 
 
@@ -61,7 +61,6 @@ public class AbstractEnemy : MonoBehaviour
 		{
 		
 		}
-
 		protected void walk ()
 		{
 				if (!networkView.isMine)
@@ -69,11 +68,12 @@ public class AbstractEnemy : MonoBehaviour
 
 				Vector3 delta = target.transform.position - transform.position;
 				delta.Normalize ();
-				float moveSpeed = movingSpeed * Time.deltaTime;
+				float moveSpeed = movingSpeed;
 				//transform.position = transform.position + (delta * moveSpeed);
 				rigidbody.velocity = delta * moveSpeed;
 				//rigidbody.AddForce (delta * moveSpeed, ForceMode.Acceleration);
 				transform.LookAt (target.transform);
+				
 		}
 
 }
