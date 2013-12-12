@@ -68,7 +68,8 @@ public class PlayerSpawn : MonoBehaviour
 
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<TopDownCamera>().target = player.transform;
 
-        int randomModelIndex = Random.Range(0, models.Length);
+        System.Random rnd = new System.Random();    //unity random has been seeded
+        int randomModelIndex = rnd.Next(0, models.Length);
         networkView.RPC("initPlayerReplica", RPCMode.AllBuffered, NetworkTranslator.ToId(player), randomModelIndex);
     }
 
