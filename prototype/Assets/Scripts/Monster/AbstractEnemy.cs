@@ -61,18 +61,25 @@ public class AbstractEnemy : MonoBehaviour
 		{
 		
 		}
+
+        //should only be called within FixedUpdate
 		protected void walk ()
 		{
 				if (!networkView.isMine)
 						Debug.LogWarning ("walk is called, shouldnt be since this object is a replicate");
 
-				Vector3 delta = target.transform.position - transform.position;
-				delta.Normalize ();
-				float moveSpeed = movingSpeed;
-				//transform.position = transform.position + (delta * moveSpeed);
-				rigidbody.velocity = delta * moveSpeed;
-				//rigidbody.AddForce (delta * moveSpeed, ForceMode.Acceleration);
-				transform.LookAt (target.transform);
+                //Vector3 delta = target.transform.position - transform.position;
+                //delta.Normalize ();
+                //float moveSpeed = movingSpeed;
+                ////transform.position = transform.position + (delta * moveSpeed);
+                //rigidbody.velocity = delta * moveSpeed;
+                ////rigidbody.AddForce (delta * moveSpeed, ForceMode.Acceleration);
+                //transform.LookAt (target.transform);
+
+                Vector3 delta = target.transform.position - transform.position;
+                delta.Normalize ();
+                rigidbody.velocity = Time.deltaTime * movingSpeed * delta;
+                transform.LookAt(target.transform);
 				
 		}
 
