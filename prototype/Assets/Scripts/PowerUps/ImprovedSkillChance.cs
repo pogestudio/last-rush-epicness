@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ImprovedSkillChance : MonoBehaviour
 {
-		private float chanceToImprove = 80;
+		private float chanceToImprove = 0.6F;
 
 		public GameObject powerupItem;
 		public GameObject powerupPlayer;

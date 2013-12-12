@@ -33,15 +33,30 @@ public class SpawnMonsterAroundMe : MonoBehaviour
 		void Update ()
 		{
 				if (timeToIgnore > Time.time) {
+						// do nothing
 				
 				} else if (reachMaxSpawnRateAfterThisTime > Time.time && Time.time > nextSpawn) { //spawn slowly!
 						MonsterFactory.SpawnMonster (gameObject);
-						nextSpawn = Time.time + (spawnRate) * (reachMaxSpawnRateAfterThisTime - Time.time) / reachMaxSpawnRateAfterThisTime;
-						//	Debug.Log ("Deprecated spawn. Next spawn rate " + nextSpawn);
+						float additionalSpawnTime = Time.time * (-0.125F) + 10;
+						nextSpawn = Time.time + spawnRate + additionalSpawnTime;
+						Debug.Log ("Deprecated spawn. Next spawn rate " + nextSpawn);
 				} else if (Time.time > nextSpawn) {	//regular spawn!
-						//	Debug.Log ("Regular spawn");
+						Debug.Log ("Regular spawn");
 						MonsterFactory.SpawnMonster (gameObject);
-						nextSpawn = Time.time + spawnRate;
+						nextSpawn = calculateNextSpawnRate ();
 				}
+		}
+		
+		float calculateNextSpawnRate ()
+		{
+				float centerOfMapAtWhatDistance = 1000F;
+				float playerPosition = transform.position.z;
+				float playerPositionFromEdge = centerOfMapAtWhatDistance + playerPosition;
+				float playerProgressInMap = playerPositionFromEdge / (centerOfMapAtWhatDistance * 2);
+				
+				float spawnRateIncreaseAtTop = 4;
+				float spawnRateIncreaseAtPlayer = Mathf.Max (1, playerProgressInMap * spawnRateIncreaseAtTop);
+				
+				return Time.time + spawnRate / spawnRateIncreaseAtPlayer;
 		}
 }

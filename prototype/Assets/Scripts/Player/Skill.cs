@@ -96,7 +96,7 @@ public class Skill
 
 		public float nextXpLimit ()
 		{
-				return ExpLevels () [currentSkillLevel];
+				return Mathf.Round (ExpLevels () [currentSkillLevel]);
 		}
 
 		public float prevXpLimit ()
@@ -114,8 +114,9 @@ public class Skill
 				float theCurrentChance = regularChance;
 				ImprovedSkillChance powerUp = playerObject ().GetComponent<ImprovedSkillChance> ();
 				if (powerUp != null) {
-						//Debug.Log ("fetching improved skill chance");
 						theCurrentChance = powerUp.getImprovedChance ();
+						Debug.Log ("fetching improved skill chance:: " + theCurrentChance);
+			
 				}
 		
 				return theCurrentChance;

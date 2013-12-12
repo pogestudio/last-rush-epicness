@@ -76,7 +76,7 @@ public class MiniBossLogic : AbstractEnemy
 						}
 			
 			
-						if (Time.time > nextSpecialAttack && !isCasting && target) {
+						if (Time.time > nextSpecialAttack && !isCasting && target && targetIsWithinDistance (35F)) {
 								//should start casting
 								randomizeNextSpecialAttack ();
 								isCasting = true;
@@ -92,6 +92,12 @@ public class MiniBossLogic : AbstractEnemy
 						}
 				}
 		
+		}
+		
+		bool targetIsWithinDistance (float prefDistance)
+		{
+				float targetDistance = Vector3.Distance (target.transform.position, transform.position);
+				return targetDistance <= prefDistance;
 		}
 		
 		void keepOnRightHeightLevel ()
@@ -216,9 +222,9 @@ public class MiniBossLogic : AbstractEnemy
 	
 		void shootLightningAttack ()
 		{
-				float distance = Vector3.Distance (target.transform.position, transform.position);
+
 				Vector3 lightPos = target.transform.position;
-				if (distance > lightningAttackMaxDistance) {
+				if (!targetIsWithinDistance (lightningAttackMaxDistance)) {
 						Vector3 directionOfPlayer = target.transform.position - transform.position;
 						directionOfPlayer.Normalize ();
 						lightPos = transform.position + directionOfPlayer * lightningAttackMaxDistance;

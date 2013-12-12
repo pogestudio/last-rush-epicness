@@ -1,12 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Others/WorldGenerator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GUI/WeaponSkillMenu.cs">
     <Files>
-      <File FileName="Assets/Scripts/Attack/EffectFactory.cs" Line="145" Column="46" />
-      <File FileName="Assets/Scripts/Monster/SpawnMonsterAroundMe.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Monster/MiniBossLogic.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Monster/MonsterFactory.cs" Line="30" Column="1" />
-      <File FileName="Assets/Scripts/Others/WorldGenerator.cs" Line="65" Column="1" />
+      <File FileName="Assets/Scripts/PowerUps/ImprovedSkillChance.cs" Line="6" Column="37" />
+      <File FileName="Assets/Scripts/Monster/SpawnMonsterAroundMe.cs" Line="55" Column="5" />
+      <File FileName="Assets/Scripts/Monster/MonsterFactory.cs" Line="30" Column="32" />
+      <File FileName="Assets/Scripts/GUI/WeaponSkillMenu.cs" Line="54" Column="7" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
