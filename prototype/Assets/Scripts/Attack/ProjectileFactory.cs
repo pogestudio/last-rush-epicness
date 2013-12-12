@@ -31,14 +31,14 @@ public class ProjectileFactory : MonoBehaviour
 	/// Call from any object belonging to player, for example an equipped gun.
 	/// </summary>
 	/// <returns>The projectile, in a stand still state at the transform point given</returns>
-	public GameObject deliverProjectile (Transform gunOrigin, WeaponTypes weaponType, int weaponDamage)
+    public GameObject deliverProjectile(Transform gunOrigin, WeaponTypes weaponType, int weaponDamage, bool replicateOnNetwork = true)
 	{
-		return deliverProjectileWithoutTransform (gunOrigin.position, gunOrigin.rotation, weaponType, weaponDamage);
+        return deliverProjectileWithoutTransform(gunOrigin.position, gunOrigin.rotation, weaponType, weaponDamage, replicateOnNetwork);
 	}
-	
-	public GameObject deliverProjectileWithoutTransform (Vector3 position, Quaternion rotation, WeaponTypes weaponType, int weaponDamage)
+
+    public GameObject deliverProjectileWithoutTransform(Vector3 position, Quaternion rotation, WeaponTypes weaponType, int weaponDamage, bool replicateOnNetwork = true)
 	{
-		GameObject projectileToFire = createProjectile (position, rotation);
+        GameObject projectileToFire = createProjectile(position, rotation, replicateOnNetwork);
 		addAttackSkills (projectileToFire, weaponDamage, weaponType);
 		projectileToFire.layer = LayerMask.NameToLayer ("Projectiles");
 		
@@ -75,9 +75,13 @@ public class ProjectileFactory : MonoBehaviour
 	/// Creates the projectile.
 	/// </summary>
 	/// <returns>The bullet.</returns>
-	private GameObject createProjectile (Vector3 position, Quaternion rotation)
+    private GameObject createProjectile(Vector3 position, Quaternion rotation, bool replicateOnNetwork = true)
 	{
-        GameObject newProjectile = Network.Instantiate(bullet, position, rotation, 1) as GameObject;
+        GameObject newProjectile;
+        if (replicateOnNetwork)
+            newProjectile = Network.Instantiate(bullet, position, rotation, 1) as GameObject;
+        else
+            newProjectile = Instantiate(bullet, position, rotation) as GameObject;
 
 		return newProjectile;
 	}

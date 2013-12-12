@@ -14,7 +14,7 @@ public abstract class RaycastWeapon : AbstractWeapon {
 	{
 		// Find if we have any special treatment effects
 
-		GameObject ghostProjectile = ProjectileFactory.sharedFactory().deliverProjectile(gunMuzzle, type, weaponDamage);
+		GameObject ghostProjectile = ProjectileFactory.sharedFactory().deliverProjectile(gunMuzzle, type, weaponDamage, false);
 		ghostProjectile.SetActive(false);
 
 		// TODO: Homingshot
@@ -93,12 +93,12 @@ public abstract class RaycastWeapon : AbstractWeapon {
 			if (!isPierce)
 				break;
 
-			Destroy (ghostProjectile);
+			Destroy(ghostProjectile);
 
-			ghostProjectile = ProjectileFactory.sharedFactory().deliverProjectile(gunMuzzle, type, weaponDamage);
+			ghostProjectile = ProjectileFactory.sharedFactory().deliverProjectile(gunMuzzle, type, weaponDamage , false);
 			ghostProjectile.SetActive(false);
 		}
-		Destroy(ghostProjectile);
+        Destroy(ghostProjectile);
 
 		StartCoroutine(flash ());
 		if (audio)

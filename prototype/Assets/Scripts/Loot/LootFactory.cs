@@ -10,6 +10,7 @@ public class LootFactory : MonoBehaviour
     public GameObject handGun;
     public GameObject gatling;
     public GameObject shotGun;
+    public GameObject sniper;
 
 
     private static LootFactory sharedInstance;
@@ -55,6 +56,11 @@ public class LootFactory : MonoBehaviour
             case WeaponTypes.ShotGun:
                 {
                     instantiatedWeapon = Instantiate(shotGun, monsterLocation.position, monsterLocation.rotation) as GameObject;
+                    break;
+                }
+            case WeaponTypes.SniperRifle:
+                {
+                    instantiatedWeapon = Instantiate(sniper, monsterLocation.position, monsterLocation.rotation) as GameObject;
                     break;
                 }
 
