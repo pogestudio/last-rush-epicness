@@ -6,81 +6,81 @@ using System.Collections;
 /// </summary>
 public abstract class SkillEffect : MonoBehaviour
 {
-	public static SkillEffect instance;
+		public static SkillEffect instance;
 	
-	public WeaponTypes currentWeaponType;
+		public WeaponTypes currentWeaponType;
 	
 	
-	public int baseShotDamage;
-	public int standardDestroyTime = 4;
-
-
-	void Start ()
-	{
-		instance = this;
-		Destroy (gameObject, standardDestroyTime);
-	}
-	
-	public void OnCollisionEnter (Collision colliderObject)
-	{
-		if (targetIsEnemy (colliderObject.gameObject)) {
-			doDamage (colliderObject.gameObject);
-		}
-		createEffect (colliderObject.gameObject);
+		public int baseShotDamage;
+		public int standardDestroyTime = 4;
 		
-		destroyProjectileWithDelay (gameObject);
-	}
+
+		void Start ()
+		{
+				instance = this;
+				Destroy (gameObject, standardDestroyTime);
+		}
 	
-	public void setUpProjectile (int baseWeaponDamage, WeaponTypes firingWeapon)
-	{
-		baseShotDamage = baseWeaponDamage;
-		currentWeaponType = firingWeapon;
-	}
+		public void OnCollisionEnter (Collision colliderObject)
+		{
+				if (targetIsEnemy (colliderObject.gameObject)) {
+						doDamage (colliderObject.gameObject);
+				}
+				createEffect (colliderObject.gameObject);
+		
+				destroyProjectileWithDelay (gameObject);
+		}
+	
+		public void setUpProjectile (int baseWeaponDamage, WeaponTypes firingWeapon)
+		{
+				baseShotDamage = baseWeaponDamage;
+				currentWeaponType = firingWeapon;
+		}
 	
 	
-	/*
+		/*
 	               INSIDE STUFF, THINGS THAT SHOULD BE INHERITED BY SUBCLASSES
 	*/
 	
-	public abstract void createEffect (GameObject toObject);
-	public abstract void doDamage (GameObject colliderObject);
+		public abstract void createEffect (GameObject toObject);
+		public abstract void doDamage (GameObject colliderObject);
 
 	
-	public void doDamageToSingleTarget (GameObject target, int damage, WeaponTypes weaponOfChoice)
-	{
-		if (targetIsEnemy (target)) {
-			target.transform.SendMessage ("applyDamage", damage, SendMessageOptions.DontRequireReceiver);
-			reportDamageToExpHandler (damage, weaponOfChoice);
+		public void doDamageToSingleTarget (GameObject target, int damage, WeaponTypes weaponOfChoice)
+		{
+				if (targetIsEnemy (target)) {
+						target.transform.SendMessage ("applyDamage", damage, SendMessageOptions.DontRequireReceiver);
+						reportDamageToExpHandler (damage, weaponOfChoice);
+				}
 		}
-	}
 	
-	public static void wantToDamage (GameObject target, int damage, WeaponTypes weaponOfChoice)
-	{
-		instance.doDamageToSingleTarget (target, damage, weaponOfChoice);
-	}
+		public static void wantToDamage (GameObject target, int damage, WeaponTypes weaponOfChoice)
+		{
+				instance.doDamageToSingleTarget (target, damage, weaponOfChoice);
+		}
 	
-	private void reportDamageToExpHandler (int damage, WeaponTypes weaponOfChoice)
-	{
-		ExperienceHandler.sharedHandler ().damagesWasDealt (damage, weaponOfChoice);
-	}
+		private void reportDamageToExpHandler (int damage, WeaponTypes weaponOfChoice)
+		{
+				ExperienceHandler.sharedHandler ().damagesWasDealt (damage, weaponOfChoice);
+		}
 	
-	public bool targetIsEnemy (GameObject target)
-	{
-		return MonsterFinder.sharedHelper ().targetIsEnemy (target);
-	}
+		public bool targetIsEnemy (GameObject target)
+		{
+				return MonsterFinder.sharedHelper ().targetIsEnemy (target);
+		}
 	
-	public void destroyProjectileWithDelay (GameObject projectile)
-	{
-        StartCoroutine("destroyProjectile", projectile);
-	}
+		public void destroyProjectileWithDelay (GameObject projectile)
+		{
+				StartCoroutine ("destroyProjectile", projectile);
+		}
 
-    public IEnumerator destroyProjectile(GameObject projectile)
-    {
-        yield return null; //Wait for 1 frame, let other components do their stuff
-        yield return null; //Wait for 1 frame, let other components do their stuff
-        yield return null; //Wait for 1 frame, let other components do their stuff
-        Network.Destroy(projectile);
-        yield return null;
-    }
+		public IEnumerator destroyProjectile (GameObject projectile)
+		{
+				yield return null; //Wait for 1 frame, let other components do their stuff
+				yield return null; //Wait for 1 frame, let other components do their stuff
+				yield return null; //Wait for 1 frame, let other components do their stuff
+				Network.Destroy (projectile);
+				yield return null;
+		}
 
 }

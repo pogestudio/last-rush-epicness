@@ -59,10 +59,7 @@ public class LootHandler
 	
 		WeaponTypes randomiseWeaponType ()
 		{
-				int randomValue = Mathf.RoundToInt (Random.Range (0, (float)(WeaponTypes.WeaponTypesMAX - 1)));
-				if (randomValue < 0 || randomValue > ((int)WeaponTypes.WeaponTypesMAX) - 1) {
-						Debug.LogError ("Wrong value in randomiseWeaponType in loothandler.");
-				}
+				int randomValue = Random.Range (0, (int)(WeaponTypes.WeaponTypesMAX - 1));
 				return (WeaponTypes)randomValue;
 		}
 	

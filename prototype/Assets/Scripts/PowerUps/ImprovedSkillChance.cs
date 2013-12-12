@@ -1,38 +1,39 @@
 using UnityEngine;
 using System.Collections;
 
-public class ImprovedSkillChance : MonoBehaviour {
-	private float chanceToImprove = 100;
+public class ImprovedSkillChance : MonoBehaviour
+{
+		private float chanceToImprove = 80;
 
-	public GameObject powerupItem;
-	public GameObject powerupPlayer;
+		public GameObject powerupItem;
+		public GameObject powerupPlayer;
 
-	private GameObject particleEffect;
+		private GameObject particleEffect;
 
-	// Use this for initialization
-	void Start ()
-	{
-		//add animation
-		particleEffect = powerupItem.transform.GetComponentInChildren<ParticleSystem>().gameObject;
-		if (particleEffect) {
-			particleEffect.transform.parent = powerupPlayer.transform;
-			particleEffect.transform.localPosition = Vector3.zero;
+		// Use this for initialization
+		void Start ()
+		{
+				//add animation
+				particleEffect = powerupItem.transform.GetComponentInChildren<ParticleSystem> ().gameObject;
+				if (particleEffect) {
+						particleEffect.transform.parent = powerupPlayer.transform;
+						particleEffect.transform.localPosition = Vector3.zero;
+				}
+
+
+
 		}
 
+		public float getImprovedChance ()
+		{
+				return chanceToImprove;
+		}
 
-
-	}
-
-	public float getImprovedChance ()
-	{
-		return chanceToImprove;
-	}
-
-	void OnDestroy ()
-	{
-		//remove animation
-		Destroy (particleEffect);
-	}
+		void OnDestroy ()
+		{
+				//remove animation
+				Destroy (particleEffect);
+		}
 
 }
 

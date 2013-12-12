@@ -50,6 +50,8 @@ public class MiniBossLogic : AbstractEnemy
 		void Update ()
 		{
 				updateSize ();
+				keepOnRightHeightLevel ();
+				
 		
 				if (networkView.isMine) {
 			
@@ -90,6 +92,11 @@ public class MiniBossLogic : AbstractEnemy
 						}
 				}
 		
+		}
+		
+		void keepOnRightHeightLevel ()
+		{
+				transform.position = new Vector3 (transform.position.x, 2F, transform.position.z);
 		}
 		
 		void freezePosition ()

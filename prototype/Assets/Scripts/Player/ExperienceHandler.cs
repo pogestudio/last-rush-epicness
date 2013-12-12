@@ -14,6 +14,17 @@ public enum WeaponTypes
 		WeaponTypesMAX,
 };
 
+struct AttackSkillStruct
+{
+		public AttackSkillStruct (string compN, string desc)
+		{
+				componentName = compN;
+				description = desc;
+		}
+		public string componentName;
+		public string description;
+}
+
 
 /// <summary>
 /// Experience handler.
@@ -51,20 +62,31 @@ public class ExperienceHandler : MonoBehaviour
 		/// </summary>
 		private void addAllSkills ()
 		{
+				if (!networkView.isMine)
+						return;
+						
 
-			allSkills = new ArrayList ();
-			allSkills.Add (new Skill ("FrostNovaShot", WeaponTypes.Gatling, "Colder than Lady Gagas tits, these projectiles slow everything around them upon impact"));
-			//allSkills.Add (new Skill ("CriticalHit", WeaponTypes.Gatling));
-			//allSkills.Add (new Skill ("BurningShot", WeaponTypes.MachineGun));
-			//allSkills.Add (new Skill ("ShrapnelShot", WeaponTypes.Gatling, ""));
-			allSkills.Add (new Skill ("ExplodingShot", WeaponTypes.HandGun, "Ever wondered what it feels like to fire a dynamite? New witch craft technology enables you to do just that."));
-			//allSkills.Add (new Skill ("HomingShot", WeaponTypes.HandGun));
-			allSkills.Add (new Skill ("LightningShot", WeaponTypes.MachineGun, "Zeus fury is released upon the foes! "));
-			allSkills.Add (new Skill ("MultiShot", WeaponTypes.ShotGun, "Fire one, fire two, or why not more? By adding on this skill you will quickly find out that one muzzle can do the work of several."));
-			allSkills.Add (new Skill ("PiercingShot", WeaponTypes.SniperRifle, "This shit fires piercing shots, with piercing abilities close to that of LA Ink"));
+		
+				ArrayList allSkills = new ArrayList ();
+				allSkills.Add (new AttackSkillStruct ("FrostNovaShot", "Colder than Lady Gagas tits, these projectiles slow everything around them upon impact"));
+				allSkills.Add (new AttackSkillStruct ("CriticalHit", "Have a chance to double up in damage!"));
+				allSkills.Add (new AttackSkillStruct ("BurningShot", "Make your enemy burn with this. High DOT dps. And yes, they stack!"));
+				allSkills.Add (new AttackSkillStruct ("ShrapnelShot", "Chance of splitting up into new bullets on impact!"));
+				allSkills.Add (new AttackSkillStruct ("ExplodingShot", "Ever wondered what it feels like to fire a dynamite? New witch craft technology enables you to do just that."));
+				allSkills.Add (new AttackSkillStruct ("HomingShot", "Seek out closest enemy and (try to) destroy them utterly!"));
+				allSkills.Add (new AttackSkillStruct ("LightningShot", "Zeus fury is released upon the foes!"));
+				allSkills.Add (new AttackSkillStruct ("MultiShot", "Fire one, fire two, or why not more? By adding on this skill you will quickly find out that one muzzle can do the work of several."));
+				allSkills.Add (new AttackSkillStruct ("PiercingShot", "This shit fires piercing shots, with piercing abilities close to that of LA Ink"));
+				
+				ArrayList allWeaponTypes = new ArrayList ();
+				for (int i = 0; i < (int)WeaponTypes.WeaponTypesMAX; i++) {
+						int randomAttackSkillToChoose = Random.Range (0, allSkills.Count - 1);
+						AttackSkillStruct chosenAttackSkill = (AttackSkillStruct)allSkills [randomAttackSkillToChoose];
+						allSkills.RemoveAt (randomAttackSkillToChoose);
+						new Skill (chosenAttackSkill.componentName, chosenAttackSkill.description, (WeaponTypes)i);
+				}
 
 		}
-
 		/// <summary>
 		/// Call this when a projectile impacts a monster. Used to calculate XP gains.
 		/// </summary>
@@ -87,9 +109,9 @@ public class ExperienceHandler : MonoBehaviour
 		{
 				Debug.Log ("Skill leveled up for weaponType :: " + weaponType);
 				if (levelUpEffect) {
-					GameObject effect = GameObject.Instantiate(levelUpEffect) as GameObject;
-					effect.transform.parent = gameObject.transform;
-					effect.transform.localPosition = Vector3.zero;
+						GameObject effect = GameObject.Instantiate (levelUpEffect) as GameObject;
+						effect.transform.parent = gameObject.transform;
+						effect.transform.localPosition = Vector3.zero;
 				}
 		}
 }

@@ -6,96 +6,96 @@ using System.Collections;
 /// </summary>
 public class MonsterFactory : MonoBehaviour
 {
-	protected static MonsterFactory instance; // Needed
+		protected static MonsterFactory instance; // Needed
 	
-	//connect these to the prefabs we want to use
-	public GameObject regularMonster;
-	/*private GameObject miniBoss;
+		//connect these to the prefabs we want to use
+		public GameObject regularMonster;
+		/*private GameObject miniBoss;
 	private GameObject majorBoss;*/
 	
-	private float mapHeight;
-	private Terrain terrain;
+		private float mapHeight;
+		private Terrain terrain;
 	
-	void Start ()
-	{
-		instance = this;
+		void Start ()
+		{
+				instance = this;
 		
-		/*enable one of these for every monster we have implemented so
+				/*enable one of these for every monster we have implemented so
 		 we can see if something breaks */
-		if (!regularMonster)
-			Debug.LogError ("don't have a regular monster. Fail Fail Fail");
+				if (!regularMonster)
+						Debug.LogError ("don't have a regular monster. Fail Fail Fail");
 			
-		GameObject terrainObject = GameObject.Find ("Terrain");
-		terrain = terrainObject.GetComponent<Terrain> ();
-		mapHeight = terrain.terrainData.size.z;
-	}
+				GameObject terrainObject = GameObject.Find ("Terrain");
+				terrain = terrainObject.GetComponent<Terrain> ();
+				mapHeight = terrain.terrainData.size.z;
+		}
 	
-	//////////////////////////// BEGIN REGULAR MONSTER
-	//put everything regarding regular monster in here
+		//////////////////////////// BEGIN REGULAR MONSTER
+		//put everything regarding regular monster in here
 	
-	/// <summary>
-	/// Spawns a mini boss. 
-	/// </summary>
-	/// <param name="forPlayer">Player to spawn around</param>
-	public static void SpawnMiniBoss (GameObject forPlayer, Vector3 atPosition)
-	{
-		GameObject monster = Network.Instantiate (instance.regularMonster, Vector3.zero, Quaternion.identity,1) as GameObject;
-		MonsterLogic monstersLogic = monster.GetComponent ("MonsterLogic") as MonsterLogic;
-		instance.initializeMonster (monstersLogic, forPlayer);
-		monster.transform.position = instance.monsterStartingPosition (forPlayer.transform);
-	}
+		/// <summary>
+		/// Spawns a mini boss. 
+		/// </summary>
+		/// <param name="forPlayer">Player to spawn around</param>
+		public static void SpawnMiniBoss (GameObject forPlayer, Vector3 atPosition)
+		{
+				GameObject monster = Network.Instantiate (instance.regularMonster, Vector3.zero, Quaternion.identity, 1) as GameObject;
+				MonsterLogic monstersLogic = monster.GetComponent ("MonsterLogic") as MonsterLogic;
+				instance.initializeMonster (monstersLogic, forPlayer);
+				monster.transform.position = instance.monsterStartingPosition (forPlayer.transform);
+		}
 	
-	/// <summary>
-	/// Spawns a regular monster. 
-	/// </summary>
-	/// <param name="forPlayer">Player to spawn around</param>
-	public static void SpawnMonster (GameObject forPlayer)
-	{
-        GameObject monster = Network.Instantiate(instance.regularMonster, Vector3.zero, Quaternion.identity, 1) as GameObject;
-		MonsterLogic monstersLogic = monster.GetComponent ("MonsterLogic") as MonsterLogic;
-		instance.initializeMonster (monstersLogic, forPlayer);
-		monster.transform.position = instance.monsterStartingPosition (forPlayer.transform);
-	}
+		/// <summary>
+		/// Spawns a regular monster. 
+		/// </summary>
+		/// <param name="forPlayer">Player to spawn around</param>
+		public static void SpawnMonster (GameObject forPlayer)
+		{
+				GameObject monster = Network.Instantiate (instance.regularMonster, Vector3.zero, Quaternion.identity, 1) as GameObject;
+				MonsterLogic monstersLogic = monster.GetComponent ("MonsterLogic") as MonsterLogic;
+				instance.initializeMonster (monstersLogic, forPlayer);
+				monster.transform.position = instance.monsterStartingPosition (forPlayer.transform);
+		}
 	
-	public void initializeMonster (MonsterLogic monster, GameObject forPlayer)
-	{
-		monster.health = monsterStartingHealth (forPlayer.transform);
-		monster.target = forPlayer;
+		public void initializeMonster (MonsterLogic monster, GameObject forPlayer)
+		{
+				monster.health = monsterStartingHealth (forPlayer.transform);
+				monster.target = forPlayer;
 		
-	}
+		}
 	
-	private int monsterStartingHealth (Transform position)
-	{
-		float centerOfMapAtWhatDistance = 1000F;
-		float playerPosition = position.position.z;
-		float playerPositionFromEdge = centerOfMapAtWhatDistance + playerPosition;
-		float playerProgressInMap = playerPositionFromEdge / mapHeight;
-		//Debug.Log("player progress : " + playerProgressInMap);
+		private int monsterStartingHealth (Transform position)
+		{
+				float centerOfMapAtWhatDistance = 1000F;
+				float playerPosition = position.position.z;
+				float playerPositionFromEdge = centerOfMapAtWhatDistance + playerPosition;
+				float playerProgressInMap = playerPositionFromEdge / mapHeight;
+				//Debug.Log("player progress : " + playerProgressInMap);
 		
-		float monsterHealth = 300 * Mathf.Pow (40, playerProgressInMap) - 300;
-		monsterHealth = Mathf.Max (4, monsterHealth);
-		//Debug.Log("SPAWNING MOnster with health " + monsterHealth);
-		return (int)monsterHealth;
-	}
+				float monsterHealth = 300 * Mathf.Pow (40, playerProgressInMap) - 300;
+				monsterHealth = Mathf.Max (4, monsterHealth);
+				//Debug.Log("SPAWNING MOnster with health " + monsterHealth);
+				return (int)monsterHealth;
+		}
 	
-	public Vector3 monsterStartingPosition (Transform playerTransform)
-	{			
-		float spawnMinDistance = 10;
-		float spawnMaxDistance = 30;
+		public Vector3 monsterStartingPosition (Transform playerTransform)
+		{			
+				float spawnMinDistance = 10;
+				float spawnMaxDistance = 30;
 		
-		float playerX = playerTransform.position.x;
-		float playerZ = playerTransform.position.z;
+				float playerX = playerTransform.position.x;
+				float playerZ = playerTransform.position.z;
 		
-		float randomX = spawnMinDistance + (spawnMaxDistance - spawnMinDistance) * Random.value;
-		float randomZ = spawnMinDistance + (spawnMaxDistance - spawnMinDistance) * Random.value;
-		float positiveOrNegative1 = Random.value > 0.5 ? -1 : 1;
-		float positiveOrNegative2 = Random.value > 0.5 ? -1 : 1;
-		Vector3 monsterPosition = new Vector3 (playerX + positiveOrNegative1 * randomX, playerTransform.position.y, playerZ + positiveOrNegative2 * randomZ);
-		//monsterPosition.y = terrain.terrainData.GetHeight((int)monsterPosition.z, (int)monsterPosition.x) + ((CapsuleCollider)regularMonster.collider).height / 2.0f;
-		//Debug.Log("Spawning monster at " + monsterPosition);
-		return monsterPosition;
+				float randomX = spawnMinDistance + (spawnMaxDistance - spawnMinDistance) * Random.value;
+				float randomZ = spawnMinDistance + (spawnMaxDistance - spawnMinDistance) * Random.value;
+				float positiveOrNegative1 = Random.value > 0.5 ? -1 : 1;
+				float positiveOrNegative2 = Random.value > 0.5 ? -1 : 1;
+				Vector3 monsterPosition = new Vector3 (playerX + positiveOrNegative1 * randomX, playerTransform.position.y, playerZ + positiveOrNegative2 * randomZ);
+				//monsterPosition.y = terrain.terrainData.GetHeight((int)monsterPosition.z, (int)monsterPosition.x) + ((CapsuleCollider)regularMonster.collider).height / 2.0f;
+				//Debug.Log("Spawning monster at " + monsterPosition);
+				return monsterPosition;
 		
-	}
-	//////////////////////////// END REGULAR MONSTER
+		}
+		//////////////////////////// END REGULAR MONSTER
 	
 }

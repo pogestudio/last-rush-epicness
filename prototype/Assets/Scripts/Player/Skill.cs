@@ -8,7 +8,7 @@ public class Skill
 		public string componentName;
 		public string description;
 	
-		public Skill (string componentName, WeaponTypes weaponType, string description)
+		public Skill (string componentName, string description, WeaponTypes weaponType)
 		{
 				allSkills.Add (this);
 				this.currentWeaponType = weaponType;
