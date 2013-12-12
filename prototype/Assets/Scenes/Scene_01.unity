@@ -12911,6 +12911,7 @@ MonoBehaviour:
   handGun: {fileID: 100010, guid: 418fc09df725e3140b5fcaaf70fb00ad, type: 2}
   gatling: {fileID: 100032, guid: 2f7fa97321826924dbf562039366d9a1, type: 2}
   shotGun: {fileID: 100022, guid: 04ff7183c60d244499e30068b19b4887, type: 2}
+  sniper: {fileID: 100190, guid: 158be4a6ce24a4022a1294f632773c7b, type: 2}
 --- !u!1001 &1679177832
 Prefab:
   m_ObjectHideFlags: 0

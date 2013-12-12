@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
 	{
 		//	Debug.Log ("Player should die");
 		//gameObject.SetActive (false);
-		Destroy(gameObject);
+		Network.Destroy(gameObject);
 	}
 
 	public void applyDamage(int damage)
