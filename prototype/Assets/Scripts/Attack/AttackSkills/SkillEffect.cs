@@ -82,5 +82,13 @@ public abstract class SkillEffect : MonoBehaviour
 				Network.Destroy (projectile);
 				yield return null;
 		}
+		
+		public static void removeComponentIfExists (GameObject projectile, string component)
+		{
+				SkillEffect theSkill = (SkillEffect)projectile.GetComponent (component);
+				if (theSkill != null) {
+						Destroy (theSkill);
+				}
+		}
 
 }

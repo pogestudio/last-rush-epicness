@@ -3,7 +3,6 @@ using System.Collections;
 
 public abstract class RaycastWeapon : AbstractWeapon {
 
-	public LineRenderer lineRenderer;
 	private bool isMultishot = false;
 	private bool isShrapnelShot = false;
 
@@ -15,7 +14,7 @@ public abstract class RaycastWeapon : AbstractWeapon {
 	{
 		// Find if we have any special treatment effects
 
-		GameObject ghostProjectile = ProjectileFactory.sharedFactory().deliverProjectile(gunMuzzle, type, weaponDamage);
+		GameObject ghostProjectile = ProjectileFactory.sharedFactory().deliverProjectile(gunMuzzle, type, weaponDamage, false);
 		ghostProjectile.SetActive(false);
 
 		// TODO: Homingshot
@@ -89,23 +88,17 @@ public abstract class RaycastWeapon : AbstractWeapon {
 				}
 			}
 
-			LineRenderer tmp = GameObject.Instantiate(lineRenderer) as LineRenderer;
-			tmp.SetVertexCount(2);
-			tmp.SetWidth(0.1f, 0.1f);
-			tmp.SetColors(Color.white, Color.white);
-			tmp.SetPosition(0, gunMuzzle.position);
-			tmp.SetPosition(1, hit.point);
-			Destroy(tmp.gameObject, 0.5f);
+            EffectFactory.sharedFactory().createSniperShot(gunMuzzle.position, hit.point);
 
 			if (!isPierce)
 				break;
 
-			Destroy (ghostProjectile);
+			Destroy(ghostProjectile);
 
-			ghostProjectile = ProjectileFactory.sharedFactory().deliverProjectile(gunMuzzle, type, weaponDamage);
+			ghostProjectile = ProjectileFactory.sharedFactory().deliverProjectile(gunMuzzle, type, weaponDamage , false);
 			ghostProjectile.SetActive(false);
 		}
-		Destroy(ghostProjectile);
+        Destroy(ghostProjectile);
 
 		StartCoroutine(flash ());
 		if (audio)

@@ -34,7 +34,11 @@ public class ShrapnelShot : SkillEffect
 						//ignoreCollisionIfExistsAndActive (newProjectile, colliderObject);			
 						setCorrectAngleAndSpeed (newProjectile, i / amountOfProjectiles);
 						//Debug.Log ("Want to fire projectile " + i + " with vector " + newProjectile.rigidbody.velocity);
-						;
+						
+						
+						//dont get a shrapnel chain effect
+						removeComponentIfExists (newProjectile, "ShrapnelShot");
+						removeComponentIfExists (newProjectile, "MultiShot");
 			
 				}
 		}
@@ -53,6 +57,7 @@ public class ShrapnelShot : SkillEffect
 
 				projectile.rigidbody.velocity = transform.TransformDirection (directionVector * projectileSpeed);
 				projectile.transform.rotation = Quaternion.AngleAxis (rotationAngle, Vector3.up);
+				
 				//directionVector = directionVector * projectileSpeed;
 		
 //		Debug.Log ("rotation angle " + rotationAngle);

@@ -19,7 +19,7 @@ public class MonsterLogic : AbstractEnemy
 	private float despawnDistance = 80F;
 	
 	// Update is called once per frame
-	void Update ()
+    void FixedUpdate()
 	{
         if (networkView.isMine)
         {
@@ -34,6 +34,7 @@ public class MonsterLogic : AbstractEnemy
             despawnIfTooFar();
         }
 	}
+
 	
 	void despawnIfTooFar ()
 	{

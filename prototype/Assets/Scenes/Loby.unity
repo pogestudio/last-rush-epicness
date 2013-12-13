@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70de5b5ebd873c14a98285ecb83c7918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toolTipSkin: {fileID: 11400000, guid: e23ca225a1c16477c942fe1e62471765, type: 2}
 --- !u!4 &214802690
 Transform:
   m_ObjectHideFlags: 0

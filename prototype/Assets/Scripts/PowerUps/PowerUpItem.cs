@@ -14,8 +14,8 @@ public class PowerUpItem : MonoBehaviour
 		
 		void OnCollisionEnter (Collision collidingObject)
 		{
-				
-				if (!PlayerFinder.sharedHelper ().targetIsPlayer (collidingObject.gameObject))
+
+            if (collidingObject.gameObject.tag != "Player") //avoids player replicas
 						return;
 		
 				ImprovedSkillChance powerUp = collidingObject.gameObject.AddComponent<ImprovedSkillChance> ();
