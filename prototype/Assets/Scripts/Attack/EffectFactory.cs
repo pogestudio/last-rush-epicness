@@ -169,8 +169,8 @@ public class EffectFactory : MonoBehaviour
         GameObject objectToAddTo = NetworkTranslator.ToInstance(objectID);
         //FOR NOW it just adds a new color. It DOES NOT REMOVE.
         //Should be rewritten so that it adds a script/ParticleSystem which is destroyed after the duration
-        Color slowColor = new Color(0.6f, 1f, 1f);
-        objectToAddTo.transform.renderer.material.color = slowColor;
+        //Color slowColor = new Color(0.6f, 1f, 1f);
+        //objectToAddTo.transform.renderer.material.color = slowColor;
 
         GameObject frozen = Instantiate(frozenEffect, Vector3.zero, Quaternion.identity) as GameObject;
         frozen.transform.parent = objectToAddTo.transform;
@@ -191,8 +191,8 @@ public class EffectFactory : MonoBehaviour
         GameObject objectToAddTo = NetworkTranslator.ToInstance(objectID);
         //FOR NOW it just adds a new color. It DOES NOT REMOVE.
         //Should be rewritten so that it adds a script/ParticleSystem which is destroyed after the duration
-        Color burnColor = new Color(0.2f, 0f, 0f);
-        objectToAddTo.transform.renderer.material.color = burnColor;
+        //Color burnColor = new Color(0.2f, 0f, 0f);
+        //objectToAddTo.transform.renderer.material.color = burnColor;
         GameObject burn = Instantiate(burningEffect, Vector3.zero, Quaternion.identity) as GameObject;
         burn.transform.parent = objectToAddTo.transform;
         burn.transform.localPosition = Vector3.zero;
