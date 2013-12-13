@@ -62,6 +62,11 @@ public class NetworkManager : MonoBehaviour
 		void Update ()
 		{
 
+			if (Input.GetKeyDown(KeyCode.Escape)) {
+				Debug.Log("Escape");
+				Application.Quit();
+			}
+
 		}
 
 		[RPC]
