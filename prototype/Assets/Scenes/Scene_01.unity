@@ -834,6 +834,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   miniBoss: {fileID: 100002, guid: 7a41f036b13aa45c08791f2c01a31437, type: 2}
   spawnArea: 50
+  health: 0
 --- !u!4 &107158735
 Transform:
   m_ObjectHideFlags: 0
@@ -841,7 +842,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 107158733}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -700, y: 0, z: 0}
+  m_LocalPosition: {x: -488.135651, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 686151798}
@@ -5502,7 +5503,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 686151797}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.47919655, z: -856.650024}
+  m_LocalPosition: {x: 0, y: 4.47919655, z: -451.792603}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 725986244}
@@ -5739,6 +5740,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   miniBoss: {fileID: 100002, guid: 7a41f036b13aa45c08791f2c01a31437, type: 2}
   spawnArea: 50
+  health: 0
 --- !u!4 &725986244
 Transform:
   m_ObjectHideFlags: 0
@@ -5746,7 +5748,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 725986242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 118.498413}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 686151798}
@@ -13668,7 +13670,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1845346597}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 600, y: 0, z: 0}
+  m_LocalPosition: {x: 455.553955, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 686151798}
@@ -13685,6 +13687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   miniBoss: {fileID: 100002, guid: 7a41f036b13aa45c08791f2c01a31437, type: 2}
   spawnArea: 50
+  health: 0
 --- !u!1 &1846554010
 GameObject:
   m_ObjectHideFlags: 0
