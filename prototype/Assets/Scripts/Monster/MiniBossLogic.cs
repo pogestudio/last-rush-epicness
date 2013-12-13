@@ -49,7 +49,7 @@ public class MiniBossLogic : AbstractEnemy
 
     void Update()
     {
-        updateSize();
+        //updateSize();
         keepOnRightHeightLevel();
 
 

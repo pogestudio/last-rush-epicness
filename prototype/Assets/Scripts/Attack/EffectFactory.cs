@@ -196,6 +196,7 @@ public class EffectFactory : MonoBehaviour
         GameObject burn = Instantiate(burningEffect, Vector3.zero, Quaternion.identity) as GameObject;
         burn.transform.parent = objectToAddTo.transform;
         burn.transform.localPosition = Vector3.zero;
+
     }
 
     public void createSniperShot(Vector3 start, Vector3 end)
