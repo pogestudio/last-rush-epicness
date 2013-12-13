@@ -62,10 +62,10 @@ public class NetworkManager : MonoBehaviour
 		void Update ()
 		{
 
-			if (Input.GetKeyDown(KeyCode.Escape)) {
-				Debug.Log("Escape");
-				Application.Quit();
-			}
+				if (Input.GetKeyDown (KeyCode.Escape)) {
+						Debug.Log ("Escape");
+						Application.Quit ();
+				}
 
 		}
 
@@ -76,6 +76,7 @@ public class NetworkManager : MonoBehaviour
 				Debug.Log ("Game Start!");
 				Application.LoadLevel ("Scene_01");
 				state = NetworkState.PLAYING;
+				shouldShowInfo = false;
 		}
 
 
@@ -102,7 +103,6 @@ public class NetworkManager : MonoBehaviour
 						GUI.Label (new Rect (10, 30, 1000, 20), "Other players connected: " + Network.connections.Length);
 
 						if (GUI.Button (new Rect (10, 60, 50, 30), "START")) {
-								shouldShowInfo = false;
 								int randomSeed = Random.Range (0, int.MaxValue);
 								Network.maxConnections = Network.connections.Length;
 								networkView.RPC ("StartGame", RPCMode.All, randomSeed);
@@ -113,6 +113,7 @@ public class NetworkManager : MonoBehaviour
 						typeOutInfo ();
 
 		}
+		
     
 		void typeOutInfo ()
 		{
