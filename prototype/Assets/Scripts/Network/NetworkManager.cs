@@ -11,6 +11,9 @@ enum NetworkState
 
 public class NetworkManager : MonoBehaviour
 {
+
+		private bool shouldShowInfo = true;
+
 		public const int MAX_PLAYERS = 32;
 		public const int PORT = 12123;
 
@@ -73,7 +76,8 @@ public class NetworkManager : MonoBehaviour
 
 		void OnGUI ()
 		{
-
+		
+		
 
 				if (state == NetworkState.NONE) {
 						if (GUI.Button (new Rect (10, 30, 50, 30), "HOST")) {
@@ -93,20 +97,22 @@ public class NetworkManager : MonoBehaviour
 						GUI.Label (new Rect (10, 30, 1000, 20), "Other players connected: " + Network.connections.Length);
 
 						if (GUI.Button (new Rect (10, 60, 50, 30), "START")) {
+								shouldShowInfo = false;
 								int randomSeed = Random.Range (0, int.MaxValue);
 								Network.maxConnections = Network.connections.Length;
 								networkView.RPC ("StartGame", RPCMode.All, randomSeed);
 						}
 				}
-        
-				typeOutInfo ();
+				
+				if (shouldShowInfo)
+						typeOutInfo ();
 
 		}
     
 		void typeOutInfo ()
 		{
 				string info = "Go north and seek out the end boss!\n\nPick up weapon on ground with E.\n\nEach weapon is connected to a skill, do damage to increase skill level.\n\nPress TAB to see the weapon skills connected to each weapon.\n\nRed glow = less damage per second than current weapon\nGreen glow = more damage per second than current weapon";
-				GUI.Box (new Rect (10, 110, 300, 200), info, toolTipSkin.box);
+				GUI.Box (new Rect (10, 110, 300, 300), info, toolTipSkin.box);
 				
 		
 		}
